@@ -1,0 +1,709 @@
+/* ===========================
+user.css — Masahati Project
+Profile & Favorites Pages
+   =========================== */
+ 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+ 
+/* ---- Variables — user.css only adds what style.css does not cover ---- */
+:root {
+--success: #244034;
+--warning: #244034;
+--danger:  #244043;
+}
+ 
+/* ========================
+FAVORITES PAGE
+   ======================== */
+ 
+.page-header {
+display: flex;
+align-items: center;
+gap: 20px;
+padding: 48px 0 32px;
+}
+ 
+.page-header-icon {
+width: 60px;
+height: 60px;
+border-radius: 14px;
+background: #fee2e2;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.6rem;
+flex-shrink: 0;
+}
+ 
+.page-header h1 {
+font-size: 1.75rem;
+font-weight: 800;
+color: var(--text-dark);
+}
+ 
+.page-header p {
+font-size: 0.95rem;
+color: var(--text-mid);
+margin-top: 4px;
+}
+ 
+/* Count bar */
+.favorites-count-bar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 24px;
+}
+ 
+.favorites-count-bar span {
+font-size: 0.9rem;
+color: var(--text-mid);
+font-weight: 500;
+}
+ 
+.favorites-count-bar button {
+background: none;
+border: none;
+cursor: pointer;
+color: var(--text-light);
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+transition: color 0.2s;
+}
+.favorites-count-bar button:hover { color: var(--text-mid); }
+ 
+/* Workspace cards grid */
+.workspaces-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 24px;
+margin-bottom: 40px;
+}
+ 
+.workspace-card {
+background: var(--white);
+border-radius: 16px;
+overflow: hidden;
+box-shadow: var(--shadow-sm);
+transition: transform 0.2s, box-shadow 0.2s;
+border: 1px solid var(--border);
+}
+ 
+.workspace-card:hover {
+transform: translateY(-4px);
+box-shadow: var(--shadow);
+}
+ 
+.workspace-card-img {
+position: relative;
+height: 180px;
+overflow: hidden;
+}
+ 
+.workspace-card-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s;
+}
+.workspace-card:hover .workspace-card-img img { transform: scale(1.04); }
+ 
+.fav-btn {
+position: absolute;
+top: 12px;
+right: 12px;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+background: var(--white);
+border: none;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+transition: transform 0.2s;
+color: #ef4444;
+}
+.fav-btn:hover { transform: scale(1.1); }
+ 
+.workspace-card-body {
+padding: 16px 18px 18px;
+}
+ 
+.workspace-card-body h3 {
+font-size: 1rem;
+font-weight: 700;
+color: var(--text-dark);
+}
+ 
+.workspace-card-location {
+display: flex;
+align-items: center;
+gap: 5px;
+font-size: 0.8rem;
+color: var(--text-mid);
+margin-top: 4px;
+}
+ 
+.workspace-card-rating {
+display: flex;
+align-items: center;
+gap: 4px;
+font-size: 0.82rem;
+font-weight: 600;
+color: var(--text-dark);
+float: right;
+margin-top: 4px;
+}
+.workspace-card-rating .star { color: #f59e0b; }
+ 
+.workspace-card-meta {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px 12px;
+margin-top: 12px;
+}
+ 
+.meta-item {
+display: flex;
+align-items: center;
+gap: 6px;
+font-size: 0.8rem;
+color: var(--text-mid);
+}
+ 
+.meta-item .status-available  { color: var(--success); font-weight: 600; }
+.meta-item .status-unavailable { color: var(--danger);  font-weight: 600; }
+ 
+.btn-view-details {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px;
+  text-align: center;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-view-details:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+ 
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1;
+  background: var(--white);
+  border: 2px dashed var(--border);
+  border-radius: 20px;
+  text-align: center;
+  padding: 72px 24px;
+}
+ 
+.empty-state-icon {
+  font-size: 2.5rem;
+  color: #fca5a5;
+  background: #fee2e2;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+ 
+.empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+ 
+.empty-state p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-top: 8px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+.empty-state .btn-browse {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 13px 32px;
+  background: var(--primary);
+  color: var(--white);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.empty-state .btn-browse:hover { background: var(--primary-hover); }
+ 
+/* ========================
+   PROFILE PAGE
+   ======================== */
+ 
+/* Hero banner */
+.profile-banner {
+  background: var(--primary);
+  border-radius: 20px;
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+}
+ 
+.profile-banner::before {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 50px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+ 
+.profile-banner::after {
+  content: '';
+  position: absolute;
+  right: 80px;
+  bottom: -80px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 40px solid rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+ 
+.profile-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+ 
+.profile-avatar img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.3);
+}
+ 
+.profile-info h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--white);
+}
+ 
+.profile-info p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+/* Stats row */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+ 
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+}
+ 
+.stat-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: #c6f7d6;
+  color:#213335;
+}
+
+.stat-card-icon.green   { background: #ffffff; color: #ffffff; }
+.stat-card-icon.green { background: #244043; color: #244034; }
+.stat-card-icon.green   { background: #244043; color: #244034; }
+
+
+.stat-card-info h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1;
+}
+ 
+.stat-card-info p {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  margin-top: 4px;
+  font-weight: 500;
+}
+ 
+.stat-card-info span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+ 
+/* Edit profile form card */
+.profile-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-top: 28px;
+  box-shadow: var(--shadow-sm);
+}
+ 
+.profile-form-card h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+ 
+.profile-form-card .section-desc {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  margin-top: 4px;
+}
+ 
+.profile-form-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
+ 
+/* Avatar upload area */
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+ 
+.avatar-upload label {
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--text-dark);
+margin-bottom: 8px;
+}
+ 
+.avatar-upload-area {
+position: relative;
+width: 86px;
+}
+ 
+.avatar-upload-area img {
+width: 86px;
+height: 86px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid var(--border);
+}
+ 
+.avatar-camera-btn {
+position: absolute;
+bottom: 0;
+right: 0;
+width: 26px;
+height: 26px;
+background: var(--primary);
+color: var(--white);
+border-radius: 50%;
+border: 2px solid var(--white);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.7rem;
+cursor: pointer;
+transition: background 0.2s;
+}
+.avatar-camera-btn:hover { background: var(--primary-hover); }
+ 
+.avatar-hint {
+font-size: 0.75rem;
+color: var(--text-light);
+margin-top: 6px;
+}
+ 
+/* Profile form layout */
+.profile-fields-row {
+display: grid;
+grid-template-columns: 140px 1fr;
+gap: 32px;
+align-items: start;
+}
+ 
+.profile-form-group {
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+ 
+.profile-form-group label {
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--text-dark);
+}
+ 
+.profile-form-group .input-wrapper input {
+padding-left: 40px;
+}
+ 
+/* Password section */
+.password-row {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-top: 24px;
+}
+ 
+/* Security notice */
+.security-notice {
+display: flex;
+align-items: center;
+gap: 14px;
+background: #f0fdf4;
+border: 1px solid #bbf7d0;
+border-radius: 12px;
+padding: 16px 20px;
+margin-top: 24px;
+}
+ 
+.security-notice-icon {
+color: var(--success);
+font-size: 1.2rem;
+flex-shrink: 0;
+}
+ 
+.security-notice p {
+font-size: 0.875rem;
+font-weight: 600;
+color: var(--text-dark);
+}
+ 
+.security-notice span {
+display: block;
+font-size: 0.8rem;
+color: var(--text-mid);
+font-weight: 400;
+margin-top: 2px;
+}
+ 
+/* Form action buttons */
+.profile-form-actions {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-top: 32px;
+}
+ 
+.btn-save {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 13px 28px;
+background: var(--primary);
+color: var(--white);
+font-family: inherit;
+font-size: 0.95rem;
+font-weight: 700;
+border: none;
+border-radius: var(--radius);
+cursor: pointer;
+transition: background 0.2s;
+}
+.btn-save:hover { background: var(--primary-hover); }
+ 
+.btn-cancel {
+padding: 13px 24px;
+background: transparent;
+color: var(--text-mid);
+font-family: inherit;
+font-size: 0.95rem;
+font-weight: 600;
+border: 1.5px solid var(--border);
+border-radius: var(--radius);
+cursor: pointer;
+transition: background 0.2s;
+}
+.btn-cancel:hover { background: var(--bg-light); }
+ 
+/* ========================
+SHARED INPUT STYLES
+(reused from auth.css if
+    both loaded; kept here
+    for standalone use)
+   ======================== */
+.input-wrapper {
+position: relative;
+display: flex;
+align-items: center;
+}
+ 
+.input-wrapper .input-icon {
+position: absolute;
+left: 14px;
+color: var(--text-light);
+font-size: 1rem;
+pointer-events: none;
+}
+ 
+.input-wrapper input {
+width: 100%;
+padding: 12px 14px 12px 40px;
+border: 1.5px solid var(--border);
+border-radius: var(--radius);
+font-family: inherit;
+font-size: 0.95rem;
+color: var(--text-dark);
+background: var(--white);
+outline: none;
+transition: border-color 0.2s;
+}
+.input-wrapper input:focus { border-color: var(--primary); }
+ 
+.toggle-password {
+position: absolute;
+right: 14px;
+background: none;
+border: none;
+cursor: pointer;
+color: var(--text-light);
+font-size: 1rem;
+display: flex;
+align-items: center;
+transition: color 0.2s;
+}
+.toggle-password:hover { color: var(--primary); }
+ 
+/* ========================
+RESPONSIVE
+   ======================== */
+@media (max-width: 1024px) {
+.workspaces-grid { grid-template-columns: repeat(2, 1fr); }
+.profile-stats   { grid-template-columns: repeat(3, 1fr); }
+.password-row    { grid-template-columns: 1fr 1fr; }
+.password-row .profile-form-group:last-child { grid-column: span 2; }
+}
+ 
+@media (max-width: 768px) {
+.workspaces-grid       { grid-template-columns: 1fr; }
+.profile-stats         { grid-template-columns: 1fr; }
+.profile-banner        { flex-direction: column; text-align: center; padding: 32px 24px; }
+.profile-fields-row    { grid-template-columns: 1fr; }
+.password-row          { grid-template-columns: 1fr; }
+.password-row .profile-form-group:last-child { grid-column: auto; }
+.profile-form-card     { padding: 28px 20px; }
+.profile-form-actions  { flex-direction: column-reverse; gap: 12px; }
+.btn-save, .btn-cancel { width: 100%; justify-content: center; }
+}
+ 
+/* ========================
+   DARK MODE OVERRIDES
+   ======================== */
+ 
+[data-theme="dark"] .page-header-icon {
+  background: rgba(239,68,68,0.15);
+}
+ 
+[data-theme="dark"] .workspace-card {
+  background: var(--white);
+  border-color: var(--border);
+}
+ 
+[data-theme="dark"] .fav-btn {
+  background: #2d3748;
+}
+ 
+[data-theme="dark"] .empty-state {
+  background: var(--white);
+  border-color: var(--border);
+}
+ 
+[data-theme="dark"] .empty-state-icon {
+  background: rgba(239,68,68,0.15);
+  color: #f87171;
+}
+ 
+[data-theme="dark"] .profile-banner {
+  background: #0f2720;
+}
+ 
+[data-theme="dark"] .stat-card {
+  background: var(--white);
+  border-color: var(--border);
+}
+ 
+[data-theme="dark"] .stat-card-icon.green   { background: rgba(3, 130, 62, 0.15); }
+[data-theme="dark"] .stat-card-icon.green{ background: rgba(217,119,6,0.15); }
+[data-theme="dark"] .stat-card-icon.green   { background: rgba(37,99,235,0.15); }
+ 
+[data-theme="dark"] .profile-form-card {
+  background: var(--white);
+  border-color: var(--border);
+}
+ 
+[data-theme="dark"] .profile-form-divider {
+  background: var(--border);
+}
+ 
+[data-theme="dark"] .input-wrapper input {
+  background: #111827;
+  border-color: var(--border);
+  color: var(--text-dark);
+}
+ 
+[data-theme="dark"] .security-notice {
+  background: rgba(22,163,74,0.1);
+  border-color: rgba(22,163,74,0.25);
+}
+ 
+[data-theme="dark"] .btn-cancel {
+  border-color: var(--border);
+  color: var(--text-mid);
+}
+[data-theme="dark"] .btn-cancel:hover {
+  background: var(--bg-light);
+}
+ 
+[data-theme="dark"] .favorites-count-bar span {
+  color: var(--text-mid);
+}

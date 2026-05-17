@@ -1,48 +1,74 @@
 /* ===========================
-auth.css — Masahati Project
-Login & Signup Pages
+  auth.css — Masahati Project
+  Login & Signup Pages
    =========================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* ---- Selection ---- */
+::selection {
+  background: #D6E264;
+  color: #244034;
+}
 
 /* ---- Variables ---- */
 :root {
---primary:       #1a3c34;
---primary-hover: #14302a;
---accent:        #9ef01a;
---text-dark:     #111827;
---text-mid:      #4b5563;
---text-light:    #9ca3af;
---border:        #e5e7eb;
---bg-light:      #f9fafb;
---white:         #ffffff;
---error:         #ef4444;
---radius:        12px;
---shadow:        0 8px 32px rgba(0,0,0,0.10);
+  --primary:       #244034;
+  --primary-hover: #244034;
+  --accent:        #D6E264;
+  --text-mid:      #4b5563;
+  --text-light:    #9ca3af;
+  --border:        #e5e7eb;
+  --bg-light:      #f3f4f6;
+  --white:         #ffffff;
+  --error:         #ef4444;
+  --radius:        12px;
+  --shadow:        0 8px 40px rgba(0,0,0,0.12);
 }
 
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-font-family: 'Plus Jakarta Sans', sans-serif;
-background: var(--bg-light);
-color: var(--text-dark);
-min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 /* ---- Auth Layout ---- */
 .auth-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  grid-template-columns: 45% 55%;
+  width: 900px;
+  min-height: 600px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  position: relative;
+  gap: 0;
 }
 
-/* Left panel — image + tagline */
+/* ---- Left Panel ---- */
 .auth-left {
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   background: var(--primary);
+}
+.auth-left::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: rgba(168, 183, 174, 0.5);
+  z-index: 3;
 }
 
 .auth-left img.bg-photo {
@@ -54,77 +80,92 @@ min-height: 100vh;
   inset: 0;
 }
 
-.auth-left{
-    position: relative;
+.auth-left-content {
+  position: absolute;
+  bottom: 180px;
+  left: 60px;
+  color: white;
+  z-index: 2;
+  max-width: 420px;
 }
 
-.auth-left-content{
-    position: absolute;
-
-    top: 50%;
-    left: 60px;
-
-    transform: translateY(-50%);
-
-    color: white;
-    z-index: 2;
-
-    max-width: 400px;
+.auth-left-content h2 {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 16px;
 }
 
-.auth-left-content h2{
-    font-size: 60px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 30px; 
-}
 .auth-left-content h2 span {
-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Decorative line under signup heading */
+.left-divider {
+  width: 48px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 16px 0;
 }
 
 .auth-left-content p {
-  margin-top: 16px;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.80);
   font-size: 1rem;
   max-width: 340px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* Right panel — form card */
+/* ---- Right Panel ---- */
 .auth-right {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  padding: 48px 40px;
-  background: var(--bg-light);
+  padding: 0;
+  background: var(--white);
 }
 
+/* ---- Auth Card ---- */
 .auth-card {
   background: var(--white);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
+  border-radius: 0;
+  box-shadow: none;
   padding: 48px 44px;
   width: 100%;
-  max-width: 460px;
+  max-width: 100%;
+  min-height: unset;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Signup card — slightly taller content, less top padding */
+.signup-card {
+  padding: 40px 44px 36px;
+  justify-content: flex-start;  
+}
+
+
 .auth-card h1 {
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 2.5rem;
+  font-weight: 900;
   color: var(--text-dark);
   text-align: center;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
 }
 
 .auth-card .auth-subtitle {
   text-align: center;
   color: var(--text-mid);
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 0.95rem;
 }
 
-/* ---- Form Elements ---- */
+/* ---- Form Groups ---- */
 .form-group {
-  margin-top: 24px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -132,10 +173,11 @@ color: var(--accent);
 
 .form-group label {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
 }
 
+/* ---- Input Wrapper ---- */
 .input-wrapper {
   position: relative;
   display: flex;
@@ -181,10 +223,9 @@ color: var(--accent);
   align-items: center;
   transition: color 0.2s;
 }
-
 .input-wrapper .toggle-password:hover { color: var(--primary); }
 
-/* Checkbox + forgot row */
+/* ---- Remember / Forgot ---- */
 .auth-options {
   display: flex;
   align-items: center;
@@ -212,13 +253,13 @@ color: var(--accent);
 .forgot-link {
   font-size: 0.875rem;
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition: opacity 0.2s;
 }
 .forgot-link:hover { opacity: 0.75; }
 
-/* ---- Buttons ---- */
+/* ---- Primary Button ---- */
 .btn-primary {
   display: block;
   width: 100%;
@@ -235,11 +276,10 @@ color: var(--accent);
   transition: background 0.2s, transform 0.1s;
   letter-spacing: 0.01em;
 }
-
 .btn-primary:hover  { background: var(--primary-hover); }
 .btn-primary:active { transform: scale(0.98); }
 
-/* OR divider */
+/* ---- OR Divider ---- */
 .auth-divider {
   display: flex;
   align-items: center;
@@ -256,26 +296,24 @@ color: var(--accent);
   background: var(--border);
 }
 
-/* Switch link */
+/* ---- Switch Link ---- */
 .auth-switch {
   text-align: center;
-  margin-top: 20px;
   font-size: 0.9rem;
   color: var(--text-mid);
 }
-
 .auth-switch a {
   color: var(--primary);
-  font-weight: 700;
+  font-weight: 800;
   text-decoration: none;
 }
 .auth-switch a:hover { text-decoration: underline; }
 
-/* Error messages */
+/* ---- Error Messages ---- */
 .input-error {
   font-size: 0.8rem;
   color: var(--error);
-  margin-top: 4px;
+  margin-top: 2px;
   display: none;
 }
 .input-error.show { display: block; }
@@ -284,28 +322,150 @@ color: var(--accent);
   border-color: var(--error);
 }
 
-/* ---- Name Row (signup) ---- */
-.form-row {
+/* ---- Role Radio Cards ---- */
+.role-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 2px;
 }
+
+.role-card {
+  cursor: pointer;
+  display: block;
+}
+
+.role-card input[type="radio"] {
+  display: none;
+}
+
+.role-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  background: var(--white);
+  transition: border-color 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.role-radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: inline-block;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.role-radio-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Checked state */
+.role-card input[type="radio"]:checked + .role-label {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.role-card input[type="radio"]:checked + .role-label .role-radio-dot {
+  border-color: var(--primary);
+}
+
+.role-card input[type="radio"]:checked + .role-label .role-radio-dot::after {
+  opacity: 1;
+}
+
+/* ---- Terms Checkbox ---- */
+.terms-group {
+  margin-top: 16px;
+}
+
+.terms-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  cursor: pointer;
+  user-select: none;
+}
+
+.terms-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.terms-link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+.terms-link:hover { text-decoration: underline; }
 
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+    overflow: auto;
+  }
+
   .auth-page {
     grid-template-columns: 1fr;
+    transform: none;
+    width: 100%;
+    min-width: unset;
+    min-height: unset;
+    border-radius: 0;
+    box-shadow: none;
   }
+
+  .auth-page::after {
+    display: none;
+  }
+
   .auth-left { display: none; }
+
   .auth-right {
-    padding: 32px 20px;
+    padding: 40px 20px 60px;
     align-items: flex-start;
+    background: var(--bg-light);
+    min-height: 100vh;
   }
+
   .auth-card {
     padding: 36px 24px;
+    min-height: unset;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 100%;
   }
-  .form-row {
+
+  .auth-card h1 {
+    font-size: 2rem;
+  }
+
+  .role-options {
     grid-template-columns: 1fr;
+  }
+
+  .btn-primary {
+    padding: 15px;
   }
 }

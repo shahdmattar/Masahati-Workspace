@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — Masahati</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/user.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Navbar (from style.css) -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/logo/logo.png" alt="Masahati" />
+        <span>Masahati</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="workspaces.html">Workspaces</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="user-avatar-btn" id="userAvatarBtn">
+          <img src="../assets/images/avatar.jpg" alt="User" id="navAvatar" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="container" style="padding-bottom: 80px;">
+
+    <!-- Profile Banner -->
+    <div class="profile-banner">
+      <div class="profile-avatar">
+        <img src="../assets/images/avatar.jpg" alt="Ahmad User" id="bannerAvatar" />
+      </div>
+      <div class="profile-info">
+        <h2 id="bannerName">Ahmad User</h2>
+        <p><i class="fa-regular fa-envelope"></i> <span id="bannerEmail">ahmad.user@email.com</span></p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="profile-stats">
+      <div class="stat-card">
+        <div class="stat-card-icon ">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+        <div class="stat-card-info">
+          <h3>12</h3>
+          <p>Favorite Workspaces</p>
+          <span>Spaces you saved</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon ">
+          <i class="fa-regular fa-star"></i>
+        </div>
+        <div class="stat-card-info">
+          <h3>8</h3>
+          <p>Reviews Written</p>
+          <span>Reviews you shared</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon ">
+          <i class="fa-regular fa-bookmark"></i>
+        </div>
+        <div class="stat-card-info">
+          <h3>12</h3>
+          <p>Saved Workspaces</p>
+          <span>Total saved spaces</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Profile Form -->
+    <div class="profile-form-card">
+      <h2>Edit Profile</h2>
+      <p class="section-desc">Update your personal information and account settings.</p>
+
+      <div class="profile-form-divider"></div>
+
+      <form id="profileForm" novalidate>
+
+        <!-- Avatar + Name -->
+        <div class="profile-fields-row">
+          <div class="avatar-upload">
+            <label>Profile Picture</label>
+            <div class="avatar-upload-area">
+              <img src="../assets/images/avatar.jpg" alt="Avatar" id="previewAvatar" />
+              <button type="button" class="avatar-camera-btn" id="avatarBtn">
+                <i class="fa-solid fa-camera"></i>
+              </button>
+            </div>
+            <p class="avatar-hint">JPG, PNG or GIF.<br>Max size of 2MB.</p>
+            <input type="file" id="avatarInput" accept="image/*" style="display:none" />
+          </div>
+
+          <div class="profile-form-group">
+            <label for="fullName">Full Name</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input type="text" id="fullName" name="fullName"
+                     value="Ahmad User" placeholder="Your full name" />
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-form-divider"></div>
+
+        <!-- Change Password -->
+        <h3 style="font-size:1rem; font-weight:700; color:var(--text-dark);">Change Password</h3>
+        <p class="section-desc" style="margin-top:4px;">Enter your current password to update to a new one.</p>
+
+        <div class="password-row">
+          <div class="profile-form-group">
+            <label for="currentPassword">Current Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="currentPassword" placeholder="Enter current password" />
+              <button type="button" class="toggle-password" data-target="currentPassword">
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="profile-form-group">
+            <label for="newPassword">New Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="newPassword" placeholder="Enter new password" />
+              <button type="button" class="toggle-password" data-target="newPassword">
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="profile-form-group">
+            <label for="confirmNewPassword">Confirm New Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="confirmNewPassword" placeholder="Confirm new password" />
+              <button type="button" class="toggle-password" data-target="confirmNewPassword">
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security notice -->
+        <div class="security-notice">
+          <div class="security-notice-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div>
+            <p>Your data is safe with us</p>
+            <span>We never share your information with anyone.</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="profile-form-actions">
+          <button type="submit" class="btn-save">
+            <i class="fa-solid fa-floppy-disk"></i> Save Changes
+          </button>
+          <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+        </div>
+
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Footer (from style.css) -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/logo/logo.png" alt="Masahati" />
+        <span>Masahati</span>
+        <p>Find your perfect workspace. Discover thousands of coworking spaces tailored for your productivity.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="workspaces.html">Workspaces</a></li>
+          <li><a href="favorites.html">Favorites</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>For Users</h4>
+        <ul>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="workspaces.html">Browse Spaces</a></li>
+          <li><a href="#">Write a Review</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>For Owners</h4>
+        <ul>
+          <li><a href="#">List Your Space</a></li>
+          <li><a href="owner/dashboard.html">Dashboard</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><i class="fa-regular fa-envelope"></i> info@masahati.com</p>
+        <p><i class="fa-solid fa-phone"></i> +970 59 123 4567</p>
+        <p><i class="fa-solid fa-location-dot"></i> Gaza, Palestine</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Masahati. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/user.js"></script>
+</body>
+</html>

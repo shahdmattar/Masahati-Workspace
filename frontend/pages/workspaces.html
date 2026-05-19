@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Masahati | Workspaces</title>
-    
+
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../css/workspaces.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
 
     <link
       rel="stylesheet"
@@ -223,20 +225,22 @@
                     <i class="fa-solid fa-chevron-down"></i>
                   </button>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Very Fast</span>
-                  </label>
+                  <div class="filter-options">
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Very Fast</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Fast</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Fast</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Good</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Good</span>
+                    </label>
+                  </div>
                 </div>
 
                 <!-- Electricity -->
@@ -246,20 +250,22 @@
                     <i class="fa-solid fa-chevron-down"></i>
                   </button>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Available</span>
-                  </label>
+                  <div class="filter-options">
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Available</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>24/7</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>24/7</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Backup Available</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Backup Available</span>
+                    </label>
+                  </div>
                 </div>
 
                 <!-- Price Range -->
@@ -290,62 +296,70 @@
                     <i class="fa-solid fa-chevron-down"></i>
                   </button>
 
-                  <select class="filter-select">
-                    <option>Any Capacity</option>
-                    <option>Less than 10</option>
-                    <option>10 - 30</option>
-                    <option>More than 30</option>
-                  </select>
+                  <div class="filter-options">
+                    <select class="filter-select">
+                      <option>Any Capacity</option>
+                      <option>Less than 10</option>
+                      <option>10 - 30</option>
+                      <option>More than 30</option>
+                    </select>
+                  </div>
                 </div>
 
                 <!-- Quietness Level -->
                 <div class="filter-group">
                   <button class="filter-title" type="button">
-                    Quietness Level
+                    <span>Quietness Level</span>
                     <i class="fa-solid fa-chevron-down"></i>
                   </button>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Very Quiet</span>
-                  </label>
+                  <div class="filter-options">
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Very Quiet</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Quiet</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Quiet</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Normal</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Normal</span>
+                    </label>
+                  </div>
                 </div>
 
                 <!-- Ladies Area -->
                 <div class="filter-group">
                   <button class="filter-title" type="button">
-                    Ladies Area
+                    <span>Ladies Area</span>
                     <i class="fa-solid fa-chevron-down"></i>
                   </button>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Available</span>
-                  </label>
+                  <div class="filter-options">
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Available</span>
+                    </label>
 
-                  <label class="filter-option">
-                    <input type="checkbox" />
-                    <span>Not Available</span>
-                  </label>
+                    <label class="filter-option">
+                      <input type="checkbox" />
+                      <span>Not Available</span>
+                    </label>
+                  </div>
                 </div>
-              </div>
 
               <!-- Filter Actions -->
               <div class="filter-actions">
-                <button class="apply-filters-btn" type="button">
-                  Apply Filters
-                </button>
-                <button class="reset-filters-btn" type="button">Reset</button>
+              <button class="apply-filters-btn" type="button">
+              Apply Filters
+              </button>
+
+              <button class="reset-filters-btn" type="button">
+              Reset
+              </button>
               </div>
             </aside>
 
@@ -400,10 +414,16 @@
                     </p>
 
                     <div class="card-meta">
-                      <span><i class="fa-solid fa-bolt"></i> Available</span>
-                      <span><i class="fa-solid fa-wifi"></i> High Speed</span>
-                      <span><i class="fa-solid fa-chair"></i> 20 Seats</span>
-                      <span
+                      <span class="meta-item meta-electricity available"
+                        ><i class="fa-solid fa-bolt"></i> Available</span
+                      >
+                      <span class="meta-item meta-internet fast"
+                        ><i class="fa-solid fa-wifi"></i> High Speed</span
+                      >
+                      <span class="meta-item meta-seats"
+                        ><i class="fa-solid fa-chair"></i> 20 Seats</span
+                      >
+                      <span class="meta-item meta-hours"
                         ><i class="fa-regular fa-clock"></i> 9AM - 11PM</span
                       >
                     </div>
@@ -442,12 +462,18 @@
                     </p>
 
                     <div class="card-meta">
-                      <span><i class="fa-solid fa-bolt"></i> Available</span>
-                      <span><i class="fa-solid fa-wifi"></i> High Speed</span>
-                      <span><i class="fa-solid fa-chair"></i> 20 Seats</span>
-                      <span
-                        ><i class="fa-regular fa-clock"></i> 9AM - 11PM</span
+                      <span class="meta-item meta-electricity available"
+                        ><i class="fa-solid fa-bolt"></i> Available</span
                       >
+                      <span class="meta-item meta-internet fast"
+                        ><i class="fa-solid fa-wifi"></i> High Speed</span
+                      >
+                      <span class="meta-item meta-seats"
+                        ><i class="fa-solid fa-chair"></i> 20 Seats</span
+                      >
+                      <span class="meta-item meta-hours">
+                        <i class="fa-regular fa-clock"></i> 9AM - 11PM
+                      </span>
                     </div>
 
                     <a href="workspace-details.html" class="details-btn">
@@ -484,12 +510,18 @@
                     </p>
 
                     <div class="card-meta">
-                      <span><i class="fa-solid fa-bolt"></i> Available</span>
-                      <span><i class="fa-solid fa-wifi"></i> High Speed</span>
-                      <span><i class="fa-solid fa-chair"></i> 20 Seats</span>
-                      <span
-                        ><i class="fa-regular fa-clock"></i> 9AM - 11PM</span
+                      <span class="meta-item meta-electricity available"
+                        ><i class="fa-solid fa-bolt"></i> Available</span
                       >
+                      <span class="meta-item meta-internet fast"
+                        ><i class="fa-solid fa-wifi"></i> High Speed</span
+                      >
+                      <span class="meta-item meta-seats"
+                        ><i class="fa-solid fa-chair"></i> 20 Seats</span
+                      >
+                      <span class="meta-item meta-hours">
+                        <i class="fa-regular fa-clock"></i> 9AM - 11PM
+                      </span>
                     </div>
 
                     <a href="workspace-details.html" class="details-btn">
@@ -511,8 +543,8 @@
         <div class="footer-grid">
           <div>
             <div class="footer-brand">
-              <div class="footer-logo">
-                <i class="fa-solid fa-house"></i>
+              <div class="logo-icon">
+                <img src="../assets/logo/logo.png" alt="Masahati Logo" />
               </div>
               <h2>Masahati</h2>
             </div>

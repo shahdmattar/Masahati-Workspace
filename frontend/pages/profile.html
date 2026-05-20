@@ -4,18 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Profile — Masahati</title>
-  <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/user.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Navbar (from style.css) -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-inner">
       <a href="../index.html" class="nav-logo">
         <img src="../assets/logo/logo.png" alt="Masahati" />
-        <span>Masahati</span>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Masahati</span>
+          <span class="nav-logo-sub">Find your Perfect workspace</span>
+        </div>
       </a>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
@@ -25,23 +27,22 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon"></i>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+          <i class="fa-regular fa-moon" id="themeIcon"></i>
         </button>
         <div class="user-avatar-btn" id="userAvatarBtn">
-          <img src="../assets/images/avatar.jpg" alt="User" id="navAvatar" />
+          <img src="../assets/images/avatar.jpeg" alt="User" />
         </div>
       </div>
     </div>
   </nav>
-
   <!-- Main content -->
   <main class="container" style="padding-bottom: 80px;">
 
     <!-- Profile Banner -->
     <div class="profile-banner">
       <div class="profile-avatar">
-        <img src="../assets/images/avatar.jpg" alt="Ahmad User" id="bannerAvatar" />
+        <img src="../assets/images/avatar.jpeg" alt="Ahmad User" id="bannerAvatar" />
       </div>
       <div class="profile-info">
         <h2 id="bannerName">Ahmad User</h2>
@@ -97,7 +98,7 @@
           <div class="avatar-upload">
             <label>Profile Picture</label>
             <div class="avatar-upload-area">
-              <img src="../assets/images/avatar.jpg" alt="Avatar" id="previewAvatar" />
+              <img src="../assets/images/avatar.jpeg" alt="Avatar" id="previewAvatar" />
               <button type="button" class="avatar-camera-btn" id="avatarBtn">
                 <i class="fa-solid fa-camera"></i>
               </button>
@@ -111,7 +112,7 @@
             <div class="input-wrapper">
               <i class="fa-regular fa-user input-icon"></i>
               <input type="text" id="fullName" name="fullName"
-                     value="Ahmad User" placeholder="Your full name" />
+                    value="Ahmad User" placeholder="Your full name" />
             </div>
           </div>
         </div>
@@ -177,18 +178,19 @@
 
   </main>
 
-  <!-- Footer (from style.css) -->
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <img src="../assets/logo/logo.png" alt="Masahati" />
-        <span>Masahati</span>
+        <div class="footer-brand-logo-row">
+          <img src="../assets/logo/logo.png" alt="Masahati" />
+          <span>Masahati</span>
+        </div>
         <p>Find your perfect workspace. Discover thousands of coworking spaces tailored for your productivity.</p>
         <div class="footer-social">
           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#"><i class="fa-brands fa-instagram"></i></a>
           <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
         </div>
       </div>
       <div class="footer-links">
@@ -214,7 +216,7 @@
         <h4>For Owners</h4>
         <ul>
           <li><a href="#">List Your Space</a></li>
-          <li><a href="owner/dashboard.html">Dashboard</a></li>
+          <li><a href="#">Dashboard</a></li>
           <li><a href="#">Pricing</a></li>
           <li><a href="#">Resources</a></li>
         </ul>
@@ -231,7 +233,7 @@
     </div>
   </footer>
 
-<script src="../js/main.js"></script>
-<script src="../js/user.js"></script>
-</body>
+    <script src="../js/main.js"></script>
+    <script src="../js/user.js"></script>
+  </body>
 </html>

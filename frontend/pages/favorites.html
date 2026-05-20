@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>My Favorites — Masahati</title>
-<link rel="stylesheet" href="../css/style.css" />
 <link rel="stylesheet" href="../css/user.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -15,7 +14,10 @@
     <div class="container nav-inner">
     <a href="../index.html" class="nav-logo">
         <img src="../assets/logo/logo.png" alt="Masahati" />
-        <span>Masahati</span>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Masahati</span>
+          <span class="nav-logo-sub">Find your Perfect workspace</span>
+        </div>
     </a>
     <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
@@ -25,11 +27,11 @@
         <li><a href="#">Contact</a></li>
     </ul>
     <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fa-solid fa-moon"></i>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon" id="themeIcon"></i>
         </button>
         <div class="user-avatar-btn" id="userAvatarBtn">
-        <img src="../assets/images/avatar.jpg" alt="User" />
+        <img src="../assets/images/avatar.jpeg" alt="User" />
         </div>
     </div>
     </div>
@@ -55,7 +57,6 @@
         <span id="favCount">12 workspaces saved</span>
         <button aria-label="Toggle view"><i class="fa-solid fa-chevron-up"></i></button>
     </div>
-
     <div class="workspaces-grid" id="favoritesGrid">
 
         <!-- Card 1 -->
@@ -154,6 +155,7 @@
         </div>
         </div>
 
+
     </div><!-- /.workspaces-grid -->
     </div><!-- /#favoritesSection -->
 
@@ -177,13 +179,16 @@
 <footer class="footer">
     <div class="container footer-inner">
     <div class="footer-brand">
-        <img src="../assets/logo/logo.png" alt="Masahati" />
-        <span>Masahati</span>
-        <p>Find your perfect workspace. We provide the best shared offices and quiet places for productivity.</p>
+        <div class="footer-brand-logo-row">
+          <img src="../assets/logo/logo.png" alt="Masahati" />
+          <span>Masahati</span>
+        </div>
+        <p>Find your perfect workspace. Discover thousands of coworking spaces tailored for your productivity.</p>
         <div class="footer-social">
-        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
         <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
         </div>
     </div>
     <div class="footer-links">
@@ -209,7 +214,7 @@
         <h4>For Owners</h4>
         <ul>
         <li><a href="#">List Your Space</a></li>
-        <li><a href="owner/dashboard.html">Dashboard</a></li>
+        <li><a href="#">Dashboard</a></li>
         <li><a href="#">Pricing</a></li>
         <li><a href="#">Resources</a></li>
         </ul>

@@ -121,6 +121,34 @@ if (favoritesGrid) {
   updateFavCount();
   checkEmpty();
 
+  /* ---- Toggle collapse ---- */
+  const toggleBtn  = document.querySelector('.favorites-count-bar button');
+  const toggleIcon = toggleBtn?.querySelector('i');
+  let isCollapsed  = false;
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      isCollapsed = !isCollapsed;
+
+      if (isCollapsed) {
+        favoritesGrid.style.transition = 'opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease';
+        favoritesGrid.style.overflow   = 'hidden';
+        favoritesGrid.style.maxHeight  = '0';
+        favoritesGrid.style.opacity    = '0';
+        favoritesGrid.style.transform  = 'translateY(-10px)';
+        if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
+      } else {
+        favoritesGrid.style.maxHeight  = '2000px';
+        favoritesGrid.style.opacity    = '1';
+        favoritesGrid.style.transform  = 'translateY(0)';
+        favoritesGrid.style.overflow   = '';
+        if (toggleIcon) toggleIcon.style.transform = 'rotate(0deg)';
+      }
+
+      if (toggleIcon) toggleIcon.style.transition = 'transform 0.3s ease';
+    });
+  }
+
   /* Remove from favorites on heart click */
   favoritesGrid.addEventListener('click', e => {
     const btn = e.target.closest('.fav-btn');

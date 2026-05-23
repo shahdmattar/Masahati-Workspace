@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pending Workspaces - Masahati</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div>
+        <div class="logo"><i class="fa-solid fa-building"></i> <span>Masahati</span></div>
+        <div class="menu">
+            <a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="pending-workspaces.html" class="active"><i class="fa-regular fa-clock"></i> Pending Workspaces <span class="badge">5</span></a>
+            <a href="manage-workspaces.html"><i class="fa-regular fa-building"></i> Manage Workspaces</a>
+            <a href="manage-reviews.html"><i class="fa-regular fa-star"></i> Manage Reviews</a>
+        </div>
+    </div>
+    <div>
+        <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+        <div class="support-box">
+            <h4><i class="fa-regular fa-life-ring"></i> Need Help?</h4>
+            <p>If you need any assistance, we're here to help.</p>
+            <button class="support-btn">Contact Support <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <i class="fa-regular fa-moon theme-toggle"></i>
+        <div class="admin">
+            <div class="admin-info">
+                <h4>Admin</h4>
+                <p>Super Administrator</p>
+            </div>
+            <img src="https://i.pravatar.cc/100?img=60" alt="Admin">
+        </div>
+    </div>
+
+    <h1 class="page-title">Pending Workspaces</h1>
+    <p class="page-subtitle">Review and take action on workspaces submitted by owners.</p>
+
+    <div class="alert-banner">
+        <span class="alert-icon">ℹ️</span>
+        <p class="alert-text">Review each workspace carefully before approving. Approved workspaces will be visible to all users.</p>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>WORKSPACE</th>
+                    <th>OWNER</th>
+                    <th>CITY</th>
+                    <th>SUBMITTED AT</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody id="pendingTableBody"></tbody>
+        </table>
+    </div>
+</main>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>

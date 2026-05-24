@@ -247,7 +247,7 @@
 
 .favorite-btn:hover {
   transform: scale(1.12);
-  color: #7a0202;
+  color: var(--danger);
   background-color: #fff5f5;
 }
 

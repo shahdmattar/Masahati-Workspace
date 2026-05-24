@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masahati | Workspace Details</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/workspaces.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="nav-content">
+        <a href="../index.html" class="logo-box">
+          <div class="logo-icon">
+            <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+          </div>
+
+          <div class="logo-text">
+            <h3>Masahati</h3>
+            <span>Find your perfect workspace</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="workspaces.html" class="active">Workspaces</a>
+          <a href="favorites.html">Favorites</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <button
+            class="icon-btn"
+            id="themeToggle"
+            type="button"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fa-regular fa-moon" id="themeIcon"></i>
+          </button>
+
+          <div class="user-dropdown">
+            <button
+              class="user-menu"
+              id="userMenuBtn"
+              type="button"
+              aria-label="Open user menu"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+                alt="User avatar"
+              />
+              <span>Omar</span>
+              <i class="fa-solid fa-chevron-down user-arrow"></i>
+            </button>
+
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+              <div class="user-dropdown-name">Omar</div>
+
+              <a href="profile.html">
+                <i class="fa-regular fa-user"></i>
+                My Profile
+              </a>
+
+              <a href="favorites.html">
+                <i class="fa-regular fa-heart"></i>
+                Favorites
+              </a>
+
+              <button type="button" class="logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log Out
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <aside class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="mobile-brand">
+          <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+
+          <div>
+            <h3>Masahati</h3>
+            <span>Find your perfect workspace</span>
+          </div>
+        </div>
+
+        <button
+          class="mobile-close"
+          id="mobileClose"
+          type="button"
+          aria-label="Close menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-links">
+        <a href="../index.html">
+          <i class="fa-solid fa-house"></i>
+          Home
+        </a>
+
+        <a href="workspaces.html" class="active">
+          <i class="fa-regular fa-building"></i>
+          Workspaces
+        </a>
+
+        <a href="favorites.html">
+          <i class="fa-soild fa-heart"></i>
+          Favorites
+        </a>
+
+        <a href="#">
+          <i class="fa-regular fa-circle-question"></i>
+          About Us
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-phone"></i>
+          Contact
+        </a>
+      </nav>
+
+      <div class="mobile-auth">
+        <a href="login.html" class="mobile-login">Log in</a>
+        <a href="signup.html" class="mobile-signup">Sign Up</a>
+      </div>
+    </aside>
+
+    <main class="details-page">
+      <div class="container">
+        <a href="workspaces.html" class="back-link">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to Workspaces
+        </a>
+
+        <!-- Hero Details Card -->
+        <section class="details-hero-card">
+          <div class="workspace-gallery">
+            <div class="main-photo">
+              <img src="../assets/images/focus-hub.png" alt="Focus Hub" />
+              <span class="photo-count">1 / 5</span>
+            </div>
+
+            <div class="thumbs">
+              <button class="thumb active" type="button">
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
+              </button>
+
+              <button class="thumb" type="button">
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
+              </button>
+
+              <button class="thumb" type="button">
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
+              </button>
+
+              <button class="thumb" type="button">
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
+              </button>
+            </div>
+          </div>
+
+          <div class="details-summary">
+            <div class="details-title-row">
+              <h1>Focus Hub</h1>
+
+              <button class="details-favorite" type="button">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+            </div>
+
+            <div class="details-rating">
+              <span>
+                <i class="fa-solid fa-star"></i>
+                4.8
+              </span>
+              <span>(124 Reviews)</span>
+            </div>
+
+            <p class="details-location">
+              <i class="fa-solid fa-location-dot"></i>
+              Al-Rimal, Gaza
+            </p>
+
+            <p class="details-description">
+              A modern and quiet coworking space designed for productivity and
+              focus. Enjoy high-speed internet, comfortable seating, and all the
+              amenities you need to get your work done.
+            </p>
+
+            <div class="approved-box">
+              <i class="fa-solid fa-circle-check"></i>
+
+              <div>
+                <strong>Approved</strong>
+                <span>Approved on May 10, 2024</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Workspace Details -->
+        <section class="details-info-card">
+          <h2>Workspace Details</h2>
+
+          <div class="amenities-grid">
+            <div class="amenity">
+              <div class="amenity-icon">
+                <i class="fa-solid fa-wifi"></i>
+              </div>
+
+              <div>
+                <small>Internet Quality</small>
+                <strong>100 Mbps</strong>
+                <span>Very Fast</span>
+              </div>
+            </div>
+
+            <div class="amenity">
+              <div class="amenity-icon">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+
+              <div>
+                <small>Electricity</small>
+                <strong>24/7 Available</strong>
+                <span>Always On</span>
+              </div>
+            </div>
+
+            <div class="amenity">
+              <div class="amenity-icon">
+                <i class="fa-regular fa-building"></i>
+              </div>
+
+              <div>
+                <small>Seating Capacity</small>
+                <strong>30 Seats</strong>
+                <span>Plenty of space</span>
+              </div>
+            </div>
+
+            <div class="amenity">
+              <div class="amenity-icon">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+
+              <div>
+                <small>Working Hours</small>
+                <strong>8:00 AM - 10:00 PM</strong>
+                <span>Everyday</span>
+              </div>
+            </div>
+
+            <div class="amenity">
+              <div class="amenity-icon">
+                <i class="fa-solid fa-volume-low"></i>
+              </div>
+
+              <div>
+                <small>Quietness Level</small>
+                <strong>Very Quiet</strong>
+                <span>Perfect for focus</span>
+              </div>
+            </div>
+
+            <div class="amenity">
+              <div class="amenity-icon">
+                <i class="fa-regular fa-user"></i>
+              </div>
+
+              <div>
+                <small>Ladies Area</small>
+                <strong>Available</strong>
+                <span>Separate Area</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="price-row">
+            <div class="price">
+              <i class="fa-solid fa-tag"></i>
+
+              <div>
+                <small>Price</small>
+                <strong>$5 / hour</strong>
+              </div>
+            </div>
+
+            <a href="https://wa.me/970591234567" class="whatsapp-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+              Chat on WhatsApp
+            </a>
+          </div>
+        </section>
+
+        <!-- Rating Summary -->
+        <section class="rating-card">
+          <div class="big-rating">
+            <h2>4.8</h2>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <p>(124 Reviews)</p>
+          </div>
+
+          <div class="rating-bars">
+            <div class="bar-row">
+              <span>5 Stars</span>
+              <div class="bar"><span style="width: 82%"></span></div>
+              <span>82%</span>
+            </div>
+
+            <div class="bar-row">
+              <span>4 Stars</span>
+              <div class="bar"><span style="width: 12%"></span></div>
+              <span>12%</span>
+            </div>
+
+            <div class="bar-row">
+              <span>3 Stars</span>
+              <div class="bar"><span style="width: 4%"></span></div>
+              <span>4%</span>
+            </div>
+
+            <div class="bar-row">
+              <span>2 Stars</span>
+              <div class="bar"><span style="width: 1%"></span></div>
+              <span>1%</span>
+            </div>
+
+            <div class="bar-row">
+              <span>1 Star</span>
+              <div class="bar"><span style="width: 1%"></span></div>
+              <span>1%</span>
+            </div>
+          </div>
+
+          <div class="quote-box">
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+              Amazing place! Quiet, clean, and the internet is super fast.
+              Perfect for focusing on work.
+            </p>
+
+            <strong>Ahmad N.</strong>
+
+            <div class="quote-dots">
+              <span class="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Review Form -->
+        <section class="review-form-card">
+          <div class="review-form-header">
+            <h2>Leave a Review</h2>
+            <p>Share your experience with this workspace</p>
+          </div>
+
+          <form class="review-form">
+            <div class="rating-input">
+              <label>Your Rating</label>
+
+              <div class="star-input">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+            </div>
+
+            <div class="comment-input">
+              <label for="comment">Your Comment</label>
+              <textarea
+                id="comment"
+                placeholder="Write your comment here..."
+                maxlength="500"
+              ></textarea>
+
+              <div class="post-row">
+                <span>0 / 500</span>
+
+                <button class="post-btn" type="submit">
+                  Post Review
+                  <i class="fa-regular fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <!-- Reviews -->
+        <section class="reviews-card">
+          <h2>Reviews (124)</h2>
+
+          <div class="review-item">
+            <img
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
+              alt="Ahmad"
+            />
+
+            <div>
+              <div class="review-head">
+                <strong>Ahmad N.</strong>
+                <div class="review-stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <span>2 days ago</span>
+              </div>
+
+              <p>
+                Amazing place! Quiet, clean, and the internet is super fast.
+                Perfect for focusing on work.
+              </p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
+              alt="Sara"
+            />
+
+            <div>
+              <div class="review-head">
+                <strong>Sara M.</strong>
+                <div class="review-stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+                <span>1 week ago</span>
+              </div>
+
+              <p>
+                I love the atmosphere and the staff are very friendly. Highly
+                recommended!
+              </p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <img
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face"
+              alt="Yousef"
+            />
+
+            <div>
+              <div class="review-head">
+                <strong>Yousef K.</strong>
+                <div class="review-stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+                <span>2 weeks ago</span>
+              </div>
+
+              <p>
+                Great workspace and facilities. The environment helps me get a
+                lot done.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <div class="logo-icon">
+                <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+              </div>
+              <h2>Masahati</h2>
+            </div>
+
+            <p>
+              Find your perfect workspace. Discover thousands of coworking
+              spaces tailored for your productivity.
+            </p>
+
+            <div class="socials">
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="workspaces.html">Workspaces</a></li>
+              <li><a href="favorites.html">Favorites</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>For Users</h3>
+            <ul>
+              <li><a href="#">How It Works</a></li>
+              <li><a href="workspaces.html">Browse Spaces</a></li>
+              <li><a href="#">Write a Review</a></li>
+              <li><a href="#">Help Center</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Contact Us</h3>
+            <ul>
+              <li><i class="fa-regular fa-envelope"></i> info@masahati.com</li>
+              <li><i class="fa-solid fa-phone"></i> +970 59 123 4567</li>
+              <li><i class="fa-solid fa-location-dot"></i> Gaza, Palestine</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">© 2026 Masahati. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/workspaces.js"></script>
+  </body>
+</html>

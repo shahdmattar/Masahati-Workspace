@@ -690,7 +690,7 @@ body.dark-mode .copyright {
 
 body.dark-mode .navbar {
   background-color: #002b24;
-  color: #ffffff;
+  color: var(--white);
 }
 
 body.dark-mode .logo-text h3,
@@ -698,23 +698,18 @@ body.dark-mode .logo-text span,
 body.dark-mode .nav-links a,
 body.dark-mode .icon-btn,
 body.dark-mode .login-btn {
-  color: #ffffff !important;
+  color: var(--white);
 }
 
 body.dark-mode .nav-links a:hover,
 body.dark-mode .nav-links a.active,
 body.dark-mode .icon-btn:hover,
 body.dark-mode .login-btn:hover {
-  color: #d6e264 !important;
+  color: var(--light-green);
 }
 
 body.dark-mode .nav-links a::after {
-  background-color: #d6e264;
-}
-
-body.dark-mode .user-menu,
-body.dark-mode .user-menu span {
-  color: #ffffff !important;
+  background-color: var(--light-green);
 }
 
 body.dark-mode .signup-btn {
@@ -768,3 +763,18 @@ body.dark-mode .mobile-login {
   background-color: var(--light-green);
   color: var(--green);
  }
+
+ /* Fixed header while scrolling */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: var(--dark-green);
+}
+
+body {
+  padding-top: 52px;
+}

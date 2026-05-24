@@ -148,3 +148,24 @@ applySavedTheme();
 if (themeToggle) {
   themeToggle.addEventListener("click", toggleTheme);
 }
+
+/* ===============================
+   User Dropdown Menu
+
+const userDropdown = document.querySelector(".user-dropdown");
+const userMenuBtn = document.querySelector("#userMenuBtn");
+
+if (userDropdown && userMenuBtn) {
+  userMenuBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    userDropdown.classList.toggle("active");
+  });
+
+  document.addEventListener("click", () => {
+    userDropdown.classList.remove("active");
+  });
+
+  userDropdown.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+}

@@ -763,3 +763,18 @@ body.dark-mode .mobile-login {
   background-color: var(--light-green);
   color: var(--green);
  }
+
+ /* Fixed header while scrolling */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: var(--dark-green);
+}
+
+body {
+  padding-top: 52px;
+}

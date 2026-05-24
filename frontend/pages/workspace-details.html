@@ -57,14 +57,41 @@
             <i class="fa-regular fa-moon" id="themeIcon"></i>
           </button>
 
-          <div class="user-menu">
-            <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-              alt="User avatar"
-            />
-            <span>Omar</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <div class="user-dropdown">
+            <button
+              class="user-menu"
+              id="userMenuBtn"
+              type="button"
+              aria-label="Open user menu"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+                alt="User avatar"
+              />
+              <span>Omar</span>
+              <i class="fa-solid fa-chevron-down user-arrow"></i>
+            </button>
+
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+              <div class="user-dropdown-name">Omar</div>
+
+              <a href="profile.html">
+                <i class="fa-regular fa-user"></i>
+                My Profile
+              </a>
+
+              <a href="favorites.html">
+                <i class="fa-regular fa-heart"></i>
+                Favorites
+              </a>
+
+              <button type="button" class="logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log Out
+              </button>
+            </div>
           </div>
+          
         </div>
       </div>
     </header>
@@ -138,25 +165,37 @@
         <section class="details-hero-card">
           <div class="workspace-gallery">
             <div class="main-photo">
-              <img src="../assets/images/work-hub.png" alt="Focus Hub" />
+              <img src="../assets/images/focus-hub.png" alt="Focus Hub" />
               <span class="photo-count">1 / 5</span>
             </div>
 
             <div class="thumbs">
               <button class="thumb active" type="button">
-                <img src="../assets/images/work-hub.png" alt="Workspace view" />
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
               </button>
 
               <button class="thumb" type="button">
-                <img src="../assets/images/work-hub.png" alt="Workspace view" />
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
               </button>
 
               <button class="thumb" type="button">
-                <img src="../assets/images/work-hub.png" alt="Workspace view" />
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
               </button>
 
               <button class="thumb" type="button">
-                <img src="../assets/images/work-hub.png" alt="Workspace view" />
+                <img
+                  src="../assets/images/focus-hub.png"
+                  alt="Workspace view"
+                />
               </button>
             </div>
           </div>

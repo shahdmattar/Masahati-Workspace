@@ -1,41 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Profile — Masahati</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- <link rel="stylesheet" href="../css/home.css" /> -->
   <link rel="stylesheet" href="../css/user.css" />
+  <!-- <link rel="stylesheet" href="../css/workspaces.css" /> -->
+  <link rel="stylesheet" href="../css/responsive.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
 
+<body>
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container nav-inner">
-      <a href="../index.html" class="nav-logo">
-        <img src="../assets/logo/logo.png" alt="Masahati" />
-        <div class="nav-logo-text">
-          <span class="nav-logo-name">Masahati</span>
-          <span class="nav-logo-sub">Find your Perfect workspace</span>
+  <header class="navbar">
+    <div class="nav-content">
+      <a href="../index.html" class="logo-box">
+        <div class="logo-icon">
+          <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+        </div>
+
+        <div class="logo-text">
+          <h3>Masahati</h3>
+          <span>Find your perfect workspace</span>
         </div>
       </a>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="workspaces.html">Workspaces</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="workspaces.html">Workspaces</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </nav>
+
       <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
           <i class="fa-regular fa-moon" id="themeIcon"></i>
         </button>
-        <div class="user-avatar-btn" id="userAvatarBtn">
-          <img src="../assets/images/avatar.jpeg" alt="User" />
+
+        <div class="user-menu-wrapper" style="position:relative;">
+          <button class="user-menu user-avatar-btn" id="userAvatarBtn" type="button" aria-label="User menu" style="background:none;border:none;cursor:pointer;">
+            <img src="../assets/images/avatar.jpeg" alt="User avatar" />
+            <span>Ahmed</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
         </div>
       </div>
     </div>
-  </nav>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- Mobile Navigation Menu -->
+  <aside class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <div class="mobile-brand">
+        <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+
+        <div>
+          <h3>Masahati</h3>
+          <span>Find your perfect workspace</span>
+        </div>
+      </div>
+
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="mobile-links">
+      <a href="../index.html">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </a>
+
+      <a href="workspaces.html" class="active">
+        <i class="fa-regular fa-building"></i>
+        Workspaces
+      </a>
+
+      <a href="favorites.html">
+        <i class="fa-regular fa-heart"></i>
+        Favorites
+      </a>
+
+      <a href="#">
+        <i class="fa-regular fa-circle-question"></i>
+        About Us
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-phone"></i>
+        Contact
+      </a>
+    </nav>
+
+    <div class="mobile-auth">
+      <a href="login.html" class="mobile-login">Log in</a>
+      <a href="signup.html" class="mobile-signup">Sign Up</a>
+    </div>
+  </aside>
   <!-- Main content -->
   <main class="container" style="padding-bottom: 80px;">
 
@@ -72,16 +144,6 @@
           <span>Reviews you shared</span>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-card-icon ">
-          <i class="fa-regular fa-bookmark"></i>
-        </div>
-        <div class="stat-card-info">
-          <h3>12</h3>
-          <p>Saved Workspaces</p>
-          <span>Total saved spaces</span>
-        </div>
-      </div>
     </div>
 
     <!-- Edit Profile Form -->
@@ -111,8 +173,7 @@
             <label for="fullName">Full Name</label>
             <div class="input-wrapper">
               <i class="fa-regular fa-user input-icon"></i>
-              <input type="text" id="fullName" name="fullName"
-                    value="Ahmad User" placeholder="Your full name" />
+              <input type="text" id="fullName" name="fullName" value="Ahmad User" placeholder="Your full name" />
             </div>
           </div>
         </div>
@@ -178,62 +239,76 @@
 
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <div class="footer-brand-logo-row">
-          <img src="../assets/logo/logo.png" alt="Masahati" />
-          <span>Masahati</span>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <div class="logo-icon">
+              <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+            </div>
+            <h2>Masahati</h2>
+          </div>
+
+          <p>
+            Find your perfect workspace. Discover thousands of coworking
+            spaces tailored for your productivity.
+          </p>
+
+          <div class="socials">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
         </div>
-        <p>Find your perfect workspace. Discover thousands of coworking spaces tailored for your productivity.</p>
-        <div class="footer-social">
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="workspaces.html">Workspaces</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>For Users</h3>
+          <ul>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Browse Spaces</a></li>
+            <li><a href="#">Write a Review</a></li>
+            <li><a href="#">Help Center</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Contact Us</h3>
+          <ul>
+            <li>
+              <i class="fa-regular fa-envelope"></i>
+              info@masahati.com
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+              +970 59 123 4567
+            </li>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              Gaza, Palestine
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="workspaces.html">Workspaces</a></li>
-          <li><a href="favorites.html">Favorites</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>For Users</h4>
-        <ul>
-          <li><a href="#">How It Works</a></li>
-          <li><a href="workspaces.html">Browse Spaces</a></li>
-          <li><a href="#">Write a Review</a></li>
-          <li><a href="#">Help Center</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>For Owners</h4>
-        <ul>
-          <li><a href="#">List Your Space</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Resources</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact Us</h4>
-        <p><i class="fa-regular fa-envelope"></i> info@masahati.com</p>
-        <p><i class="fa-solid fa-phone"></i> +970 59 123 4567</p>
-        <p><i class="fa-solid fa-location-dot"></i> Gaza, Palestine</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Masahati. All rights reserved.</p>
+
+      <div class="copyright">© 2026 Masahati. All rights reserved.</div>
     </div>
   </footer>
 
-    <script src="../js/main.js"></script>
-    <script src="../js/user.js"></script>
-  </body>
+  <script src="../js/user.js"></script>
+</body>
+
 </html>

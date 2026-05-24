@@ -11,6 +11,10 @@
 
 <div class="auth-page">
 
+  <button class="dark-mode-toggle" id="darkToggle" aria-label="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="darkToggleIcon"></i>
+  </button>
+
   <!-- Left: Photo + tagline -->
   <div class="auth-left">
     <img class="bg-photo" src="../assets/images/login.png" alt="workspace" />
@@ -20,8 +24,12 @@
     </div>
   </div>
 
-  <!-- Right: Login form (floating card over grey bg) -->
+  <!-- Right: Login form -->
   <div class="auth-right">
+    <a href="../index.html" class="back-home-btn" aria-label="Back to Home">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
     <div class="auth-card">
       <h1>Welcome <br>Back!</h1>
       <p class="auth-subtitle">Login to your account to continue</p>
@@ -74,5 +82,16 @@
 </div>
 
 <script src="../js/auth.js"></script>
+<script>
+  const toggle  = document.getElementById('darkToggle');
+  const icon    = document.getElementById('darkToggleIcon');
+  const savedDM = localStorage.getItem('masahati_dark_auth') === 'true';
+  if (savedDM) { document.body.classList.add('dark-mode'); icon.className = 'fa-solid fa-sun'; }
+  toggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('masahati_dark_auth', isDark);
+  });
+</script>
 </body>
 </html>

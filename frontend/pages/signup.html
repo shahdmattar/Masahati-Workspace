@@ -11,6 +11,10 @@
 
 <div class="auth-page">
 
+  <button class="dark-mode-toggle" id="darkToggle" aria-label="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="darkToggleIcon"></i>
+  </button>
+
   <!-- Left: Photo + tagline -->
   <div class="auth-left">
     <img class="bg-photo" src="../assets/images/signup.jpg" alt="workspace" />
@@ -23,13 +27,16 @@
 
   <!-- Right: Signup form -->
   <div class="auth-right">
+    <a href="../index.html" class="back-home-btn" aria-label="Back to Home">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
     <div class="auth-card signup-card">
       <h1>Create Your Account</h1>
       <p class="auth-subtitle">Sign up to get started</p>
 
       <form id="signupForm" novalidate>
 
-        <!-- Full Name -->
         <div class="form-group">
           <label for="fullName">Full Name</label>
           <div class="input-wrapper">
@@ -40,7 +47,6 @@
           <span class="input-error" id="fullNameError">Full name is required.</span>
         </div>
 
-        <!-- Email -->
         <div class="form-group">
           <label for="email">Email Address</label>
           <div class="input-wrapper">
@@ -51,7 +57,6 @@
           <span class="input-error" id="emailError">Please enter a valid email.</span>
         </div>
 
-        <!-- Password -->
         <div class="form-group">
           <label for="password">Password</label>
           <div class="input-wrapper">
@@ -65,7 +70,6 @@
           <span class="input-error" id="passwordError">Password must be at least 8 characters.</span>
         </div>
 
-        <!-- Confirm Password -->
         <div class="form-group">
           <label for="confirmPassword">Confirm Password</label>
           <div class="input-wrapper">
@@ -79,7 +83,6 @@
           <span class="input-error" id="confirmPasswordError">Passwords do not match.</span>
         </div>
 
-        <!-- Role — Radio Buttons -->
         <div class="form-group">
           <label>I am a</label>
           <div class="role-options">
@@ -101,7 +104,6 @@
           <span class="input-error" id="roleError">Please select your role.</span>
         </div>
 
-        <!-- Terms -->
         <div class="form-group terms-group">
           <label class="terms-label">
             <input type="checkbox" id="terms" name="terms" />
@@ -124,5 +126,16 @@
 </div>
 
 <script src="../js/auth.js"></script>
+<script>
+  const toggle  = document.getElementById('darkToggle');
+  const icon    = document.getElementById('darkToggleIcon');
+  const savedDM = localStorage.getItem('masahati_dark_auth') === 'true';
+  if (savedDM) { document.body.classList.add('dark-mode'); icon.className = 'fa-solid fa-sun'; }
+  toggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('masahati_dark_auth', isDark);
+  });
+</script>
 </body>
 </html>

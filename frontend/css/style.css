@@ -96,8 +96,8 @@ button {
 
 
 .nav-content {
-  width: calc(100% - var(--container-space));
-  max-width: var(--container-width);
+  max-width: 1450px;
+  width: calc(100% - 45px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 220px 1fr 250px;
@@ -505,7 +505,8 @@ body.dark-mode .copyright {
 
 
 /* =========================================
-   Mobile Sidebar Menu
+   Mobile Sidebar Menu 
+   =========================================*/
 
 .menu-toggle {
   display: none;
@@ -781,6 +782,7 @@ body {
 
 /* ===============================
    User Dropdown Menu
+   =============================== */
 
 .user-dropdown {
   position: relative;
@@ -880,7 +882,8 @@ body {
 
 
 /* ===============================
-   User Dropdown - Dark Mode 
+   User Dropdown - Dark Mode
+   ============================== */
 
 body.dark-mode .user-dropdown-menu {
   background-color: #06271f;
@@ -926,4 +929,4 @@ body.dark-mode .user-dropdown-menu .logout-btn i {
 body.dark-mode .user-dropdown-menu .logout-btn:hover {
   background-color: rgba(239, 68, 68, 0.14);
   color: #ff7b7b;
-}
+} 

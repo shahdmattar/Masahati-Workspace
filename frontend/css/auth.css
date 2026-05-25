@@ -630,25 +630,22 @@ body.dark-mode .dark-mode-toggle {
   gap: 7px;
   padding: 0 16px 0 12px;
   height: 42px;
-  border-radius: 21px;
   background: var(--white);
-  border: none;
-  color: var(--primary);
+  color: var(--text-dark);
   font-family: 'Nunito', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  transition: background 0.2s, 0.2s, color 0.2s, transform 0.15s;
   white-space: nowrap;
 }
 
 .back-home-btn:hover {
   transform: scale(1.05);
   border-color: var(--primary);
-  background: var(--primary);
-  color: var(--white);
+  /* background: var(--primary); */
+  color: var(--primary);
 }
 
 body.dark-mode .back-home-btn {

@@ -506,7 +506,6 @@ body.dark-mode .copyright {
 
 /* =========================================
    Mobile Sidebar Menu
-========================================= */
 
 .menu-toggle {
   display: none;
@@ -782,7 +781,6 @@ body {
 
 /* ===============================
    User Dropdown Menu
-================================= */
 
 .user-dropdown {
   position: relative;
@@ -883,7 +881,6 @@ body {
 
 /* ===============================
    User Dropdown - Dark Mode 
-================================= */
 
 body.dark-mode .user-dropdown-menu {
   background-color: #06271f;

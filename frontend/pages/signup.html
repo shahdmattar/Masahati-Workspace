@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign Up — Masahati</title>
+<link rel="stylesheet" href="../css/auth.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <button class="dark-mode-toggle" id="darkToggle" aria-label="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="darkToggleIcon"></i>
+  </button>
+
+  <!-- Left: Photo + tagline -->
+  <div class="auth-left">
+    <img class="bg-photo" src="../assets/images/signup.jpg" alt="workspace" />
+    <div class="auth-left-content">
+      <h2>Join Masahati.<br><span>Start Your Journey.</span></h2>
+      <div class="left-divider"></div>
+      <p>Create an account and discover the perfect workspace for you.</p>
+    </div>
+  </div>
+
+  <!-- Right: Signup form -->
+  <div class="auth-right">
+    <a href="../index.html" class="back-home-btn" aria-label="Back to Home">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
+    <div class="auth-card signup-card">
+      <h1>Create Your Account</h1>
+      <p class="auth-subtitle">Sign up to get started</p>
+
+      <form id="signupForm" novalidate>
+
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <div class="input-wrapper">
+            <i class="fa-regular fa-user input-icon"></i>
+            <input type="text" id="fullName" name="fullName"
+                   placeholder="Enter your full name" autocomplete="name" />
+          </div>
+          <span class="input-error" id="fullNameError">Full name is required.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fa-regular fa-envelope input-icon"></i>
+            <input type="email" id="email" name="email"
+                   placeholder="Enter your email" autocomplete="email" />
+          </div>
+          <span class="input-error" id="emailError">Please enter a valid email.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="password" name="password"
+                   placeholder="Create a password" autocomplete="new-password" />
+            <button type="button" class="toggle-password" data-target="password" aria-label="Toggle password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <span class="input-error" id="passwordError">Password must be at least 8 characters.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="confirmPassword" name="confirmPassword"
+                   placeholder="Confirm your password" autocomplete="new-password" />
+            <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Toggle password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <span class="input-error" id="confirmPasswordError">Passwords do not match.</span>
+        </div>
+
+        <div class="form-group">
+          <label>I am a</label>
+          <div class="role-options">
+            <label class="role-card">
+              <input type="radio" name="role" value="user" checked />
+              <span class="role-label">
+                <span class="role-radio-dot"></span>
+                User
+              </span>
+            </label>
+            <label class="role-card">
+              <input type="radio" name="role" value="owner" />
+              <span class="role-label">
+                <span class="role-radio-dot"></span>
+                Workspace Owner
+              </span>
+            </label>
+          </div>
+          <span class="input-error" id="roleError">Please select your role.</span>
+        </div>
+
+        <div class="form-group terms-group">
+          <label class="terms-label">
+            <input type="checkbox" id="terms" name="terms" />
+            I agree to the <a href="#" class="terms-link">Terms &amp; Conditions</a>
+          </label>
+          <span class="input-error" id="termsError">You must agree to the terms.</span>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign Up</button>
+
+      </form>
+
+      <p class="auth-switch" style="margin-top: 20px;">
+        Already have an account? <a href="login.html">Login</a>
+      </p>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/auth.js"></script>
+<script>
+  const toggle  = document.getElementById('darkToggle');
+  const icon    = document.getElementById('darkToggleIcon');
+  const savedDM = localStorage.getItem('masahati_dark_auth') === 'true';
+  if (savedDM) { document.body.classList.add('dark-mode'); icon.className = 'fa-solid fa-sun'; }
+  toggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('masahati_dark_auth', isDark);
+  });
+</script>
+</body>
+</html>

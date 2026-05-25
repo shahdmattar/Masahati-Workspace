@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Favorites — Masahati</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-content">
+            <a href="../index.html" class="logo-box">
+                <div class="logo-icon">
+                    <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+                </div>
+                <div class="logo-text">
+                    <h3>Masahati</h3>
+                    <span>Find your perfect workspace</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="workspaces.html">Workspaces</a>
+                <a href="favorites.html" class="active">Favorites</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+                    <i class="fa-regular fa-moon" id="themeIcon"></i>
+                </button>
+
+<div class="user-dropdown-menu" id="userDropdownMenu">
+            <div class="user-dropdown-name">Ahmed</div>
+
+            <a href="profile.html">
+                <i class="fa-regular fa-user"></i>
+                My Profile
+            </a>
+
+            <a href="favorites.html">
+                <i class="fa-regular fa-heart"></i>
+                Favorites
+            </a>
+
+            <button type="button" class="logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log Out
+            </button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <aside class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-brand">
+                <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+                <div>
+                    <h3>Masahati</h3>
+                    <span>Find your perfect workspace</span>
+                </div>
+            </div>
+            <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <nav class="mobile-links">
+            <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+            <a href="workspaces.html">
+                <i class="fa-regular fa-building"></i>
+                Workspaces
+            </a>
+            <a href="favorites.html" class="active">
+                <i class="fa-regular fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-circle-question"></i>
+                About Us
+            </a>
+            <a href="#">
+                <i class="fa-solid fa-phone"></i>
+                Contact
+            </a>
+        </nav>
+
+        <div class="mobile-auth">
+            <a href="login.html" class="mobile-login">Log in</a>
+            <a href="signup.html" class="mobile-signup">Sign Up</a>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="container" style="padding-bottom: 80px; margin-left: 0; margin-right: auto; max-width: 100%; width: 100%; padding-left: 36px; padding-right: 36px;">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-header-icon">
+                <i class="fa-solid fa-heart" style="color:#ef4444;"></i>
+            </div>
+            <div>
+                <h1>My Favorite Workspaces</h1>
+                <p>Your saved spaces in one place.</p>
+            </div>
+        </div>
+
+        <!-- Section: With Favorites -->
+        <div id="favoritesSection">
+            <div class="favorites-count-bar">
+                <span id="favCount"> 3 workspaces saved</span>
+            </div>
+            <div class="workspaces-grid" id="favoritesGrid">
+
+                <!-- Card 1 -->
+                <div class="workspace-card fav-card">
+                    <div class="workspace-card-img">
+                        <img src="../assets/images/work-hub.png" alt="Work Hub" />
+                        <button class="fav-btn" data-id="1" aria-label="Remove from favorites">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="workspace-card-body">
+                        <h3>Work Hub</h3>
+                        <div class="workspace-card-meta-top">
+                            <p class="workspace-card-location"><i class="fa-solid fa-location-dot"></i> Gaza City</p>
+                            <span class="workspace-card-rating"><i class="fa-solid fa-star star"></i> 4.5 <span style="color:var(--text-light);font-weight:400">(128)</span></span>
+                        </div>
+                        <div class="workspace-card-meta">
+                            <span class="meta-item"><i class="fa-solid fa-bolt"></i> <span class="status-available">Available</span></span>
+                            <span class="meta-item"><i class="fa-solid fa-wifi"></i> Fast</span>
+                            <span class="meta-item"><i class="fa-regular fa-user"></i> 30 Seats</span>
+                            <span class="meta-item"><i class="fa-regular fa-clock"></i> 8AM – 10PM</span>
+                        </div>
+                        <a href="workspace-details.html" class="btn-view-details">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="workspace-card fav-card">
+                    <div class="workspace-card-img">
+                        <img src="../assets/images/study-corner.png" alt="Study Corner" />
+                        <button class="fav-btn" data-id="2" aria-label="Remove from favorites">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="workspace-card-body">
+                        <h3>Study Corner</h3>
+                        <div class="workspace-card-meta-top">
+                            <p class="workspace-card-location"><i class="fa-solid fa-location-dot"></i> Al-Rimal</p>
+                            <span class="workspace-card-rating"><i class="fa-solid fa-star star"></i> 4.0 <span style="color:var(--text-light);font-weight:400">(96)</span></span>
+                        </div>
+                        <div class="workspace-card-meta">
+                            <span class="meta-item"><i class="fa-solid fa-bolt"></i> <span class="status-available">Available</span></span>
+                            <span class="meta-item"><i class="fa-solid fa-wifi"></i> High Speed</span>
+                            <span class="meta-item"><i class="fa-regular fa-user"></i> 20 Seats</span>
+                            <span class="meta-item"><i class="fa-regular fa-clock"></i> 9AM – 11PM</span>
+                        </div>
+                        <a href="workspace-details.html" class="btn-view-details">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="workspace-card fav-card">
+                    <div class="workspace-card-img">
+                        <img src="../assets/images/quiet-space.png" alt="Quiet Space" />
+                        <button class="fav-btn" data-id="3" aria-label="Remove from favorites">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="workspace-card-body">
+                        <h3>Quiet Space</h3>
+                        <div class="workspace-card-meta-top">
+                            <p class="workspace-card-location"><i class="fa-solid fa-location-dot"></i> Khan Younis</p>
+                            <span class="workspace-card-rating"><i class="fa-solid fa-star star"></i> 4.2 <span style="color:var(--text-light);font-weight:400">(78)</span></span>
+                        </div>
+                        <div class="workspace-card-meta">
+                            <span class="meta-item"><i class="fa-solid fa-bolt"></i> <span class="status-unavailable">Not Available</span></span>
+                            <span class="meta-item"><i class="fa-solid fa-wifi"></i> Reliable</span>
+                            <span class="meta-item"><i class="fa-regular fa-user"></i> 15 Seats</span>
+                            <span class="meta-item"><i class="fa-regular fa-clock"></i> 7AM – 9PM</span>
+                        </div>
+                        <a href="workspace-details.html" class="btn-view-details">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="workspace-card fav-card">
+                    <div class="workspace-card-img">
+                        <img src="../assets/images/CoffeSpace.png" alt="Coffee Space" />
+                        <button class="fav-btn" data-id="4" aria-label="Remove from favorites">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="workspace-card-body">
+                        <h3>Coffee Space</h3>
+                        <div class="workspace-card-meta-top">
+                            <p class="workspace-card-location"><i class="fa-solid fa-location-dot"></i> Gaza Beach</p>
+                            <span class="workspace-card-rating"><i class="fa-solid fa-star star"></i> 4.6 <span style="color:var(--text-light);font-weight:400">(142)</span></span>
+                        </div>
+                        <div class="workspace-card-meta">
+                            <span class="meta-item"><i class="fa-solid fa-bolt"></i> <span class="status-available">Available</span></span>
+                            <span class="meta-item"><i class="fa-solid fa-wifi"></i> Fast</span>
+                            <span class="meta-item"><i class="fa-regular fa-user"></i> 25 Seats</span>
+                            <span class="meta-item"><i class="fa-regular fa-clock"></i> 24 Hours</span>
+                        </div>
+                        <a href="workspace-details.html" class="btn-view-details">View Details →</a>
+                    </div>
+                </div>
+
+            </div><!-- /.workspaces-grid -->
+        </div><!-- /#favoritesSection -->
+
+        <!-- Empty state (hidden by default) -->
+        <div id="emptyState" style="display:none;">
+            <div class="workspaces-grid">
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3>No favorite workspaces yet.</h3>
+                    <p>You haven't added any workspaces to your favorites. Browse our collection to find your perfect spot!</p>
+                    <a href="workspaces.html" class="btn-browse">Browse Workspaces</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <div class="logo-icon">
+                            <img src="../assets/logo/logo.png" alt="Masahati Logo" />
+                        </div>
+                        <h2>Masahati</h2>
+                    </div>
+                    <p>Find your perfect workspace. Discover thousands of coworking spaces tailored for your productivity.</p>
+                    <div class="socials">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="workspaces.html">Workspaces</a></li>
+                        <li><a href="favorites.html">Favorites</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>For Users</h3>
+                    <ul>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Browse Spaces</a></li>
+                        <li><a href="#">Write a Review</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fa-regular fa-envelope"></i> info@masahati.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +970 59 123 4567</li>
+                        <li><i class="fa-solid fa-location-dot"></i> Gaza, Palestine</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">© 2026 Masahati. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="../js/user.js"></script>
+</body>
+
+</html>
+

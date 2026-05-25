@@ -860,7 +860,7 @@ body {
 .user-dropdown-menu a:hover,
 .user-dropdown-menu button:hover {
   background-color: rgba(214, 226, 100, 0.12);
-  color: var(--green);
+  color: var(--light-green);
   padding-left: 22px;
 }
 

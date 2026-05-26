@@ -150,11 +150,80 @@ if (themeToggle) {
 }
 
 /* ===============================
-   User Dropdown Menu
+   Navbar Auth State
 ================================= */
 
-const userDropdown = document.querySelector(".user-dropdown");
+const authActions = document.querySelector("#authActions");
+const userDropdown = document.querySelector("#userDropdown");
 const userMenuBtn = document.querySelector("#userMenuBtn");
+const logoutBtn = document.querySelector("#logoutBtn");
+
+const navbarUserName = document.querySelector("#navbarUserName");
+const dropdownUserName = document.querySelector("#dropdownUserName");
+const navbarUserImage = document.querySelector("#navbarUserImage");
+
+function getLoginPath() {
+  const isInsidePages = window.location.pathname.includes("/pages/");
+  return isInsidePages ? "login.html" : "pages/login.html";
+}
+
+function showGuestNavbar() {
+  if (authActions) {
+    authActions.classList.add("show");
+  }
+
+  if (userDropdown) {
+    userDropdown.classList.remove("show");
+    userDropdown.classList.remove("active");
+  }
+}
+
+function showLoggedInNavbar(user) {
+  if (authActions) {
+    authActions.classList.remove("show");
+  }
+
+  if (userDropdown) {
+    userDropdown.classList.add("show");
+  }
+
+  if (navbarUserName) {
+    navbarUserName.textContent = user.name || "User";
+  }
+
+  if (dropdownUserName) {
+    dropdownUserName.textContent = user.name || "User";
+  }
+
+  if (navbarUserImage && user.image) {
+    navbarUserImage.src = user.image;
+  }
+}
+
+function checkAuthState() {
+  const token = localStorage.getItem("token");
+  const userData = localStorage.getItem("user");
+
+  if (!token || !userData) {
+    showGuestNavbar();
+    return;
+  }
+
+  try {
+    const user = JSON.parse(userData);
+    showLoggedInNavbar(user);
+  } catch (error) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    showGuestNavbar();
+  }
+}
+
+checkAuthState();
+
+/* ===============================
+   User Dropdown Toggle
+================================= */
 
 if (userDropdown && userMenuBtn) {
   userMenuBtn.addEventListener("click", (event) => {
@@ -168,5 +237,20 @@ if (userDropdown && userMenuBtn) {
 
   userDropdown.addEventListener("click", (event) => {
     event.stopPropagation();
+  });
+}
+
+/* ===============================
+   Logout
+================================= */
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    showGuestNavbar();
+
+    window.location.href = getLoginPath();
   });
 }

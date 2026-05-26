@@ -1,0 +1,371 @@
+/* Admin layout bridge — desktop sidebar + mobile matches reference Masahati project */
+
+html:has(#WapperAdmin),
+body:has(#WapperAdmin) {
+  height: 100%;
+  overflow: hidden;
+}
+
+#WapperAdmin {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+#WapperAdmin .containers {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+#WapperAdmin .main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+#WapperAdmin .info-admin {
+  flex-shrink: 0;
+}
+
+#WapperAdmin .main-content > .pad-all {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+#WapperAdmin .hero,
+#WapperAdmin .stats,
+#WapperAdmin .actions-box,
+#WapperAdmin .page-header,
+#WapperAdmin .table-card {
+  max-width: 100%;
+}
+
+body:has(#WapperAdmin.my-workspaces-page) {
+  display: block;
+  min-height: 100%;
+}
+
+#WapperAdmin.my-workspaces-page .main-content {
+  width: 100%;
+}
+
+/* Sidebar menu — active item like reference */
+#WapperAdmin .menu-list .menu-link {
+  height: auto !important;
+  padding: 12px 15px !important;
+  font-size: inherit !important;
+  border-radius: 0;
+}
+
+#WapperAdmin .menu-list .menu-link:is(:hover, .active) {
+  color: #fff !important;
+  background: var(--green, #244034) !important;
+  border-radius: 0 10px 0 0 !important;
+}
+
+body.dark-theme #WapperAdmin .menu-list .menu-link:is(:hover, .active),
+body.dark-mode #WapperAdmin .menu-list .menu-link:is(:hover, .active) {
+  color: #fff !important;
+  background: #003f33 !important;
+}
+
+#WapperAdmin .menu-list .menu-link .bx {
+  font-size: 24px !important;
+  width: auto !important;
+}
+
+/* Raise nav items slightly below the logo header */
+#WapperAdmin .sidebar-content {
+  padding-top: 10px !important;
+  padding-right: 18px !important;
+  padding-bottom: 20px !important;
+  padding-left: 18px !important;
+}
+
+/* ===== Desktop (≥992px) — sticky 300px sidebar ===== */
+@media (min-width: 992px) {
+  #WapperAdmin aside.sidebar {
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    align-self: flex-start !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    border-right: 1px solid var(--color-border-hr) !important;
+    box-shadow: 0 3px 9px var(--color-shadow) !important;
+    overflow: hidden !important;
+    z-index: 100 !important;
+  }
+
+  #WapperAdmin aside.sidebar.collapsed {
+    width: 90px !important;
+    min-width: 90px !important;
+    max-width: 90px !important;
+  }
+
+  #WapperAdmin .site-nav {
+    display: none !important;
+  }
+
+  /* Reference: chevron in sidebar header only on mobile, not laptop */
+  #WapperAdmin .sidebar-header .sidebar-toggle {
+    display: none !important;
+  }
+}
+
+/* ===== Mobile / tablet (≤991.98px) — same as reference dashbord.css ===== */
+@media (max-width: 991.98px) {
+  body:has(#WapperAdmin)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.6);
+    transition: 0.4s ease;
+  }
+
+  body:has(#WapperAdmin .sidebar:not(.collapsed))::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body:has(#WapperAdmin .sidebar:not(.collapsed)) {
+    overflow: hidden;
+  }
+
+  #WapperAdmin .site-nav {
+    display: block !important;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    padding: 15px 20px;
+    background: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border-hr);
+  }
+
+  #WapperAdmin .site-nav .sidebar-toggle,
+  #WapperAdmin .sidebar-header .sidebar-toggle {
+    display: flex !important;
+  }
+
+  #WapperAdmin .containers {
+    flex-direction: column !important;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  #WapperAdmin aside.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    align-self: auto !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    width: 270px !important;
+    min-width: 0 !important;
+    max-width: min(270px, 85vw) !important;
+    z-index: 20 !important;
+    transition: left 0.4s ease, width 0.4s ease !important;
+    box-shadow: 0 3px 9px var(--color-shadow) !important;
+  }
+
+  #WapperAdmin aside.sidebar.collapsed {
+    left: -270px !important;
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: min(270px, 85vw) !important;
+  }
+
+  #WapperAdmin aside.sidebar:not(.collapsed) {
+    left: 0 !important;
+    width: 270px !important;
+  }
+
+  #WapperAdmin .main-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 !important;
+  }
+
+  #WapperAdmin .info-admin {
+    padding: 12px 16px !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+  }
+
+  #WapperAdmin .info-admin-divider {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  #WapperAdmin .main-content > .pad-all {
+    padding: 20px 16px !important;
+  }
+
+  /* Dashboard page */
+  #WapperAdmin .hero {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  #WapperAdmin .hero-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  #WapperAdmin .stats {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  #WapperAdmin .actions {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  #WapperAdmin .actions-box {
+    padding: 24px 16px !important;
+  }
+
+  #WapperAdmin .action {
+    height: auto;
+    min-height: 286.5px;
+  }
+
+  /* My Workspaces */
+  #WapperAdmin .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  #WapperAdmin .btn-add {
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  #WapperAdmin .table-card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #WapperAdmin .table-card table {
+    min-width: 640px;
+  }
+
+  /* Add workspace form */
+  #WapperAdmin .row-input,
+  #WapperAdmin .row-tow-form,
+  #WapperAdmin .row-three-form {
+    flex-wrap: wrap !important;
+  }
+
+  #WapperAdmin .row-tow-form .all-input-faild,
+  #WapperAdmin .row-three-form .all-input-faild,
+  #WapperAdmin .all-input-faild {
+    flex-basis: 100% !important;
+  }
+
+  #WapperAdmin .group-upload {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  #WapperAdmin .card-uplaod {
+    flex-basis: calc(50% - 6px) !important;
+  }
+
+  #WapperAdmin .but-from-action {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  #WapperAdmin .but-submit-wrap {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  #WapperAdmin .but-from-action .but-send {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #WapperAdmin .flx-titl {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  #WapperAdmin .head-all-page h4 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #WapperAdmin .info-admin-divider {
+    margin-left: 6px;
+  }
+
+  #WapperAdmin .info-admin article,
+  #WapperAdmin .info-admin .info-admin-detalis {
+    display: none;
+  }
+
+  #WapperAdmin .card-uplaod {
+    flex-basis: 100% !important;
+  }
+
+  #WapperAdmin .head-all-page h4,
+  #WapperAdmin .page-title {
+    font-size: 22px;
+  }
+
+  #WapperAdmin .containers .main-content {
+    padding: 0;
+  }
+}
+
+/* Cancel legacy dashboard.css mobile sidebar (open class / display:none) */
+@media (max-width: 1000px) {
+  body:has(#WapperAdmin) .sidebar {
+    display: flex !important;
+  }
+
+  body:has(#WapperAdmin) .sidebar.open {
+    left: auto !important;
+  }
+
+  body:has(#WapperAdmin) .mobile-menu-btn,
+  body:has(#WapperAdmin) .mobile-overlay {
+    display: none !important;
+  }
+}

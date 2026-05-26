@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Masahati – My Workspaces</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="../css/dashbord.css" />
+<link rel="stylesheet" href="../css/media.css" />
+  <link rel="stylesheet" href="../css/dashboard-admin-bridge.css" />
+<link rel="stylesheet" href="../css/myworkspace.css" />
+  <link rel="stylesheet" href="../css/admin-buttons.css" />
+</head>
+<body>
+<div id="WapperAdmin" class="my-workspaces-page">
+  <nav class="site-nav">
+    <button class="sidebar-toggle" type="button" aria-label="Toggle menu">
+      <span class="material-symbols-rounded">menu</span>
+    </button>
+  </nav>
+  <div class="containers">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <img src="../assets/img/logo.png" alt="Masahati" class="header-logo" />
+          <span class="sidebar-brand-name">Masahati</span>
+        </div>
+        <button class="sidebar-toggle" type="button" aria-label="Collapse sidebar">
+          <span class="material-symbols-rounded">chevron_left</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a href="dashboard.html" class="menu-link">
+              <span class="bx bx-grid-alt"></span>
+              <span class="menu-label">Dashboard</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="my-workspace.html" class="menu-link active">
+              <span class="bx bx-buildings"></span>
+              <span class="menu-label">My workspace</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="add-workspace.html" class="menu-link">
+              <span class="bx bx-plus-circle"></span>
+              <span class="menu-label">Add workspace</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="#" class="menu-link">
+              <span class="bx bx-star"></span>
+              <span class="menu-label">Review</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar-footer">
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a href="#" class="menu-link">
+              <span class="material-symbols-rounded">logout</span>
+              <span class="menu-label">Log Out</span>
+            </a>
+          </li>
+        </ul>
+        <div class="chat-silderbar">
+          <div class="flex-chat-title">
+            <div class="box-icon-chat">
+              <i class='bx bx-support'></i>
+            </div>
+            <h5>Needs Help</h5>
+          </div>
+          <div class="prag-chat">
+            If you need any assistance, <br /> we're <br /> here to help.
+          </div>
+          <button class="but-chat" type="button">
+            <span>contact Support</span>
+            <i class='bx bx-right-arrow-alt'></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="info-admin">
+        <div class="drak-mode">
+          <i class='bx bx-moon'></i>
+        </div>
+        <span class="info-admin-divider" aria-hidden="true"></span>
+        <div class="flex-info-admin">
+          <article class="info-admin-detalis">
+            <h5>Admin</h5>
+            <p>SuperAdmin</p>
+          </article>
+          <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+        </div>
+      </div>
+      <div class="pad-all page-inner">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">My Workspaces</h1>
+            <p class="page-sub">Manage all your workspaces, edit details, and track their status.</p>
+          </div>
+          <button type="button" onclick="window.location.href='add-workspace.html'" class="btn-add">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add New Workspace
+          </button>
+        </div>
+
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:35%">Workspace</th>
+                <th style="width:16%">Location</th>
+                <th style="width:14%">Status</th>
+                <th style="width:16%">Created Date</th>
+                <th style="width:16%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="ws-cell"><div class="ws-thumb t1"></div><div><div class="ws-name">Focus Hub</div><div class="ws-desc">Modern &amp; quiet space</div></div></div></td>
+                <td><span class="loc">Al-Rimal, Gaza</span></td>
+                <td><span class="badge approved">Approved</span></td>
+                <td><span class="date-val">May 10, 2024</span></td>
+                <td class="actions">
+                  <button type="button" class="btn-action">View</button>
+                  <button type="button" class="btn-action">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="ws-cell"><div class="ws-thumb t2"></div><div><div class="ws-name">The Desk</div><div class="ws-desc">Cozy and productive</div></div></div></td>
+                <td><span class="loc">Al-Nuseirat, Gaza</span></td>
+                <td><span class="badge approved">Approved</span></td>
+                <td><span class="date-val">May 5, 2024</span></td>
+                <td class="actions">
+                  <button type="button" class="btn-action">View</button>
+                  <button type="button" class="btn-action">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="ws-cell"><div class="ws-thumb t3"></div><div><div class="ws-name">Study Corner</div><div class="ws-desc">Perfect for students</div></div></div></td>
+                <td><span class="loc">Al-Rimal, Gaza</span></td>
+                <td><span class="badge pending">Pending</span></td>
+                <td><span class="date-val">May 2, 2024</span></td>
+                <td class="actions">
+                  <button type="button" class="btn-action">View</button>
+                  <button type="button" class="btn-action">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="ws-cell"><div class="ws-thumb t4"></div><div><div class="ws-name">Creative Space</div><div class="ws-desc">Think. Create. Inspire.</div></div></div></td>
+                <td><span class="loc">Gaza City</span></td>
+                <td><span class="badge approved">Approved</span></td>
+                <td><span class="date-val">Apr 28, 2024</span></td>
+                <td class="actions">
+                  <button type="button" class="btn-action">View</button>
+                  <button type="button" class="btn-action">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="ws-cell"><div class="ws-thumb t5"></div><div><div class="ws-name">Work Oasis</div><div class="ws-desc">Spacious &amp; comfortable</div></div></div></td>
+                <td><span class="loc">Al-Maghazi, Gaza</span></td>
+                <td><span class="badge rejected">Rejected</span></td>
+                <td><span class="date-val">Apr 20, 2024</span></td>
+                <td class="actions">
+                  <button type="button" class="btn-action">View</button>
+                  <button type="button" class="btn-action">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/admin-main.js"></script>
+<script src="../js/admin-layout.js"></script>
+<script src="../js/main-workspace.js"></script>
+</body>
+</html>

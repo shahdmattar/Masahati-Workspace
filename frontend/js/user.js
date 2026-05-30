@@ -316,74 +316,51 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ================================================================
     2. USER AVATAR DROPDOWN
      ================================================================ */
-const avatarBtns = document.querySelectorAll('#userAvatarBtn, .user-avatar-btn');
-let dropdown = document.getElementById('userDropdown');
+const userMenuBtn      = document.getElementById('userMenuBtn');
+const userDropdown     = document.getElementById('userDropdown');
+const userDropdownMenu = document.getElementById('userDropdownMenu');
+const navbarUserImage  = document.getElementById('navbarUserImage');
+const navbarUserName   = document.getElementById('navbarUserName');
+const dropdownUserName = document.getElementById('dropdownUserName');
+const authActions      = document.getElementById('authActions');
 
-  // Inject dropdown HTML if it doesn't exist yet
-if (!dropdown && avatarBtns.length > 0) {
-    const firstBtn = avatarBtns[0];
+  // Populate user info from session
+const sessionUser = getSessionUser();
 
-    // Use existing wrapper if present, otherwise create one
-    let container = firstBtn.closest('.user-menu-wrapper');
-    if (!container) {
-      container = document.createElement('div');
-      container.className = 'user-menu-wrapper';
-      container.style.position = 'relative';
-      container.style.flexShrink = '0';
-      firstBtn.parentNode.insertBefore(container, firstBtn);
-      container.appendChild(firstBtn);
-    }
+if (sessionUser) {
+    // Show user dropdown, hide guest login/signup buttons
+    if (userDropdown)  userDropdown.style.display  = 'flex';
+    if (authActions)   authActions.style.display   = 'none';
 
-    dropdown = document.createElement('div');
-    dropdown.id = 'userDropdown';
-    dropdown.className = 'user-dropdown';
-
-    // Try to load user info from session
-    const session = getSessionUser();
-    const userName  = session?.name  || 'Ahmed';
-    const userEmail = session?.email || '';
-
-    // Detect relative path depth
-    const depth = window.location.pathname.includes('/pages/') ? '' : 'pages/';
-
-    dropdown.innerHTML = `
-    <div class="user-dropdown-header">
-        <p>${escapeHtml(userName)}</p>
-        ${userEmail ? `<span>${escapeHtml(userEmail)}</span>` : ''}
-    </div>
-    <a href="${depth ? 'pages/profile.html' : 'profile.html'}">
-        <i class="fa-regular fa-user"></i> My Profile
-    </a>
-    <a href="${depth ? 'pages/favorites.html' : 'favorites.html'}">
-        <i class="fa-regular fa-heart"></i> Favorites
-    </a>
-    <div class="dropdown-divider"></div>
-    <button class="dropdown-item dropdown-danger" id="logoutBtn">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
-    </button>
-    `;
-    container.appendChild(dropdown);
+    // Fill in name & avatar
+    if (navbarUserName)  navbarUserName.textContent  = sessionUser.name  || 'User';
+    if (dropdownUserName) dropdownUserName.textContent = sessionUser.name || 'User';
+    if (navbarUserImage && sessionUser.avatar) navbarUserImage.src = sessionUser.avatar;
+} else {
+    // Guest: hide user dropdown, show auth buttons
+    if (userDropdown) userDropdown.style.display = 'none';
+    if (authActions)  authActions.style.display  = 'flex';
 }
 
-  // Toggle dropdown open/close
-avatarBtns.forEach(btn => {
-    btn.addEventListener('click', e => {
-    e.stopPropagation();
-    if (dropdown) dropdown.classList.toggle('open');
+  // Toggle dropdown open/close on avatar button click
+if (userMenuBtn && userDropdownMenu) {
+    userMenuBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        userDropdownMenu.classList.toggle('open');
     });
-});
+}
 
   // Close on outside click
 document.addEventListener('click', () => {
-    dropdown?.classList.remove('open');
+    userDropdownMenu?.classList.remove('open');
 });
 
   // Logout
 document.addEventListener('click', e => {
     if (e.target.closest('#logoutBtn')) {
-    sessionStorage.removeItem('masahati_user');
-    showToast('You have been logged out.', 'info');
-    setTimeout(() => window.location.href = '../pages/login.html', 1200);
+        sessionStorage.removeItem('masahati_user');
+        showToast('You have been logged out.', 'info');
+        setTimeout(() => window.location.href = '../pages/login.html', 1200);
     }
 });
 

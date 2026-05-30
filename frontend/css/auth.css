@@ -423,56 +423,7 @@ body {
 }
 .terms-link:hover { text-decoration: underline; }
 
-/* ---- Responsive ---- */
-@media (max-width: 768px) {
-  body {
-    align-items: flex-start;
-    overflow: auto;
-  }
 
-  .auth-page {
-    grid-template-columns: 1fr;
-    transform: none;
-    width: 100%;
-    min-width: unset;
-    min-height: unset;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .auth-page::after {
-    display: none;
-  }
-
-  .auth-left { display: none; }
-
-  .auth-right {
-    padding: 40px 20px 60px;
-    align-items: flex-start;
-    background: var(--bg-light);
-    min-height: 100vh;
-  }
-
-  .auth-card {
-    padding: 36px 24px;
-    min-height: unset;
-    box-shadow: var(--shadow);
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .auth-card h1 {
-    font-size: 2rem;
-  }
-
-  .role-options {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-primary {
-    padding: 15px;
-  }
-}
 
 /* ==============================
    Dark Mode — Auth Pages (form side only)
@@ -669,4 +620,70 @@ body.dark-mode .btn-primary {
 
 body.dark-mode .btn-primary:hover {
   background: #c8d952;
+}
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+    overflow: auto;
+  }
+
+  .auth-page {
+    grid-template-columns: 1fr;
+    transform: none;
+    width: 100%;
+    min-width: unset;
+    min-height: unset;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .auth-page::after {
+    display: none;
+  }
+
+  .auth-left { display: none; }
+
+  .auth-right {
+    padding: 40px 20px 60px;
+    align-items: flex-start;
+    background: var(--bg-light);
+    min-height: 100vh;
+  }
+
+  .auth-card {
+    padding: 36px 24px;
+    min-height: unset;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .auth-card h1 {
+    font-size: 2rem;
+  }
+
+  .role-options {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-primary {
+    padding: 15px;
+  }
+
+  .dark-mode-toggle {
+    top: 50px;
+    right: 25px;
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .back-home-btn {
+    top: 50px;
+    left: 25px;
+    height: 37px;
+    font-size: 0.78rem;
+    padding: 0 12px 0 10px;
+  }
 }

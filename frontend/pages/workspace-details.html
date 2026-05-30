@@ -15,7 +15,7 @@
     />
   </head>
 
-  <body >
+  <body>
     <!-- Navbar -->
     <header class="navbar">
       <div class="nav-content">
@@ -34,8 +34,8 @@
           <a href="../index.html">Home</a>
           <a href="workspaces.html" class="active">Workspaces</a>
           <a href="favorites.html">Favorites</a>
-          <a href="../index.html#footer">About Us</a>
-          <a href="../index.html#footer">Contact</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact</a>
         </nav>
 
         <div class="nav-actions">
@@ -57,49 +57,43 @@
             <i class="fa-regular fa-moon" id="themeIcon"></i>
           </button>
 
-          <!-- Guest actions: shown when the user is not logged in -->
-  <div class="auth-actions" id="authActions">
-    <a href="login.html" class="login-btn">Login</a>
-    <a href="signup.html" class="signup-btn">Sign Up</a>
-  </div>
+          <div class="user-dropdown">
+            <button
+              class="user-menu"
+              id="userMenuBtn"
+              type="button"
+              aria-label="Open user menu"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+                alt="User avatar"
+              />
+              <span>Omar</span>
+              <i class="fa-solid fa-chevron-down user-arrow"></i>
+            </button>
 
-  <!-- User menu: shown when the user is logged in -->
-  <div class="user-dropdown" id="userDropdown">
-    <button
-      class="user-menu"
-      id="userMenuBtn"
-      type="button"
-      aria-label="Open user menu"
-    >
-      <img
-        id="navbarUserImage"
-        src="../assets/images/default-user.png"
-        alt="User avatar"
-      />
-      <span id="navbarUserName">User</span>
-      <i class="fa-solid fa-chevron-down user-arrow"></i>
-    </button>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+              <div class="user-dropdown-name">Omar</div>
 
-    <div class="user-dropdown-menu" id="userDropdownMenu">
-      <div class="user-dropdown-name" id="dropdownUserName">User</div>
+              <a href="profile.html">
+                <i class="fa-regular fa-user"></i>
+                My Profile
+              </a>
 
-      <a href="profile.html">
-        <i class="fa-regular fa-user"></i>
-        My Profile
-      </a>
+              <a href="favorites.html">
+                <i class="fa-regular fa-heart"></i>
+                Favorites
+              </a>
 
-      <a href="favorites.html">
-        <i class="fa-regular fa-heart"></i>
-        Favorites
-      </a>
-
-      <button type="button" class="logout-btn" id="logoutBtn">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        Log Out
-      </button>
-    </div>
-  </div>
-</div>
+              <button type="button" class="logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log Out
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
     </header>
 
     <!-- Mobile Navigation Overlay -->

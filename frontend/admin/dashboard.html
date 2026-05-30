@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dashbord</title>
+  <!--  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../css/dashbord.css">
+  <link rel="stylesheet" href="../css/media.css">
+</head>
+
+<body class="admin-dashboard">
+  <!-- Start WapperAdmin -->
+  <div id="WapperAdmin">
+    <div class="containers">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Sidebar header -->
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <img src="../assets/logo/logo.png" alt="Masahati" class="header-logo" />
+            <span class="sidebar-brand-name">Masahati</span>
+          </div>
+
+          <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+        </div>
+        <div class="sidebar-content">
+          <!-- Search Form -->
+          <!-- <form action="#" class="search-form">
+            <span class="material-symbols-rounded">search</span>
+            <input type="search" placeholder="Search..." required />
+          </form> -->
+          <!-- Sidebar Menu -->
+          <ul class="menu-list menu-list-main">
+            <li class="menu-item">
+              <a href="dashboard.html" class="menu-link">
+                <img src="../assets/images/icon-dashboard.svg" alt="" class="menu-icon-img" width="24" height="24" />
+                <span class="menu-label">Dashboard</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="pending-workspace.html" class="menu-link menu-link-has-badge" target="_blank" rel="noopener noreferrer">
+                <img src="../assets/images/icon-pending-workspaces.svg" alt="" class="menu-icon-img" width="24" height="24" />
+                <span class="menu-label">Pending Workspaces</span>
+                <span class="menu-badge">5</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="manage-workspaces.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+                <img src="../assets/images/icon-manage-workspaces.svg" alt="" class="menu-icon-img" width="24" height="24" />
+                <span class="menu-label">Manage Workspaces</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="manage-reviews.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+                <span class="bx bx-star"></span>
+                <span class="menu-label">Manage Reviews</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">logout</span>
+                <span class="menu-label">Log Out</span>
+              </a>
+            </li>
+          </ul>
+
+
+
+          <!-- ---- -->
+          <div class="chat-silderbar">
+            <div class="flex-chat-title">
+              <div class="box-icon-chat">
+                <i class='bx bx-support'></i>
+              </div>
+              <h5>
+                Needs Help
+              </h5>
+            </div>
+            <div class="prag-chat">
+              If you need any assistance, <br /> we're <br /> here to help.
+            </div>
+            <button class="but-chat" type="button">
+              <span>contact Support</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </button>
+          </div>
+        </div>
+      </aside>
+      <!-- Site main content -->
+      <div class="main-content">
+        <div class="info-admin">
+          <button type="button" class="sidebar-toggle sidebar-toggle-nav" aria-label="Open menu">
+            <span class="material-symbols-rounded">menu</span>
+          </button>
+          <div class="info-admin-end">
+            <div class="drak-mode">
+              <i class='bx bx-moon'></i>
+            </div>
+            <span class="info-admin-divider" aria-hidden="true"></span>
+            <div class="flex-info-admin">
+              <article class="info-admin-detalis">
+                <h5>
+                  Admin
+                </h5>
+                <p>
+                  Super Administrator
+                </p>
+              </article>
+              <img src="../assets/images/testimonial-4.jpg" alt="Admin" />
+            </div>
+          </div>
+        </div>
+        <div class="pad-all">
+          <div class="card-marging-custome">
+            <div class="head-all-page">
+              <h4>
+                Dashboard
+              </h4>
+              <p>
+                Welcome back, Admin! Here's what's happening with Masahati.
+              </p>
+            </div>
+            <div class="group-status-flex">
+              <div class="colum-status">
+                <div class="card-status-admin custome-admin-status">
+                  <div class="icon-status bg-1">
+                    <img src="../assets/images/Vector.png" />
+                  </div>
+                  <div class="content-status">
+                    <h2>
+                      128
+                    </h2>
+                    <p>
+                      Total<br>Workspaces
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="colum-status">
+                <div class="card-status-admin custome-admin-status">
+                  <div class="icon-status bg-2">
+                    <img src="../assets/images/SVG.png" />
+                  </div>
+                  <div class="content-status">
+                    <h2>
+                      5
+                    </h2>
+                    <p>
+                      Pending<br>Approvals
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="colum-status">
+                <div class="card-status-admin custome-admin-status">
+                  <div class="icon-status bg-3">
+                    <img src="../assets/images/SVG (1).png" />
+                  </div>
+                  <div class="content-status">
+                    <h2>
+                      342
+                    </h2>
+                    <p>
+                      Total Users
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="colum-status">
+                <div class="card-status-admin custome-admin-status">
+                  <div class="icon-status bg-4">
+                    <img src="../assets/images/SVG (2).png" />
+                  </div>
+                  <div class="content-status">
+                    <h2>
+                      5
+                    </h2>
+                    <p>
+                      Pending<br>Workspace<br>Requests
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="quick-action2">
+              <h3>
+                Quick Actions
+              </h3>
+              <div class="group-flex ">
+                <div class="colum-status">
+                  <a href="manage-workspaces.html" class="card-status-admin card-action-link" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-status bg-1">
+                      <img src="../assets/images/Vector.png" alt="" />
+                    </div>
+                    <div class="content-status custome-width-content">
+
+                      <h5>
+                        Manage WorkSpaces
+                      </h5>
+                      <p>
+                        View and manage all workspaces
+                      </p>
+                    </div>
+                  </a>
+                </div>
+                <div class="colum-status">
+                  <a href="manage-reviews.html" class="card-status-admin card-action-link" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-status bg-3">
+                      <img src="../assets/images/SVG (3).png" alt="" />
+                    </div>
+                    <div class="content-status custome-width-content">
+
+                      <h5>
+                        Manage Reviews
+                      </h5>
+                      <p>
+                        Review and moderate user reviews
+                      </p>
+
+                    </div>
+                  </a>
+                </div>
+                <div class="colum-status">
+                  <a href="pending-workspace.html" class="card-status-admin card-action-link" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-status bg-4">
+                      <img src="../assets/images/SVG (2).png" alt="" />
+                    </div>
+                    <div class="content-status custome-width-content">
+
+                      <h5>
+                        Pending Workspace
+                        Requests
+                      </h5>
+                      <p>
+                        Review and manage pending
+                        workspace requests
+                      </p>
+
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <!-- ebd WapperAdmin -->
+  <script src="../js/main.js"></script>
+  <script>
+    const sidebarToggleBtns = document.querySelectorAll(".sidebar-toggle");
+    const sidebar = document.querySelector(".sidebar");
+    const topThemeToggleBtn = document.querySelector(".drak-mode");
+
+    // Updates the top icon based on current theme
+    const updateThemeDisplay = () => {
+      const isDark = document.body.classList.contains("dark-theme");
+      if (topThemeToggleBtn) {
+        const topIcon = topThemeToggleBtn.querySelector("i");
+        if (topIcon) topIcon.className = isDark ? "bx bx-sun" : "bx bx-moon";
+      }
+    };
+
+    // Apply dark theme if saved or system prefers, then update icon
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldUseDarkTheme = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+    document.body.classList.toggle("dark-theme", shouldUseDarkTheme);
+    updateThemeDisplay();
+
+    // Toggle Theme via header icon
+    if (topThemeToggleBtn) {
+      topThemeToggleBtn.style.cursor = "pointer";
+      topThemeToggleBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark-theme");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateThemeDisplay();
+      });
+    }
+
+    // Toggle sidebar collapsed state on buttons click
+    sidebarToggleBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1940,3 +1940,32 @@ body.dark-mode .back-link:hover {
 body.dark-mode .back-link:hover i {
   color: var(--light-green);
 }
+
+/* ===============================
+   Navbar Auth State
+================================= */
+
+.auth-actions,
+.user-dropdown {
+  display: none;
+  align-items: center;
+}
+
+.auth-actions.show,
+.user-dropdown.show {
+  display: flex;
+}
+
+/* ===============================
+   Fixed Navbar Offset - Workspaces
+================================= */
+
+.workspace-search-section {
+  margin-top: 56px;
+}
+
+@media (max-width: 992px) {
+  .workspace-search-section {
+    margin-top: 78px;
+  }
+}

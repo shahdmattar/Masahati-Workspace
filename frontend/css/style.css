@@ -60,6 +60,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
 a {
   color: inherit;
   text-decoration: none;
@@ -90,14 +91,17 @@ button {
   color: var(--white);
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 
 .nav-content {
-  width: calc(100% - var(--container-space));
-  max-width: var(--container-width);
+  max-width: 1450px;
+  width: calc(100% - 45px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 220px 1fr 250px;
@@ -505,7 +509,8 @@ body.dark-mode .copyright {
 
 
 /* =========================================
-   Mobile Sidebar Menu
+   Mobile Sidebar Menu 
+   =========================================*/
 
 .menu-toggle {
   display: none;
@@ -763,27 +768,19 @@ body.dark-mode .mobile-login {
   color: var(--green);
  }
 
- /* Fixed header while scrolling */
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  background-color: var(--dark-green);
-}
-
-body {
-  padding-top: 52px;
-}
-
 
 /* ===============================
    User Dropdown Menu
+================================= */
 
 .user-dropdown {
   position: relative;
+  display: none;
+  align-items: center;
+}
+
+.user-dropdown.show {
+  display: flex;
 }
 
 .user-menu {
@@ -817,7 +814,7 @@ body {
     opacity 0.25s ease,
     visibility 0.25s ease,
     transform 0.25s ease;
-  z-index: 2000;
+  z-index: 10000;
 }
 
 .user-dropdown.active .user-dropdown-menu {
@@ -878,9 +875,197 @@ body {
   color: #ff6b6b;
 }
 
+/* ===============================
+   Navbar Auth Buttons
+================================= */
+
+.auth-actions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-actions.show {
+  display: flex;
+}
+
+.auth-actions .login-btn,
+.auth-actions .signup-btn {
+  min-width: 70px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
 
 /* ===============================
-   User Dropdown - Dark Mode 
+   Tablet & Mobile Navbar Auth Fix
+================================= */
+
+@media (max-width: 992px) {
+  .navbar {
+    height: 64px;
+  }
+
+  .nav-content {
+    height: 64px;
+    width: calc(100% - 32px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .navbar .nav-actions .auth-actions,
+  .navbar .nav-actions .auth-actions.show,
+  .navbar .nav-actions .auth-actions .login-btn,
+  .navbar .nav-actions .auth-actions .signup-btn {
+    display: none !important;
+  }
+
+  .icon-btn,
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .user-dropdown.show {
+    display: flex;
+  }
+
+  .user-menu {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .user-menu img {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+
+  .user-menu span,
+  .user-menu .user-arrow {
+    display: none;
+  }
+
+  .user-dropdown-menu {
+    right: 0;
+    width: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-content {
+    width: calc(100% - 24px);
+  }
+
+  .logo-box {
+    flex-shrink: 0;
+    max-width: 150px;
+  }
+
+  .logo-text h3 {
+    font-size: 15px;
+  }
+
+  .logo-text span {
+    display: none;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .icon-btn,
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  .user-menu {
+    width: 36px;
+    height: 36px;
+  }
+
+  .user-menu img {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+}
+
+/* ===============================
+   Tablet / iPad Mobile Menu
+================================= */
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .mobile-menu {
+    width: 360px;
+    max-width: 80%;
+  }
+
+  .mobile-auth {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .mobile-login,
+  .mobile-signup {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+  }
+
+  .mobile-login {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background-color: transparent;
+  }
+
+  .mobile-signup {
+    background-color: var(--light-green);
+    color: var(--dark-green);
+  }
+}
+
+/* ===============================
+   User Dropdown - Dark Mode
+================================= */
 
 body.dark-mode .user-dropdown-menu {
   background-color: #06271f;

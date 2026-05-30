@@ -313,107 +313,110 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-/* ================================================================
-    2. USER AVATAR DROPDOWN
-     ================================================================ */
-const userMenuBtn      = document.getElementById('userMenuBtn');
-const userDropdown     = document.getElementById('userDropdown');
-const userDropdownMenu = document.getElementById('userDropdownMenu');
-const navbarUserImage  = document.getElementById('navbarUserImage');
-const navbarUserName   = document.getElementById('navbarUserName');
-const dropdownUserName = document.getElementById('dropdownUserName');
-const authActions      = document.getElementById('authActions');
+/* ===============================
+   Navbar Auth State
+================================= */
 
-  // Populate user info from session
-const sessionUser = getSessionUser();
+const authActions = document.querySelector("#authActions");
+const userDropdown = document.querySelector("#userDropdown");
+const userMenuBtn = document.querySelector("#userMenuBtn");
+const logoutBtn = document.querySelector("#logoutBtn");
 
-if (sessionUser) {
-    // Show user dropdown, hide guest login/signup buttons
-    if (userDropdown)  userDropdown.style.display  = 'flex';
-    if (authActions)   authActions.style.display   = 'none';
+const navbarUserName = document.querySelector("#navbarUserName");
+const dropdownUserName = document.querySelector("#dropdownUserName");
+const navbarUserImage = document.querySelector("#navbarUserImage");
 
-    // Fill in name & avatar
-    if (navbarUserName)  navbarUserName.textContent  = sessionUser.name  || 'User';
-    if (dropdownUserName) dropdownUserName.textContent = sessionUser.name || 'User';
-    if (navbarUserImage && sessionUser.avatar) navbarUserImage.src = sessionUser.avatar;
-} else {
-    // Guest: hide user dropdown, show auth buttons
-    if (userDropdown) userDropdown.style.display = 'none';
-    if (authActions)  authActions.style.display  = 'flex';
+function getLoginPath() {
+  const isInsidePages = window.location.pathname.includes("/pages/");
+  return isInsidePages ? "login.html" : "pages/login.html";
 }
 
-  // Toggle dropdown open/close on avatar button click
-if (userMenuBtn && userDropdownMenu) {
-    userMenuBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        userDropdownMenu.classList.toggle('open');
-    });
+function showGuestNavbar() {
+  if (authActions) {
+    authActions.classList.add("show");
+  }
+
+  if (userDropdown) {
+    userDropdown.classList.remove("show");
+    userDropdown.classList.remove("active");
+  }
 }
 
-  // Close on outside click
-document.addEventListener('click', () => {
-    userDropdownMenu?.classList.remove('open');
-});
+function showLoggedInNavbar(user) {
+  if (authActions) {
+    authActions.classList.remove("show");
+  }
 
-  // Logout
-document.addEventListener('click', e => {
-    if (e.target.closest('#logoutBtn')) {
-        sessionStorage.removeItem('masahati_user');
-        showToast('You have been logged out.', 'info');
-        setTimeout(() => window.location.href = '../pages/login.html', 1200);
-    }
-});
+  if (userDropdown) {
+    userDropdown.classList.add("show");
+  }
 
-/* ================================================================
-    3. MOBILE NAVIGATION
-     ================================================================ */
-const hamburger = document.getElementById('navHamburger');
-let mobileNav   = document.getElementById('mobileNav');
+  if (navbarUserName) {
+    navbarUserName.textContent = user.name || "User";
+  }
 
-if (hamburger && !mobileNav) {
-    // Build mobile nav panel
-    mobileNav = document.createElement('div');
-    mobileNav.id = 'mobileNav';
-    mobileNav.className = 'mobile-nav';
+  if (dropdownUserName) {
+    dropdownUserName.textContent = user.name || "User";
+  }
 
-    const backdrop = document.createElement('div');
-    backdrop.className = 'mobile-nav-backdrop';
+  if (navbarUserImage && user.image) {
+    navbarUserImage.src = user.image;
+  }
+}
 
-    const panel = document.createElement('div');
-    panel.className = 'mobile-nav-panel';
+function checkAuthState() {
+  const token = localStorage.getItem("token");
+  const userData = localStorage.getItem("user");
 
-    // Grab links from desktop nav
-    const desktopLinks = document.querySelectorAll('.nav-links li a');
-    const closeBtn = document.createElement('div');
-    closeBtn.className = 'mobile-nav-close';
-    closeBtn.innerHTML = '<button aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>';
+  if (!token || !userData) {
+    showGuestNavbar();
+    return;
+  }
 
-    panel.appendChild(closeBtn);
+  try {
+    const user = JSON.parse(userData);
+    showLoggedInNavbar(user);
+  } catch (error) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    showGuestNavbar();
+  }
+}
 
-    desktopLinks.forEach(link => {
-    const a = document.createElement('a');
-    a.href = link.href;
-    a.className = link.className;
-    a.innerHTML = link.innerHTML;
-    panel.appendChild(a);
-    });
+checkAuthState();
 
-    mobileNav.appendChild(backdrop);
-    mobileNav.appendChild(panel);
-    document.body.appendChild(mobileNav);
+/* ===============================
+   User Dropdown Toggle
+================================= */
 
-    hamburger.addEventListener('click', () => {
-    mobileNav.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    });
+if (userDropdown && userMenuBtn) {
+  userMenuBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    userDropdown.classList.toggle("active");
+  });
 
-    function closeMobileNav() {
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-    }
+  document.addEventListener("click", () => {
+    userDropdown.classList.remove("active");
+  });
 
-    backdrop.addEventListener('click', closeMobileNav);
-    closeBtn.querySelector('button').addEventListener('click', closeMobileNav);
+  userDropdown.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+}
+
+/* ===============================
+   Logout
+================================= */
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    showGuestNavbar();
+
+    window.location.href = getLoginPath();
+  });
 }
 
 /* ================================================================

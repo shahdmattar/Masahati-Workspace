@@ -471,7 +471,7 @@ img {
   /* Home Hero */
   .hero {
     min-height: auto;
-    padding: 80px 0 70px;
+    padding: 92px 0 70px;
   }
 
   .hero-content {
@@ -630,7 +630,7 @@ img {
   .hero {
     width: 100%;
     min-height: auto;
-    padding: 62px 0 52px;
+    padding: 92px 0 52px;
     background-position: center;
   }
 

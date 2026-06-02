@@ -1066,7 +1066,6 @@ body.dark-mode .mobile-login {
 /* ===============================
    User Dropdown - Dark Mode
 ================================= */
-
 body.dark-mode .user-dropdown-menu {
   background-color: #06271f;
   border-color: rgba(255, 255, 255, 0.14);
@@ -1088,17 +1087,19 @@ body.dark-mode .user-dropdown-menu button i {
   color: rgba(255, 255, 255, 0.72);
 }
 
+/* Normal menu items hover */
 body.dark-mode .user-dropdown-menu a:hover,
-body.dark-mode .user-dropdown-menu button:hover {
+body.dark-mode .user-dropdown-menu button:not(.logout-btn):hover {
   background-color: rgba(214, 226, 100, 0.12);
   color: var(--light-green);
 }
 
 body.dark-mode .user-dropdown-menu a:hover i,
-body.dark-mode .user-dropdown-menu button:hover i {
+body.dark-mode .user-dropdown-menu button:not(.logout-btn):hover i {
   color: var(--light-green);
 }
 
+/* Logout button */
 body.dark-mode .user-dropdown-menu .logout-btn {
   color: #ff6b6b;
   border-top-color: rgba(255, 255, 255, 0.14);
@@ -1110,5 +1111,9 @@ body.dark-mode .user-dropdown-menu .logout-btn i {
 
 body.dark-mode .user-dropdown-menu .logout-btn:hover {
   background-color: rgba(239, 68, 68, 0.14);
+  color: #ff7b7b;
+}
+
+body.dark-mode .user-dropdown-menu .logout-btn:hover i {
   color: #ff7b7b;
 }

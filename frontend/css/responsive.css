@@ -471,7 +471,7 @@ img {
   /* Home Hero */
   .hero {
     min-height: auto;
-    padding: 80px 0 70px;
+    padding: 92px 0 70px;
   }
 
   .hero-content {
@@ -630,7 +630,7 @@ img {
   .hero {
     width: 100%;
     min-height: auto;
-    padding: 62px 0 52px;
+    padding: 92px 0 52px;
     background-position: center;
   }
 
@@ -1215,5 +1215,28 @@ img {
   .post-btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* ========================
+   FAVORITES GRID — RESPONSIVE
+   ======================== */
+
+@media (max-width: 767px) {
+  main.container {
+    margin-top: 0 !important;
+    padding-top: 72px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #favoritesGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #favoritesGrid {
+    grid-template-columns: 1fr !important;
   }
 }

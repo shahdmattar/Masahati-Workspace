@@ -369,3 +369,30 @@ body.dark-mode #WapperAdmin .menu-list .menu-link:is(:hover, .active) {
     display: none !important;
   }
 }
+/* FINAL DARK MODE FIX */
+
+body.dark-theme #WapperAdmin,
+body.dark-theme #WapperAdmin .main-content,
+body.dark-theme #WapperAdmin .pad-all,
+body.dark-theme #WapperAdmin .containers {
+  background: #071f1a !important;
+}
+
+body.dark-theme #WapperAdmin .hero,
+body.dark-theme #WapperAdmin .actions-box,
+body.dark-theme #WapperAdmin .stat,
+body.dark-theme #WapperAdmin .action {
+  background: #12382f !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+
+body.dark-theme #WapperAdmin h1,
+body.dark-theme #WapperAdmin h2,
+body.dark-theme #WapperAdmin h3,
+body.dark-theme #WapperAdmin h4,
+body.dark-theme #WapperAdmin h5,
+body.dark-theme #WapperAdmin p,
+body.dark-theme #WapperAdmin span {
+  color: #fff !important;
+}

@@ -39,13 +39,14 @@ body {
   justify-content: center;
   min-height: 100vh;
   overflow: visible;
+  min-height: 100vh;
+  padding: 24px;
 }
-
 /* ---- Auth Layout ---- */
 .auth-page {
   display: grid;
   grid-template-columns: 45% 55%;
-  width: 900px;
+  width: min(900px, 95vw);
   margin: auto;
   border-radius: 20px;
   overflow: hidden;
@@ -422,56 +423,7 @@ body {
 }
 .terms-link:hover { text-decoration: underline; }
 
-/* ---- Responsive ---- */
-@media (max-width: 768px) {
-  body {
-    align-items: flex-start;
-    overflow: auto;
-  }
 
-  .auth-page {
-    grid-template-columns: 1fr;
-    transform: none;
-    width: 100%;
-    min-width: unset;
-    min-height: unset;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .auth-page::after {
-    display: none;
-  }
-
-  .auth-left { display: none; }
-
-  .auth-right {
-    padding: 40px 20px 60px;
-    align-items: flex-start;
-    background: var(--bg-light);
-    min-height: 100vh;
-  }
-
-  .auth-card {
-    padding: 36px 24px;
-    min-height: unset;
-    box-shadow: var(--shadow);
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .auth-card h1 {
-    font-size: 2rem;
-  }
-
-  .role-options {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-primary {
-    padding: 15px;
-  }
-}
 
 /* ==============================
    Dark Mode — Auth Pages (form side only)
@@ -630,22 +582,25 @@ body.dark-mode .dark-mode-toggle {
   gap: 7px;
   padding: 0 16px 0 12px;
   height: 42px;
+  border-radius: 21px;
   background: var(--white);
-  color: var(--text-dark);
+  border: none;
+  color: var(--primary);
   font-family: 'Nunito', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.2s, 0.2s, color 0.2s, transform 0.15s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
   white-space: nowrap;
 }
 
 .back-home-btn:hover {
   transform: scale(1.05);
   border-color: var(--primary);
-  /* background: var(--primary); */
-  color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
 }
 
 body.dark-mode .back-home-btn {
@@ -657,4 +612,78 @@ body.dark-mode .back-home-btn {
 body.dark-mode .back-home-btn:hover {
   background: #d6e264;
   color: #244034;
+}
+body.dark-mode .btn-primary {
+  background: #d6e264;
+  color: #1a2e27;
+}
+
+body.dark-mode .btn-primary:hover {
+  background: #c8d952;
+}
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+    overflow: auto;
+  }
+
+  .auth-page {
+    grid-template-columns: 1fr;
+    transform: none;
+    width: 100%;
+    min-width: unset;
+    min-height: unset;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .auth-page::after {
+    display: none;
+  }
+
+  .auth-left { display: none; }
+
+  .auth-right {
+    padding: 40px 20px 60px;
+    align-items: flex-start;
+    background: var(--bg-light);
+    min-height: 100vh;
+  }
+
+  .auth-card {
+    padding: 36px 24px;
+    min-height: unset;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .auth-card h1 {
+    font-size: 2rem;
+  }
+
+  .role-options {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-primary {
+    padding: 15px;
+  }
+
+  .dark-mode-toggle {
+    top: 50px;
+    right: 25px;
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .back-home-btn {
+    top: 50px;
+    left: 25px;
+    height: 37px;
+    font-size: 0.78rem;
+    padding: 0 12px 0 10px;
+  }
 }

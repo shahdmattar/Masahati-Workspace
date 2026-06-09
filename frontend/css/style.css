@@ -1112,3 +1112,124 @@ body.dark-mode .user-dropdown-menu .logout-btn:hover {
   background-color: rgba(239, 68, 68, 0.14);
   color: #ff7b7b;
 }
+
+/*button
+/* Admin pages — button hover (no border change on hover) */
+
+#WapperAdmin button:not(.sidebar-toggle) {
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease,
+    transform 0.15s ease;
+}
+
+#WapperAdmin button:not(.sidebar-toggle):hover {
+  outline: none;
+}
+
+/* Dashboard — hero & header */
+#WapperAdmin .add-btn:hover {
+  background: #003f33;
+  transform: translateY(-1px);
+  border: none;
+}
+
+#WapperAdmin .edit:hover {
+  background: #003f33;
+  opacity: 0.95;
+  border: none;
+}
+
+/* My Workspaces */
+#WapperAdmin .btn-add:hover {
+  background: #003f33;
+  transform: translateY(-1px);
+  border: none;
+  box-shadow: 0 4px 14px rgba(36, 64, 52, 0.25);
+}
+
+#WapperAdmin .btn-action:hover {
+  background: #1b4332 !important;
+  color: #ffffff !important;
+  border-color: #1b4332 !important;
+}
+
+/* Add Workspace — Cancel & Submit */
+#WapperAdmin .but-from-action .but-cancle:hover,
+#WapperAdmin .but-cancle:hover {
+  background: rgba(36, 64, 52, 0.1) !important;
+  color: #003f33 !important;
+  border: 2px solid var(--green, #244034) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(36, 64, 52, 0.15);
+}
+
+#WapperAdmin .but-from-action .but-send:hover,
+#WapperAdmin .but-send:hover {
+  background: #003f33 !important;
+  color: #fff !important;
+  border: none !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(36, 64, 52, 0.28);
+  filter: none;
+}
+
+/* Sidebar — contact support */
+#WapperAdmin .but-chat:hover {
+  background: #003f33;
+  border: none;
+  opacity: 0.95;
+}
+
+/* Upload card close */
+#WapperAdmin .but-colse:hover {
+  background: #f3f4f6;
+  border: none;
+}
+
+/* Dark mode */
+body.dark-theme #WapperAdmin .add-btn:hover,
+body.dark-theme #WapperAdmin .edit:hover,
+body.dark-theme #WapperAdmin .btn-add:hover,
+body.dark-theme #WapperAdmin .but-send:hover,
+body.dark-theme #WapperAdmin .but-chat:hover,
+body.dark-mode #WapperAdmin .add-btn:hover,
+body.dark-mode #WapperAdmin .edit:hover,
+body.dark-mode #WapperAdmin .btn-add:hover,
+body.dark-mode #WapperAdmin .but-send:hover,
+body.dark-mode #WapperAdmin .but-chat:hover {
+  background: #14532d;
+  border: none;
+}
+
+body.dark-theme #WapperAdmin .btn-action:hover,
+body.dark-mode #WapperAdmin .btn-action:hover {
+  background: #1b4332 !important;
+  color: #ffffff !important;
+  border-color: #1b4332 !important;
+}
+
+body.dark-theme #WapperAdmin .but-from-action .but-cancle:hover,
+body.dark-theme #WapperAdmin .but-cancle:hover,
+body.dark-mode #WapperAdmin .but-from-action .but-cancle:hover,
+body.dark-mode #WapperAdmin .but-cancle:hover {
+  background: rgba(16, 185, 129, 0.18) !important;
+  color: #a7f3d0 !important;
+  border: 2px solid #6ee7b7 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-theme #WapperAdmin .but-from-action .but-send:hover,
+body.dark-theme #WapperAdmin .but-send:hover,
+body.dark-mode #WapperAdmin .but-from-action .but-send:hover,
+body.dark-mode #WapperAdmin .but-send:hover {
+  background: #0d9488 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-theme #WapperAdmin .but-colse:hover,
+body.dark-mode #WapperAdmin .but-colse:hover {
+  background: #1f2937;
+  border: none;
+}
+ 

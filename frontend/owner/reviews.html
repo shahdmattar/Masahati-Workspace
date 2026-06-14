@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--  -->
+  
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../css/dashbord.css">
+  <link rel="stylesheet" href="../css/media.css">
+</head>
+
+<body>
+  <div id="WapperAdmin">
+    <!-- Navbar -->
+    <div class="containers">
+      <!-- Sidebar -->
+      <aside class="sidebar ">
+        <!-- Sidebar header -->
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <img src="../assets/logo/logo.png" alt="Masahati" class="header-logo" />
+            <span class="sidebar-brand-name">Masahati</span>
+          </div>
+
+          <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+        </div>
+        <div class="sidebar-content">
+          <!-- Search Form -->
+          <!-- <form action="#" class="search-form">
+            <span class="material-symbols-rounded">search</span>
+            <input type="search" placeholder="Search..." required />
+          </form> -->
+          <!-- Sidebar Menu -->
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="dashboard.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+                <span class="bx bx-grid-alt"></span>
+                <span class="menu-label">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="menu-item">
+              <a href="edit-workspace.html" class="menu-link">
+                <span class="bx bx-buildings"></span>
+                <span class="menu-label">My workspace</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="add-workspace.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+                <span class="bx bx-plus-circle"></span>
+                <span class="menu-label">Add workspace</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="reviews.html" class="menu-link">
+                <span class="bx bx-star"></span>
+                <span class="menu-label">Review</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">logout</span>
+                <span class="menu-label">Log Out</span>
+              </a>
+            </li>
+          </ul>
+
+
+
+          <!-- ---- -->
+          <div class="chat-silderbar">
+            <div class="flex-chat-title">
+              <div class="box-icon-chat">
+                <i class='bx bx-support'></i>
+              </div>
+              <h5>
+                Needs Help
+              </h5>
+            </div>
+            <div class="prag-chat">
+              If you need any assistance, <br /> we're <br /> here to help.
+            </div>
+            <button class="but-chat" type="button">
+              <span>contact Support</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </button>
+          </div>
+        </div>
+      </aside>
+      <!-- Site main content -->
+      <div class="main-content">
+        <div class="info-admin">
+          <button type="button" class="sidebar-toggle sidebar-toggle-nav" aria-label="Open menu">
+            <span class="material-symbols-rounded">menu</span>
+          </button>
+          <div class="info-admin-end">
+            <div class="drak-mode">
+              <i class='bx bx-moon'></i>
+            </div>
+            <span class="info-admin-divider" aria-hidden="true"></span>
+            <div class="flex-info-admin">
+              <article class="info-admin-detalis">
+                <h5>
+                  Admin
+                </h5>
+                <p>
+                  SuperAdmin
+                </p>
+              </article>
+              <img src="../assets/images/testimonial-4.jpg" alt="Admin" />
+            </div>
+          </div>
+        </div>
+        <div class="card-marging-custome">
+          <div class="head-all-page">
+            <h4>
+              Workspace Reviews
+            </h4>
+            <p>
+              See what people are saying about your workspaces.
+            </p>
+          </div>
+          <div class="group-status-flex custome-width-status ">
+            <div class="colum-status">
+              <div class="card-status-admin Card-custome-rview">
+                <div class="icon-status status-bg-one">
+                  <i class='bx bx-star'></i>
+                </div>
+                <div class="content-status ">
+                  <h2>
+                    4.7
+                  </h2>
+                  <h5>
+                    Arage Rating
+                  </h5>
+                  <p>
+                    Across all workspaces
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="colum-status ">
+              <div class="card-status-admin Card-custome-rview">
+                <div class="icon-status status-bg-tow">
+                  <i class='bx bx-chat'></i>
+                </div>
+                <div class="content-status">
+                  <h2>
+                    14
+                  </h2>
+                  <h5>
+                    Total Reviews
+                  </h5>
+                  <p>
+                    Across all workspaces
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div>
+            <div class="select-review">
+              <div class="dropdown">
+                <div class="dropdown-toggle">
+                  <span class="dropdown-label">All Workspaces</span>
+                  <span class="bx bx-chevron-down arrow"></span>
+                </div>
+                <div class="dropdown-menu">
+                  <div class="active">All Workspaces</div>
+                  <div>5 Stars</div>
+                  <div>4 Stars & Above</div>
+                  <div>3 Stars & Above</div>
+                  <div>Most Recent</div>
+                  <div>Oldest First</div>
+                </div>
+              </div>
+            </div>
+            <div class="All-carding-review">
+              <div class="card-review">
+                <div class="info-user-review">
+                  <img src="../assets/images/testimonial-4.jpg" />
+                  <h6>
+                    Mohammed Ali
+                  </h6>
+                </div>
+                <div class="review-detalis">
+                  <div class="flex-star">
+                    <article class="star-icon">
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                    </article>
+                    <span>
+                      5.0
+                    </span>
+                  </div>
+                  <p>
+                 Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing
+on work.
+                  </p>
+                </div>
+                <div class="product-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <article>
+                    <h5>
+                      Focus Hub
+                    </h5>
+                    <p>
+                      <i class="bx bx-map"></i>
+                      <span>Al-Rimal, Gaza</span>
+                    </p>
+                  </article>
+                </div>
+              </div>
+              <!-- ---------- -->
+              <div class="card-review">
+                <div class="info-user-review">
+                  <img src="../assets/images/testimonial-1.jpg" />
+                  <h6>
+                    Mohammed Ali
+                  </h6>
+                </div>
+                <div class="review-detalis">
+                  <div class="flex-star">
+                    <article class="star-icon">
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star star-bg-gray" aria-hidden="true"></span>
+                    </article>
+                    <span>
+                      4.0
+                    </span>
+                  </div>
+                  <p>
+                   Great space and good facilities. The environment helps me get a lot done.
+                  </p>
+                </div>
+                <div class="product-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <article>
+                    <h5>
+                      The Desk
+                    </h5>
+                    <p>
+                      <i class="bx bx-map"></i>
+                      <span>Al-Nuseirat, Gaza</span>
+                    </p>
+                  </article>
+                </div>
+              </div>
+              <!-- -------- -->
+              <div class="card-review">
+                <div class="info-user-review">
+                  <img src="../assets/images/testimonial-3.jpg" />
+                  <h6>
+                    Mohammed Ali
+                  </h6>
+                </div>
+                <div class="review-detalis">
+                  <div class="flex-star">
+                    <article class="star-icon">
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                     <span class="review-star star-bg-gray" aria-hidden="true"></span>
+                      <span class="review-star star-bg-gray" aria-hidden="true"></span>
+                    </article>
+                    <span>
+                      3.0
+                    </span>
+                  </div>
+                  <p>
+              Very nice coworking space, comfortable and well designed. Would
+recommend!
+                  </p>
+                </div>
+                <div class="product-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <article>
+                    <h5>
+                      Creative Space
+                    </h5>
+                    <p>
+                      <i class="bx bx-map"></i>
+                      <span>Gaza City</span>
+                    </p>
+                  </article>
+                </div>
+              </div>
+              <!-- -------- -->
+              <div class="card-review">
+                <div class="info-user-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <h6>
+                    Mohammed Ali
+                  </h6>
+                </div>
+                <div class="review-detalis">
+                  <div class="flex-star">
+                    <article class="star-icon">
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                    </article>
+                    <span>
+                      5.0
+                    </span>
+                  </div>
+                  <p>
+                   One of the best places to work in Gaza. Everything is perfect!
+                  </p>
+                </div>
+                <div class="product-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <article>
+                    <h5>
+                      Focus Hub
+                    </h5>
+                    <p>
+                      <i class="bx bx-map"></i>
+                      <span>Al-Rimal, Gaza</span>
+                    </p>
+                  </article>
+                </div>
+              </div>
+              <!-- -------- -->
+                <div class="card-review">
+                <div class="info-user-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <h6>
+                    Mohammed Ali
+                  </h6>
+                </div>
+                <div class="review-detalis">
+                  <div class="flex-star">
+                    <article class="star-icon">
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                      <span class="review-star" aria-hidden="true"></span>
+                    </article>
+                    <span>
+                      5.0
+                    </span>
+                  </div>
+                  <p>
+                   One of the best places to work in Gaza. Everything is perfect!
+                  </p>
+                </div>
+                <div class="product-review">
+                  <img src="../assets/images/testimonial-2.jpg" />
+                  <article>
+                    <h5>
+                      Focus Hub
+                    </h5>
+                    <p>
+                      <i class="bx bx-map"></i>
+                      <span>Al-Rimal, Gaza</span>
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ebd WapperAdmin -->
+  <script src="../js/main.js"></script>
+  <script>
+
+    const sidebarToggleBtns = document.querySelectorAll(".sidebar-toggle");
+    const sidebar = document.querySelector(".sidebar");
+    const topThemeToggleBtn = document.querySelector(".drak-mode");
+
+    // Updates the top icon based on current theme
+    const updateThemeDisplay = () => {
+      const isDark = document.body.classList.contains("dark-theme");
+      if (topThemeToggleBtn) {
+        const topIcon = topThemeToggleBtn.querySelector("i");
+        if (topIcon) topIcon.className = isDark ? "bx bx-sun" : "bx bx-moon";
+      }
+    };
+
+    // Apply dark theme if saved or system prefers, then update icon
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldUseDarkTheme = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+    document.body.classList.toggle("dark-theme", shouldUseDarkTheme);
+    updateThemeDisplay();
+
+    // Toggle Theme via header icon
+    if (topThemeToggleBtn) {
+      topThemeToggleBtn.style.cursor = "pointer";
+      topThemeToggleBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark-theme");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateThemeDisplay();
+      });
+    }
+
+    // Toggle sidebar collapsed state on buttons click
+    sidebarToggleBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+      });
+    });
+
+    // -----------
+
+  </script>
+</body>
+
+</html>

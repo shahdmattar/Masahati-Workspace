@@ -29,14 +29,13 @@
 /* ========================
 FAVORITES PAGE
    ======================== */
-
 .page-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;;
   padding: 28px 0 32px;
+  margin-left: 0px;
 }
-
 .page-header-icon {
   width: 60px;
   height: 60px;
@@ -461,7 +460,7 @@ body.dark-mode .btn-view-details:hover {
   gap: 32px;
   position: relative;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 8%;
 }
 
 .profile-banner::before {
@@ -1679,6 +1678,7 @@ button {
   font-size: 0.75rem;
   flex-shrink: 0;
 }
+
 /* ========================
    FAVORITES GRID — RESPONSIVE
    ======================== */
@@ -1714,4 +1714,4 @@ body.dark-mode .nav-links a.active {
 body.dark-mode .profile-info h2 {
   color: #ffffff !important;
 }
-
+ 

@@ -313,130 +313,110 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-/* ================================================================
-    2. USER AVATAR DROPDOWN
-     ================================================================ */
-const avatarBtns = document.querySelectorAll('#userAvatarBtn, .user-avatar-btn');
-let dropdown = document.getElementById('userDropdown');
+/* ===============================
+   Navbar Auth State
+================================= */
 
-  // Inject dropdown HTML if it doesn't exist yet
-if (!dropdown && avatarBtns.length > 0) {
-    const firstBtn = avatarBtns[0];
+const authActions = document.querySelector("#authActions");
+const userDropdown = document.querySelector("#userDropdown");
+const userMenuBtn = document.querySelector("#userMenuBtn");
+const logoutBtn = document.querySelector("#logoutBtn");
 
-    // Use existing wrapper if present, otherwise create one
-    let container = firstBtn.closest('.user-menu-wrapper');
-    if (!container) {
-      container = document.createElement('div');
-      container.className = 'user-menu-wrapper';
-      container.style.position = 'relative';
-      container.style.flexShrink = '0';
-      firstBtn.parentNode.insertBefore(container, firstBtn);
-      container.appendChild(firstBtn);
-    }
+const navbarUserName = document.querySelector("#navbarUserName");
+const dropdownUserName = document.querySelector("#dropdownUserName");
+const navbarUserImage = document.querySelector("#navbarUserImage");
 
-    dropdown = document.createElement('div');
-    dropdown.id = 'userDropdown';
-    dropdown.className = 'user-dropdown';
-
-    // Try to load user info from session
-    const session = getSessionUser();
-    const userName  = session?.name  || 'Ahmed';
-    const userEmail = session?.email || '';
-
-    // Detect relative path depth
-    const depth = window.location.pathname.includes('/pages/') ? '' : 'pages/';
-
-    dropdown.innerHTML = `
-    <div class="user-dropdown-header">
-        <p>${escapeHtml(userName)}</p>
-        ${userEmail ? `<span>${escapeHtml(userEmail)}</span>` : ''}
-    </div>
-    <a href="${depth ? 'pages/profile.html' : 'profile.html'}">
-        <i class="fa-regular fa-user"></i> My Profile
-    </a>
-    <a href="${depth ? 'pages/favorites.html' : 'favorites.html'}">
-        <i class="fa-regular fa-heart"></i> Favorites
-    </a>
-    <div class="dropdown-divider"></div>
-    <button class="dropdown-item dropdown-danger" id="logoutBtn">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
-    </button>
-    `;
-    container.appendChild(dropdown);
+function getLoginPath() {
+  const isInsidePages = window.location.pathname.includes("/pages/");
+  return isInsidePages ? "login.html" : "pages/login.html";
 }
 
-  // Toggle dropdown open/close
-avatarBtns.forEach(btn => {
-    btn.addEventListener('click', e => {
-    e.stopPropagation();
-    if (dropdown) dropdown.classList.toggle('open');
-    });
-});
+function showGuestNavbar() {
+  if (authActions) {
+    authActions.classList.add("show");
+  }
 
-  // Close on outside click
-document.addEventListener('click', () => {
-    dropdown?.classList.remove('open');
-});
+  if (userDropdown) {
+    userDropdown.classList.remove("show");
+    userDropdown.classList.remove("active");
+  }
+}
 
-  // Logout
-document.addEventListener('click', e => {
-    if (e.target.closest('#logoutBtn')) {
-    sessionStorage.removeItem('masahati_user');
-    showToast('You have been logged out.', 'info');
-    setTimeout(() => window.location.href = '../pages/login.html', 1200);
-    }
-});
+function showLoggedInNavbar(user) {
+  if (authActions) {
+    authActions.classList.remove("show");
+  }
 
-/* ================================================================
-    3. MOBILE NAVIGATION
-     ================================================================ */
-const hamburger = document.getElementById('navHamburger');
-let mobileNav   = document.getElementById('mobileNav');
+  if (userDropdown) {
+    userDropdown.classList.add("show");
+  }
 
-if (hamburger && !mobileNav) {
-    // Build mobile nav panel
-    mobileNav = document.createElement('div');
-    mobileNav.id = 'mobileNav';
-    mobileNav.className = 'mobile-nav';
+  if (navbarUserName) {
+    navbarUserName.textContent = user.name || "User";
+  }
 
-    const backdrop = document.createElement('div');
-    backdrop.className = 'mobile-nav-backdrop';
+  if (dropdownUserName) {
+    dropdownUserName.textContent = user.name || "User";
+  }
 
-    const panel = document.createElement('div');
-    panel.className = 'mobile-nav-panel';
+  if (navbarUserImage && user.image) {
+    navbarUserImage.src = user.image;
+  }
+}
 
-    // Grab links from desktop nav
-    const desktopLinks = document.querySelectorAll('.nav-links li a');
-    const closeBtn = document.createElement('div');
-    closeBtn.className = 'mobile-nav-close';
-    closeBtn.innerHTML = '<button aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>';
+function checkAuthState() {
+  const token = localStorage.getItem("token");
+  const userData = localStorage.getItem("user");
 
-    panel.appendChild(closeBtn);
+  if (!token || !userData) {
+    showGuestNavbar();
+    return;
+  }
 
-    desktopLinks.forEach(link => {
-    const a = document.createElement('a');
-    a.href = link.href;
-    a.className = link.className;
-    a.innerHTML = link.innerHTML;
-    panel.appendChild(a);
-    });
+  try {
+    const user = JSON.parse(userData);
+    showLoggedInNavbar(user);
+  } catch (error) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    showGuestNavbar();
+  }
+}
 
-    mobileNav.appendChild(backdrop);
-    mobileNav.appendChild(panel);
-    document.body.appendChild(mobileNav);
+checkAuthState();
 
-    hamburger.addEventListener('click', () => {
-    mobileNav.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    });
+/* ===============================
+   User Dropdown Toggle
+================================= */
 
-    function closeMobileNav() {
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-    }
+if (userDropdown && userMenuBtn) {
+  userMenuBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    userDropdown.classList.toggle("active");
+  });
 
-    backdrop.addEventListener('click', closeMobileNav);
-    closeBtn.querySelector('button').addEventListener('click', closeMobileNav);
+  document.addEventListener("click", () => {
+    userDropdown.classList.remove("active");
+  });
+
+  userDropdown.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+}
+
+/* ===============================
+   Logout
+================================= */
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    showGuestNavbar();
+
+    window.location.href = getLoginPath();
+  });
 }
 
 /* ================================================================

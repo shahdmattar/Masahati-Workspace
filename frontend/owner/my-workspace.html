@@ -9,9 +9,11 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-<link rel="stylesheet" href="../css/dashbord.css" />
+
+
+  <link rel="stylesheet" href="../css/dashbord.css" />
   <link rel="stylesheet" href="../css/dashboard-admin-bridge.css" />
-<link rel="stylesheet" href="../css/owner.css" />
+  <link rel="stylesheet" href="../css/owner.css" />
 </head>
 <body>
 <div id="WapperAdmin" class="my-workspaces-page">
@@ -91,12 +93,20 @@
           <i class='bx bx-moon'></i>
         </div>
         <span class="info-admin-divider" aria-hidden="true"></span>
-        <div class="flex-info-admin">
-          <article class="info-admin-detalis">
-            <h5>Admin</h5>
-            <p>SuperAdmin</p>
-          </article>
-          <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+        <div class="flex-info-admin profile-dropdown-container">
+          <div class="profile-trigger">
+            <article class="info-admin-detalis">
+              <h5>Admin</h5>
+              <p>SuperAdmin</p>
+            </article>
+            <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+          </div>
+          <div class="profile-dropdown-menu">
+            <a href="../pages/profile.html"><i class="bx bx-user"></i> My Profile</a>
+            <a href="#"><i class="bx bx-cog"></i> Settings</a>
+            <hr class="dropdown-divider">
+            <a href="../pages/login.html" class="logout-text"><i class="bx bx-log-out"></i> Log Out</a>
+          </div>
         </div>
       </div>
       <div class="pad-all page-inner">
@@ -185,3 +195,7 @@
 <script src="../js/main-workspace.js"></script>
 </body>
 </html>
+
+
+
+

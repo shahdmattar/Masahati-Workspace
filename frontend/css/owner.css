@@ -1416,6 +1416,79 @@ body.dark-mode .btn-add{
   background:#003f33 !important;
   color:#ffffff !important;
 }
+
+/* ── Dark mode: Status badges ── */
+body.dark-mode .badge.approved,
+body.dark-theme .badge.approved {
+  background: rgba(31, 138, 76, 0.18) !important;
+  color: #4ade80 !important;
+}
+body.dark-mode .badge.approved::before,
+body.dark-theme .badge.approved::before {
+  background: #4ade80 !important;
+}
+
+body.dark-mode .badge.pending,
+body.dark-theme .badge.pending {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+}
+body.dark-mode .badge.pending::before,
+body.dark-theme .badge.pending::before {
+  background: #fbbf24 !important;
+}
+
+body.dark-mode .badge.rejected,
+body.dark-theme .badge.rejected {
+  background: rgba(214, 48, 49, 0.18) !important;
+  color: #f87171 !important;
+}
+body.dark-mode .badge.rejected::before,
+body.dark-theme .badge.rejected::before {
+  background: #f87171 !important;
+}
+
+/* ── Dark theme alias (applied by admin-layout.js) ── */
+body.dark-theme .table-card {
+  background: #12382f !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme thead tr {
+  background: #0f3028 !important;
+}
+body.dark-theme tbody tr {
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme tbody tr:hover {
+  background: #163d34 !important;
+}
+body.dark-theme .ws-name {
+  color: #f7fbf8 !important;
+}
+body.dark-theme .ws-desc,
+body.dark-theme .loc,
+body.dark-theme .date-val,
+body.dark-theme td,
+body.dark-theme th {
+  color: #c2ccc8 !important;
+}
+body.dark-theme .btn-view,
+body.dark-theme .btn-edit,
+body.dark-theme .btn-action {
+  background: #12382f !important;
+  color: #f7fbf8 !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme .help-card {
+  background: #0f3028 !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme .page-title {
+  color: #f7fbf8 !important;
+}
+body.dark-theme .page-sub {
+  color: #c2ccc8 !important;
+}
 .mobile-menu-btn{
   display:none;
 }
@@ -2460,4 +2533,3 @@ body.dark-mode select{
   flex:1 !important;
   margin-top:0 !important;
 }
-

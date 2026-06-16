@@ -83,4 +83,19 @@
     updateDescriptionCounter();
     descTextarea.addEventListener("input", updateDescriptionCounter);
   }
+
+  // Profile Dropdown Toggle
+  const profileDropdownContainer = document.querySelector(".profile-dropdown-container");
+  if (profileDropdownContainer) {
+    profileDropdownContainer.addEventListener("click", (e) => {
+      e.stopPropagation();
+      profileDropdownContainer.classList.toggle("active-dropdown");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!profileDropdownContainer.contains(e.target)) {
+        profileDropdownContainer.classList.remove("active-dropdown");
+      }
+    });
+  }
 })();

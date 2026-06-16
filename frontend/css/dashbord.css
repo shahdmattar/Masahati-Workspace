@@ -1,5 +1,3 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -245,7 +243,7 @@ body {
 .menu-list .menu-link:is(:hover, .active) {
   color: #fff;
   background: var(--green);
-  border-radius: 0px 10px 0px 0px !important;
+  border-radius: 0 10px 10px 0 !important;
 }
 .sidebar .sidebar-footer {
   padding: 24px 18px 20px;
@@ -2158,4 +2156,208 @@ body.dark-theme .edit {
     grid-template-columns:1fr;
   }
 
+}
+
+/* ===================================================
+   DARK THEME — Fix hardcoded #fff backgrounds
+   (images, upload cards, inputs, dropdowns, topbar)
+   =================================================== */
+
+/* Top bar */
+body.dark-theme .info-admin {
+  background: var(--color-bg-sidebar);
+  border-bottom-color: var(--color-border-hr);
+}
+body.dark-theme .info-admin-divider {
+  background-color: var(--color-border-hr);
+}
+body.dark-theme .info-admin h5 {
+  color: var(--color-text-primary);
+}
+body.dark-theme .info-admin p {
+  color: var(--color-text-placeholder);
+}
+body.dark-theme .drak-mode i {
+  color: var(--color-text-primary);
+}
+
+/* Sidebar header */
+body.dark-theme .sidebar .sidebar-header {
+  background: var(--color-bg-sidebar);
+}
+body.dark-theme .sidebar-brand-name {
+  color: var(--color-text-primary);
+}
+
+/* Upload cards */
+body.dark-theme .card-uplaod {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+}
+body.dark-theme .card-uplaod i {
+  color: var(--color-text-placeholder);
+}
+body.dark-theme .card-uplaod h6 {
+  color: var(--color-text-placeholder);
+}
+body.dark-theme .card-uplaod span {
+  color: var(--color-text-placeholder);
+}
+body.dark-theme .card-uplaod:hover {
+  background: var(--color-bg-secondary) !important;
+  border-color: var(--color-hover-primary) !important;
+}
+
+/* Uploaded image — keep it fully visible */
+body.dark-theme .card-uplaod .upload-image img {
+  border-color: var(--color-border-hr);
+  object-fit: cover;
+}
+body.dark-theme .card-uplaod .upload-image {
+  background: transparent;
+}
+
+/* Close button on uploaded image */
+body.dark-theme .but-colse {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-hr);
+}
+body.dark-theme .but-colse span {
+  color: #ff4d7a !important;
+}
+
+/* Inputs, textareas, selects */
+body.dark-theme .all-input-faild input,
+body.dark-theme .all-input-faild select,
+body.dark-theme .all-input-faild textarea {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+  color: var(--color-text-primary);
+}
+body.dark-theme .all-input-faild input::placeholder,
+body.dark-theme .all-input-faild textarea::placeholder {
+  color: var(--color-text-placeholder);
+}
+body.dark-theme .all-input-faild textarea.description-field {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+  color: var(--color-text-primary);
+}
+
+/* Labels */
+body.dark-theme .all-input-faild label {
+  color: var(--color-text-primary);
+}
+body.dark-theme .color-gray {
+  color: var(--color-text-placeholder);
+}
+body.dark-theme .tst-page {
+  color: var(--color-text-primary);
+}
+body.dark-theme .head-all-page h4 {
+  color: var(--color-text-primary);
+}
+body.dark-theme .head-all-page p {
+  color: var(--color-text-placeholder);
+}
+
+/* bg-image icon badges */
+body.dark-theme .bg-image {
+  background: rgba(214, 226, 100, 0.15);
+  color: var(--color-hover-primary);
+}
+body.dark-theme .all-input-faild .icon-lable {
+  background: rgba(214, 226, 100, 0.12);
+  color: var(--color-hover-primary);
+}
+
+/* Dropdown */
+body.dark-theme .all-input-faild .dropdown,
+body.dark-theme .dropdown {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+}
+body.dark-theme .dropdown-toggle {
+  background: var(--color-bg-sidebar);
+  color: var(--color-text-primary);
+}
+body.dark-theme .dropdown-toggle:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+body.dark-theme .dropdown-menu {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+body.dark-theme .dropdown-menu div {
+  color: var(--color-text-primary);
+}
+body.dark-theme .dropdown-menu div:hover,
+body.dark-theme .dropdown-menu div.active {
+  background: var(--color-bg-secondary);
+  color: var(--color-hover-primary);
+}
+
+/* WhatsApp country dropdown */
+body.dark-theme .country-dropdown-toggle {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+  color: var(--color-text-primary);
+}
+body.dark-theme .country-dropdown-menu {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+}
+body.dark-theme .country-dropdown-menu li {
+  color: var(--color-text-primary);
+}
+body.dark-theme .country-dropdown-menu li:hover,
+body.dark-theme .country-dropdown-menu li.active {
+  background: var(--color-bg-secondary);
+  color: var(--color-hover-primary);
+}
+body.dark-theme .country-code-val {
+  color: var(--color-text-primary);
+}
+body.dark-theme .whats-input .input-big {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+  color: var(--color-text-primary);
+}
+
+/* Action buttons */
+body.dark-theme .but-cancle {
+  background: transparent;
+  color: var(--color-hover-primary);
+  border-color: var(--color-hover-primary);
+}
+body.dark-theme .but-from-action-note {
+  color: var(--color-text-placeholder);
+}
+
+/* Time inputs */
+body.dark-theme .box-number-click input[type="time"] {
+  background: var(--color-bg-sidebar);
+  border-color: var(--color-border-hr);
+  color: var(--color-text-primary);
+  color-scheme: dark;
+}
+
+/* Card container */
+body.dark-theme .card-marging-custome {
+  background: transparent;
+}
+
+/* box-icon (building icon in header) */
+body.dark-theme .box-icon {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+/* Dashboard page Workspace Owner badge in dark mode */
+body.dark-theme .hero .badge,
+body.dark-mode .hero .badge {
+  background: rgba(31, 138, 76, 0.18) !important;
+  color: #4ade80 !important;
 }

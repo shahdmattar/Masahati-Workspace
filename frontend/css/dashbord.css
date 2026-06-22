@@ -758,7 +758,10 @@ body.dark-theme .price-input-wrap .price-suffix {
     flex-shrink: 0;
 }
 .but-send{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     width: max-content;
     min-width: 262px;
     max-width: 100%;
@@ -772,6 +775,30 @@ body.dark-theme .price-input-wrap .price-suffix {
     font-weight: bold;
     box-sizing: border-box;
     justify-self: end;
+}
+.but-send span, .but-send i {
+    color: #fff;
+}
+
+body.dark-mode .but-send,
+body.dark-theme .but-send,
+.dark-mode .but-send {
+    color: rgb(15, 48, 40) !important;
+}
+
+body.dark-mode .but-send span,
+body.dark-mode .but-send i,
+body.dark-mode .but-send .bx,
+body.dark-mode .but-send .bx::before,
+body.dark-theme .but-send span,
+body.dark-theme .but-send i,
+body.dark-theme .but-send .bx,
+body.dark-theme .but-send .bx::before,
+.dark-mode .but-send span,
+.dark-mode .but-send i,
+.dark-mode .but-send .bx,
+.dark-mode .but-send .bx::before {
+    color: rgb(15, 48, 40) !important;
 }
 .but-colse{
   position: absolute;
@@ -1761,12 +1788,15 @@ body.dark-theme .card-uplaod:hover {
   }
 
   .but-from-action {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column-reverse;
+    justify-content: stretch;
+    align-items: stretch;
     gap: 16px;
     margin-top: 48px;
+  }
+
+  .but-from-action .but-cancle {
+    width: 100%;
   }
 
   .but-submit-wrap {
@@ -1952,7 +1982,7 @@ body.dark-theme .card-uplaod:hover {
 .stat{
   background:white;
   border:1px solid transparent;
-  border-radius:16px;
+  border-radius:22px;
   padding:30px;
   display:flex;
   gap:22px;
@@ -1969,9 +1999,9 @@ body.dark-theme .card-uplaod:hover {
 }
 
 .stat-icon{
-  width:64px;
-  height:64px;
-  border-radius:16px;
+  width:68px;
+  height:68px;
+  border-radius:18px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -1997,6 +2027,12 @@ body.dark-theme .card-uplaod:hover {
   background:#fff0f2;
   color:#ec4c75;
 }
+
+/* Force icon glyph colors inside stat-icon to use the accent colors */
+.stat-icon.green i { color: #159b74 !important; }
+.stat-icon.orange i { color: #ff9838 !important; }
+.stat-icon.blue i { color: #6875e8 !important; }
+.stat-icon.pink i { color: #ec4c75 !important; }
 
 .stat h2{
   font-size:31px;
@@ -2118,9 +2154,17 @@ body.dark-theme .actions-box {
 body.dark-theme .stat,
 body.dark-theme .action,
 body.dark-theme .actions-box {
-  background: #12382f !important;
+  background: #0f2f27 !important;
   color: #f7fbf8 !important;
   border-color: rgba(255,255,255,.14) !important;
+  box-shadow: none !important;
+}
+
+body.dark-theme .stat:hover,
+body.dark-theme .action:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,.15) !important;
+  border-color: rgba(255,255,255,.2) !important;
 }
 
 body.dark-theme .hero h1,
@@ -2262,13 +2306,24 @@ body.dark-theme .head-all-page p {
 }
 
 /* bg-image icon badges */
-body.dark-theme .bg-image {
-  background: rgba(214, 226, 100, 0.15);
-  color: var(--color-hover-primary);
+body.dark-theme .bg-image,
+body.dark-mode .bg-image {
+  background: rgba(216, 224, 100, 0.18) !important;
+  color: rgb(216, 224, 100) !important;
 }
-body.dark-theme .all-input-faild .icon-lable {
-  background: rgba(214, 226, 100, 0.12);
-  color: var(--color-hover-primary);
+body.dark-theme .bg-image i,
+body.dark-mode .bg-image i,
+body.dark-theme .all-input-faild .icon-lable,
+body.dark-mode .all-input-faild .icon-lable {
+  color: rgb(216, 224, 100) !important;
+}
+body.dark-theme .all-input-faild .icon-lable,
+body.dark-mode .all-input-faild .icon-lable {
+  background: rgba(216, 224, 100, 0.12) !important;
+}
+body.dark-theme .all-input-faild .icon-lable i,
+body.dark-mode .all-input-faild .icon-lable i {
+  color: rgb(216, 224, 100) !important;
 }
 
 /* Dropdown */

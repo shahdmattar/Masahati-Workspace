@@ -7,6 +7,9 @@
 #WapperAdmin aside.sidebar {
   background: var(--color-bg-sidebar) !important;
   border-right: 1px solid var(--color-border-hr) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
 }
 
 #WapperAdmin .sidebar-brand-name {
@@ -138,6 +141,16 @@ body.dark-mode #WapperAdmin .menu-list .menu-link:is(:hover, .active) {
   padding-right: 18px !important;
   padding-bottom: 20px !important;
   padding-left: 18px !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: calc(100vh - var(--admin-topbar-height) - 0px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+#WapperAdmin .sidebar-footer {
+  flex-shrink: 0 !important;
 }
 
 /* ===== Desktop (≥992px) — sticky 300px sidebar ===== */
@@ -292,22 +305,146 @@ body.dark-mode #WapperAdmin .menu-list .menu-link:is(:hover, .active) {
     padding: 20px 16px !important;
   }
 
+  /* Stat icons — force 68x68 on mobile */
+  #WapperAdmin .stat-icon {
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    min-height: 68px !important;
+    border-radius: 50% !important;
+  }
+
   /* Dashboard page */
   #WapperAdmin .hero {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    justify-content: space-between;
   }
 
   #WapperAdmin .hero-left {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  #WapperAdmin .avatar {
+    width: 50px !important;
+    height: 50px !important;
+    flex-shrink: 0;
+  }
+
+  #WapperAdmin .avatar img {
+    border-radius: 50% !important;
+    display: block;
+  }
+  #WapperAdmin img.avatar {
+    border-radius: 50% !important;
+    display: block;
+    overflow: hidden;
+  }
+
+  #WapperAdmin .hero h1 {
+    font-size: 20px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2;
+  }
+
+  #WapperAdmin .hero p {
+    font-size: 13px !important;
+    margin-bottom: 8px !important;
+  }
+
+  #WapperAdmin .badges {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #WapperAdmin .badge,
+  #WapperAdmin .edit {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+  }
+
+  /* Normalize dimensions for header pills (owner badge + edit profile) */
+  #WapperAdmin .hero .badge,
+  #WapperAdmin .hero .edit,
+  #WapperAdmin .hero .user-chip,
+  #WapperAdmin .topbar .user-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 18px !important;
+    gap: 10px !important;
+    border-radius: 22px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Make icons inside pills vertically centered */
+  #WapperAdmin .hero .badge i,
+  #WapperAdmin .hero .edit i,
+  #WapperAdmin .topbar .user-chip img {
+    vertical-align: middle !important;
+  }
+
+  #WapperAdmin .add-btn {
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   #WapperAdmin .stats {
     grid-template-columns: 1fr !important;
     gap: 16px;
+  }
+
+  /* Small-screen hero adjustments: badges + edit button inline, add-btn full width */
+  @media (max-width: 575.98px) {
+    #WapperAdmin .hero {
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 12px !important;
+    }
+
+    #WapperAdmin .hero-left {
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 12px !important;
+    }
+
+    #WapperAdmin .badges {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    #WapperAdmin .badge {
+      flex: 1 1 auto;
+      margin-right: 8px;
+    }
+
+    #WapperAdmin .edit {
+      flex: 0 0 auto;
+    }
+
+    #WapperAdmin .add-btn {
+      width: 100% !important;
+      padding: 14px 18px !important;
+      margin-top: 12px;
+      box-sizing: border-box;
+    }
+    /* restore spacing for small screens so action buttons don't overlap content */
+    #WapperAdmin .but-from-action {
+      margin-top: 48px !important;
+    }
   }
 
   #WapperAdmin .actions {
@@ -373,7 +510,7 @@ body.dark-mode #WapperAdmin .menu-list .menu-link:is(:hover, .active) {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin-top: 48px;
+    margin-top: 12px !important;
   }
 
   #WapperAdmin .but-submit-wrap {
@@ -446,6 +583,113 @@ body.dark-theme #WapperAdmin .containers {
   background: #071f1a !important;
 }
 
+/* Make icon glyphs white in dark theme while keeping their light backgrounds */
+body.dark-theme .stat-icon,
+body.dark-theme .how-icon,
+body.dark-theme .box-icon-chat,
+body.dark-theme .theme-btn i,
+body.dark-theme .profile-trigger img + i,
+body.dark-theme .ws-cell .ws-thumb + i {
+  color: #fff !important;
+}
+
+#WapperAdmin .stat-icon,
+body.dark-theme #WapperAdmin .stat-icon,
+body.dark-mode #WapperAdmin .stat-icon {
+  width: 68px !important;
+  height: 68px !important;
+  min-width: 68px !important;
+  min-height: 68px !important;
+  border-radius: 18px !important;
+}
+
+/* Preserve accent colors for the inner icons even when dark-theme forces white */
+body.dark-theme #WapperAdmin .stat-icon.green i,
+body.dark-mode #WapperAdmin .stat-icon.green i {
+  color: #159b74 !important;
+}
+body.dark-theme #WapperAdmin .stat-icon.orange i,
+body.dark-mode #WapperAdmin .stat-icon.orange i {
+  color: #ff9838 !important;
+}
+body.dark-theme #WapperAdmin .stat-icon.blue i,
+body.dark-mode #WapperAdmin .stat-icon.blue i {
+  color: #6875e8 !important;
+}
+body.dark-theme #WapperAdmin .stat-icon.pink i,
+body.dark-mode #WapperAdmin .stat-icon.pink i {
+  color: #ec4c75 !important;
+}
+
+/* Keep badge-before red (e.g. rejected) unchanged */
+body.dark-theme .rejected::before,
+body.dark-theme .badge.rejected::before {
+  background: #d63031 !important;
+}
+
+/* Ensure star/favorite icons remain red in dark theme */
+body.dark-theme .favorite-btn,
+body.dark-theme .fa-star,
+body.dark-theme .fa-regular.fa-star,
+body.dark-theme .fa-solid.fa-star,
+body.dark-theme .bx-star,
+body.dark-theme .star-icon,
+body.dark-theme .star-color {
+  color: #d63031 !important;
+  background-color: transparent !important;
+}
+
+/* Force badges visible and preserve contrast in admin scope */
+#WapperAdmin .badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Hide any accidental horizontal overflow inside table cards on small screens */
+#WapperAdmin .table-card {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure pagination sits inside the content area on small screens */
+#WapperAdmin .ws-pagination {
+  padding: 6px 12px !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 576px) {
+  #WapperAdmin .add-btn { width: 100% !important; padding: 12px 16px !important; }
+  #WapperAdmin .table-card { padding: 0 6px !important; }
+  #WapperAdmin .hero { padding: 0 6px !important; }
+  #WapperAdmin .ws-pagination { justify-content: center !important; padding: 8px 6px !important; }
+  /* move admin badges under workspace row on small screens */
+  #WapperAdmin .table-card .badge {
+    order: 2 !important;
+    flex-basis: 100% !important;
+    width: auto !important;
+    margin-top: 8px !important;
+    align-self: flex-start !important;
+  }
+  #WapperAdmin .table-card .date-val { order: 3 !important; }
+}
+
+body.dark-theme .favorite-btn:hover {
+  color: #d63031 !important;
+}
+
+body.dark-theme .star-color,
+body.dark-mode .star-color,
+body.dark-theme #WapperAdmin .star-color,
+body.dark-mode #WapperAdmin .star-color,
+body.dark-theme #WapperAdmin .all-input-faild label .star-color,
+body.dark-mode #WapperAdmin .all-input-faild label .star-color {
+  color: #d63031 !important;
+}
+
 /* Dashboard page Welcome section - No background in dark mode */
 body.dark-theme #WapperAdmin .hero {
   background: transparent !important;
@@ -483,6 +727,21 @@ body.dark-theme #WapperAdmin span {
   gap: 12px;
 }
 
+.profile-arrow {
+  font-size: 20px;
+  color: #64748b;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.profile-dropdown-container.active-dropdown .profile-arrow {
+  transform: rotate(180deg);
+}
+
+body.dark-theme .profile-arrow,
+body.dark-mode .profile-arrow {
+  color: #fff !important;
+}
+
 .profile-dropdown-menu {
   position: absolute;
   top: calc(100% + 10px);
@@ -502,6 +761,19 @@ body.dark-theme #WapperAdmin span {
   z-index: 1000;
 }
 
+.profile-dropdown-menu .dropdown-username-header {
+  padding: 12px 16px 8px 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: rgb(18, 56, 47);
+  display: block;
+}
+
+body.dark-theme .profile-dropdown-menu .dropdown-username-header,
+body.dark-mode .profile-dropdown-menu .dropdown-username-header {
+  color: #fff !important;
+}
+
 .profile-dropdown-container.active-dropdown .profile-dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -513,16 +785,16 @@ body.dark-theme #WapperAdmin span {
   align-items: center;
   gap: 10px;
   padding: 10px 16px;
-  color: #475569;
+  color: rgb(18, 56, 47);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .profile-dropdown-menu a:hover {
   background: #f7f9fb;
-  color: var(--green, #244034);
+  color: rgb(18, 56, 47);
 }
 
 .profile-dropdown-menu a i {
@@ -572,4 +844,109 @@ body.dark-mode .profile-dropdown-menu .dropdown-divider {
 body.dark-theme .profile-dropdown-menu a.logout-text:hover,
 body.dark-mode .profile-dropdown-menu a.logout-text:hover {
   background: rgba(229, 62, 62, 0.15);
+}
+
+/* Simple hover for action buttons (Cancel / Submit) */
+#WapperAdmin .but-from-action .but-cancle,
+#WapperAdmin .but-send {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+#WapperAdmin .but-from-action .but-cancle:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.02);
+}
+
+#WapperAdmin .but-send:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+  filter: brightness(0.95);
+}
+
+/* dark-theme tweaks */
+body.dark-theme #WapperAdmin .but-from-action .but-cancle:hover {
+  background: rgba(214,226,100,0.06);
+}
+body.dark-theme #WapperAdmin .but-send:hover,
+body.dark-mode #WapperAdmin .but-send:hover {
+  filter: brightness(1.05);
+}
+
+body.dark-theme #WapperAdmin .but-send,
+body.dark-mode #WapperAdmin .but-send {
+  background: rgb(216, 224, 100) !important;
+  color: #0f1a0f !important;
+  border: none !important;
+}
+
+body.dark-theme #WapperAdmin .but-send:hover,
+body.dark-mode #WapperAdmin .but-send:hover {
+  background: rgb(206, 214, 80) !important;
+  color: #0f1a0f !important;
+}
+
+/* Small mobile overrides: keep avatar and text side-by-side, reduce font/button sizes */
+@media (max-width: 576px) {
+  #WapperAdmin .hero {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  #WapperAdmin .hero-left {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  #WapperAdmin .hero .avatar {
+    width: 64px !important;
+    height: 64px !important;
+    border-width: 3px !important;
+    box-shadow: 0 6px 16px #0002 !important;
+    border-radius: 50% !important;
+  }
+
+  #WapperAdmin .hero h1 {
+    font-size: 20px !important;
+    margin-bottom: 2px !important;
+    line-height: 1.1 !important;
+  }
+
+  #WapperAdmin .hero p {
+    font-size: 13px !important;
+    margin-bottom: 0 !important;
+    color: var(--color-text-placeholder) !important;
+  }
+
+  /* Make primary action button smaller and align to the right of the hero */
+  #WapperAdmin .add-btn {
+    padding: 8px 14px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px #0002 !important;
+  }
+
+  /* Adjust badges and edit button to fit beside text */
+  #WapperAdmin .badges {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  #WapperAdmin .edit {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Tablet and mobile: hide table headers and apply stacked layout inside admin scope */
+@media (max-width: 1000px) {
+  #WapperAdmin .table-card table thead { display: none !important; }
+  #WapperAdmin .table-card { overflow-x: hidden !important; padding: 0 8px !important; }
+  #WapperAdmin .table-card tbody tr { padding: 10px 12px !important; gap: 12px !important; border-bottom: 1px solid rgba(255,255,255,0.03) !important; }
+  #WapperAdmin .table-card td { padding: 6px 10px !important; box-sizing: border-box !important; }
+  #WapperAdmin .ws-pagination { justify-content: center !important; }
+  /* ensure badges drop under content on tablet/mobile */
+  #WapperAdmin .table-card .badge { order: 2 !important; flex-basis: 100% !important; margin-top: 8px !important; }
 }

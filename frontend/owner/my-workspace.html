@@ -95,16 +95,16 @@
         <span class="info-admin-divider" aria-hidden="true"></span>
         <div class="flex-info-admin profile-dropdown-container">
           <div class="profile-trigger">
+            <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
             <article class="info-admin-detalis">
               <h5>Admin</h5>
-              <p>SuperAdmin</p>
             </article>
-            <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+            <i class='bx bx-chevron-down profile-arrow'></i>
           </div>
           <div class="profile-dropdown-menu">
+            <span class="dropdown-username-header">Admin</span>
             <a href="../pages/profile.html"><i class="bx bx-user"></i> My Profile</a>
-            <a href="#"><i class="bx bx-cog"></i> Settings</a>
-            <hr class="dropdown-divider">
+            <a href="../pages/favorites.html"><i class="bx bx-heart"></i> Favorites</a>
             <a href="../pages/login.html" class="logout-text"><i class="bx bx-log-out"></i> Log Out</a>
           </div>
         </div>
@@ -121,7 +121,7 @@
           </button>
         </div>
 
-        <div class="table-card">
+        <div class="table-card desktop-only-table">
           <table>
             <thead>
               <tr>
@@ -185,6 +185,173 @@
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="workspace-accordion-list">
+          <!-- Card 1 -->
+          <div class="workspace-card-acc">
+            <div class="ws-acc-header" onclick="this.parentElement.classList.toggle('active')">
+              <div class="ws-acc-info">
+                <div class="ws-acc-thumb t1"></div>
+                <div class="ws-acc-titles">
+                  <div class="ws-acc-name">Focus Hub</div>
+                  <div class="ws-acc-subtitle">Modern &amp; quiet space</div>
+                </div>
+              </div>
+              <div class="ws-acc-status">
+                <span class="badge approved">Approved</span>
+                <i class='bx bx-chevron-down acc-icon'></i>
+              </div>
+            </div>
+            <div class="ws-acc-body">
+              <div class="ws-acc-details">
+                <div class="ws-detail-col">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">Al-Rimal, Gaza</span>
+                </div>
+                <div class="ws-detail-col">
+                  <span class="detail-label">Created Date</span>
+                  <span class="detail-value">May 10, 2024</span>
+                </div>
+              </div>
+              <div class="ws-acc-buttons">
+                <button type="button" class="btn-acc-outline"><i class='bx bx-show'></i> View</button>
+                <button type="button" class="btn-acc-outline"><i class='bx bx-edit-alt'></i> Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="workspace-card-acc">
+            <div class="ws-acc-header" onclick="this.parentElement.classList.toggle('active')">
+              <div class="ws-acc-info">
+                <div class="ws-acc-thumb t2"></div>
+                <div class="ws-acc-titles">
+                  <div class="ws-acc-name">The Desk</div>
+                  <div class="ws-acc-subtitle">Cozy and productive</div>
+                </div>
+              </div>
+              <div class="ws-acc-status">
+                <span class="badge approved">Approved</span>
+                <i class='bx bx-chevron-down acc-icon'></i>
+              </div>
+            </div>
+            <div class="ws-acc-body">
+              <div class="ws-acc-details">
+                <div class="ws-detail-col">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">Al-Nuseirat, Gaza</span>
+                </div>
+                <div class="ws-detail-col">
+                  <span class="detail-label">Created Date</span>
+                  <span class="detail-value">May 5, 2024</span>
+                </div>
+              </div>
+              <div class="ws-acc-buttons">
+                <button type="button" class="btn-acc-outline"><i class='bx bx-show'></i> View</button>
+                <button type="button" class="btn-acc-outline"><i class='bx bx-edit-alt'></i> Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="workspace-card-acc">
+            <div class="ws-acc-header" onclick="this.parentElement.classList.toggle('active')">
+              <div class="ws-acc-info">
+                <div class="ws-acc-thumb t3"></div>
+                <div class="ws-acc-titles">
+                  <div class="ws-acc-name">Study Corner</div>
+                  <div class="ws-acc-subtitle">Perfect for students</div>
+                </div>
+              </div>
+              <div class="ws-acc-status">
+                <span class="badge pending">Pending</span>
+                <i class='bx bx-chevron-down acc-icon'></i>
+              </div>
+            </div>
+            <div class="ws-acc-body">
+              <div class="ws-acc-details">
+                <div class="ws-detail-col">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">Al-Rimal, Gaza</span>
+                </div>
+                <div class="ws-detail-col">
+                  <span class="detail-label">Created Date</span>
+                  <span class="detail-value">May 2, 2024</span>
+                </div>
+              </div>
+              <div class="ws-acc-buttons">
+                <button type="button" class="btn-acc-outline"><i class='bx bx-show'></i> View</button>
+                <button type="button" class="btn-acc-outline"><i class='bx bx-edit-alt'></i> Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="workspace-card-acc">
+            <div class="ws-acc-header" onclick="this.parentElement.classList.toggle('active')">
+              <div class="ws-acc-info">
+                <div class="ws-acc-thumb t4"></div>
+                <div class="ws-acc-titles">
+                  <div class="ws-acc-name">Creative Space</div>
+                  <div class="ws-acc-subtitle">Think. Create. Inspire.</div>
+                </div>
+              </div>
+              <div class="ws-acc-status">
+                <span class="badge approved">Approved</span>
+                <i class='bx bx-chevron-down acc-icon'></i>
+              </div>
+            </div>
+            <div class="ws-acc-body">
+              <div class="ws-acc-details">
+                <div class="ws-detail-col">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">Gaza City</span>
+                </div>
+                <div class="ws-detail-col">
+                  <span class="detail-label">Created Date</span>
+                  <span class="detail-value">Apr 28, 2024</span>
+                </div>
+              </div>
+              <div class="ws-acc-buttons">
+                <button type="button" class="btn-acc-outline"><i class='bx bx-show'></i> View</button>
+                <button type="button" class="btn-acc-outline"><i class='bx bx-edit-alt'></i> Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="workspace-card-acc active">
+            <div class="ws-acc-header" onclick="this.parentElement.classList.toggle('active')">
+              <div class="ws-acc-info">
+                <div class="ws-acc-thumb t5"></div>
+                <div class="ws-acc-titles">
+                  <div class="ws-acc-name">Work Oasis</div>
+                  <div class="ws-acc-subtitle">Spacious &amp; comfortable</div>
+                </div>
+              </div>
+              <div class="ws-acc-status">
+                <span class="badge rejected">Rejected</span>
+                <i class='bx bx-chevron-down acc-icon'></i>
+              </div>
+            </div>
+            <div class="ws-acc-body">
+              <div class="ws-acc-details">
+                <div class="ws-detail-col">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">Al-Maghazi, Gaza</span>
+                </div>
+                <div class="ws-detail-col">
+                  <span class="detail-label">Created Date</span>
+                  <span class="detail-value">Apr 20, 2024</span>
+                </div>
+              </div>
+              <div class="ws-acc-buttons">
+                <button type="button" class="btn-acc-outline"><i class='bx bx-show'></i> View</button>
+                <button type="button" class="btn-acc-outline"><i class='bx bx-edit-alt'></i> Edit</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

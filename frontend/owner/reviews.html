@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="../css/dashbord.css">
+  <link rel="stylesheet" href="../css/admin-dashboard.css">
   <link rel="stylesheet" href="../css/media.css">
 </head>
 
@@ -120,16 +120,33 @@
               <i class='bx bx-moon'></i>
             </div>
             <span class="info-admin-divider" aria-hidden="true"></span>
-            <div class="flex-info-admin">
-              <article class="info-admin-detalis">
-                <h5>
-                  Admin
-                </h5>
-                <p>
-                  SuperAdmin
-                </p>
-              </article>
-              <img src="../assets/images/testimonial-4.jpg" alt="Admin" />
+            <div class="user-dropdown-admin" id="userDropdownAdmin">
+              <button class="user-menu-admin" id="userMenuBtnAdmin" type="button" aria-label="Open admin menu">
+                <div class="flex-info-admin">
+                  <article class="info-admin-detalis">
+                    <h5>Admin</h5>
+                    <p>SuperAdmin</p>
+                  </article>
+                  <img src="../assets/images/testimonial-4.jpg" alt="Admin" />
+                </div>
+                <i class='bx bx-chevron-down user-arrow-admin'></i>
+              </button>
+
+              <div class="user-dropdown-menu-admin">
+                <div class="user-dropdown-name-admin">Admin</div>
+                <a href="../pages/profile.html">
+                  <i class="fa-regular fa-user"></i>
+                  My Profile
+                </a>
+                <a href="../pages/favorites.html">
+                  <i class="fa-regular fa-heart"></i>
+                  Favorites
+                </a>
+                <button type="button" class="logout-btn-admin" id="logoutBtnAdmin">
+                  <i class="material-symbols-rounded">logout</i>
+                  Log Out
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -438,7 +455,32 @@ recommend!
       });
     });
 
-    // -----------
+    const adminUserDropdown = document.querySelector(".user-dropdown-admin");
+    const adminUserMenuBtn = document.getElementById("userMenuBtnAdmin");
+    const adminLogoutBtn = document.getElementById("logoutBtnAdmin");
+
+    if (adminUserMenuBtn && adminUserDropdown) {
+      adminUserMenuBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        adminUserDropdown.classList.toggle("active");
+      });
+
+      document.addEventListener("click", () => {
+        adminUserDropdown.classList.remove("active");
+      });
+
+      adminUserDropdown.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+    }
+
+    if (adminLogoutBtn) {
+      adminLogoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "../pages/login.html";
+      });
+    }
 
   </script>
 </body>

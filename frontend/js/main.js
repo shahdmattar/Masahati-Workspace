@@ -150,6 +150,78 @@ if (themeToggle) {
 }
 
 /* ===============================
+   Token Expiry Helpers
+================================= */
+
+// Decode a JWT payload (client-side only, no signature check)
+function decodeJwtPayload(token) {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"))
+        .join("")
+    );
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    return null;
+  }
+}
+
+// Returns true if the token is missing, unreadable, or expired
+function isTokenExpired(token) {
+  if (!token) return true;
+  const payload = decodeJwtPayload(token);
+  if (!payload || !payload.exp) return true;
+  return Date.now() >= payload.exp * 1000;
+}
+
+// Shows a toast even on pages that don't define their own showToast()
+function showSessionExpiredToast() {
+  const message = "Your session has expired. Please log in again.";
+
+  if (typeof showToast === "function") {
+    showToast(message, "error");
+    return;
+  }
+
+  document.querySelectorAll(".masahati-toast").forEach((t) => t.remove());
+
+  const toast = document.createElement("div");
+  toast.className = "masahati-toast";
+  toast.textContent = message;
+
+  Object.assign(toast.style, {
+    position: "fixed",
+    bottom: "32px",
+    right: "32px",
+    background: "#ef4444",
+    color: "#fff",
+    padding: "14px 24px",
+    borderRadius: "12px",
+    fontFamily: "Plus Jakarta Sans, sans-serif",
+    fontSize: "0.9rem",
+    fontWeight: "600",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+    zIndex: "9999",
+    opacity: "0",
+    transition: "opacity 0.3s",
+  });
+
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => {
+    toast.style.opacity = "1";
+  });
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 300);
+  }, 3200);
+}
+
+/* ===============================
    Navbar Auth State
 ================================= */
 
@@ -195,9 +267,17 @@ function showLoggedInNavbar(user) {
     dropdownUserName.textContent = user.name || "User";
   }
 
-  if (navbarUserImage && user.image) {
-    navbarUserImage.src = user.image;
+  if (navbarUserImage && user.avatar) {
+    navbarUserImage.src = user.avatar;
   }
+}
+
+function handleSessionExpired() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  showGuestNavbar();
+  showSessionExpiredToast();
 }
 
 function checkAuthState() {
@@ -206,6 +286,11 @@ function checkAuthState() {
 
   if (!token || !userData) {
     showGuestNavbar();
+    return;
+  }
+
+  if (isTokenExpired(token)) {
+    handleSessionExpired();
     return;
   }
 
@@ -220,6 +305,10 @@ function checkAuthState() {
 }
 
 checkAuthState();
+
+// Keep watching while the page stays open, in case the token expires
+// mid-browsing rather than only being checked on page load.
+setInterval(checkAuthState, 30000);
 
 /* ===============================
    User Dropdown Toggle
@@ -254,3 +343,14 @@ if (logoutBtn) {
     window.location.href = getLoginPath();
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const favoritesLink = document.getElementById("favoritesLink");
+  const token = localStorage.getItem("token");
+
+  if (!favoritesLink) return;
+
+  favoritesLink.classList.toggle("hidden", !token);
+
+});

@@ -13,22 +13,28 @@
 
 /* ---- Variables ---- */
 :root {
-  --primary:       #244034;
+  --primary: #244034;
   --primary-hover: #244034;
-  --accent:        #D6E264;
-  --text-dark:     #111827;
-  --text-mid:      #4b5563;
-  --text-light:    #9ca3af;
-  --border:        #e5e7eb;
-  --bg-light:      #f3f4f6;
-  --white:         #ffffff;
-  --error:         #ef4444;
-  --radius:        12px;
-  --shadow:        0 8px 40px rgba(0,0,0,0.12);
+  --accent: #D6E264;
+  --text-dark: #111827;
+  --text-mid: #4b5563;
+  --text-light: #9ca3af;
+  --border: #e5e7eb;
+  --bg-light: #f3f4f6;
+  --white: #ffffff;
+  --error: #ef4444;
+  --radius: 12px;
+  --shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* ---- Reset ---- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -42,6 +48,7 @@ body {
   min-height: 100vh;
   padding: 24px;
 }
+
 /* ---- Auth Layout ---- */
 .auth-page {
   display: grid;
@@ -50,7 +57,7 @@ body {
   margin: auto;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
   position: relative;
   gap: 0;
 }
@@ -61,6 +68,7 @@ body {
   overflow: auto;
   background: var(--primary);
 }
+
 .auth-left::after {
   content: '';
   position: absolute;
@@ -111,7 +119,7 @@ body {
 }
 
 .auth-left-content p {
-  color: rgba(255,255,255,0.80);
+  color: rgba(255, 255, 255, 0.80);
   font-size: 1rem;
   max-width: 340px;
   line-height: 1.7;
@@ -145,7 +153,7 @@ body {
 /* Signup card — slightly taller content, less top padding */
 .signup-card {
   padding: 40px 44px 36px;
-  justify-content: flex-start;  
+  justify-content: flex-start;
   zoom: 0.8;
 }
 
@@ -209,7 +217,9 @@ body {
   transition: border-color 0.2s;
 }
 
-.input-wrapper input::placeholder { color: var(--text-light); }
+.input-wrapper input::placeholder {
+  color: var(--text-light);
+}
 
 .input-wrapper input:focus {
   border-color: var(--primary);
@@ -227,7 +237,10 @@ body {
   align-items: center;
   transition: color 0.2s;
 }
-.input-wrapper .toggle-password:hover { color: var(--primary); }
+
+.input-wrapper .toggle-password:hover {
+  color: var(--primary);
+}
 
 /* ---- Remember / Forgot ---- */
 .auth-options {
@@ -261,7 +274,10 @@ body {
   text-decoration: none;
   transition: opacity 0.2s;
 }
-.forgot-link:hover { opacity: 0.75; }
+
+.forgot-link:hover {
+  opacity: 0.75;
+}
 
 /* ---- Primary Button ---- */
 .btn-primary {
@@ -280,8 +296,14 @@ body {
   transition: background 0.2s, transform 0.1s;
   letter-spacing: 0.01em;
 }
-.btn-primary:hover  { background: var(--primary-hover); }
-.btn-primary:active { transform: scale(0.98); }
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
 
 /* ---- OR Divider ---- */
 .auth-divider {
@@ -292,6 +314,7 @@ body {
   color: var(--text-light);
   font-size: 0.85rem;
 }
+
 .auth-divider::before,
 .auth-divider::after {
   content: '';
@@ -306,12 +329,16 @@ body {
   font-size: 0.9rem;
   color: var(--text-mid);
 }
+
 .auth-switch a {
   color: var(--primary);
   font-weight: 800;
   text-decoration: none;
 }
-.auth-switch a:hover { text-decoration: underline; }
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
 
 /* ---- Error Messages ---- */
 .input-error {
@@ -320,7 +347,10 @@ body {
   margin-top: 2px;
   display: none;
 }
-.input-error.show { display: block; }
+
+.input-error.show {
+  display: block;
+}
 
 .input-wrapper input.invalid {
   border-color: var(--error);
@@ -380,16 +410,16 @@ body {
 }
 
 /* Checked state */
-.role-card input[type="radio"]:checked + .role-label {
+.role-card input[type="radio"]:checked+.role-label {
   border-color: var(--primary);
   color: var(--primary);
 }
 
-.role-card input[type="radio"]:checked + .role-label .role-radio-dot {
+.role-card input[type="radio"]:checked+.role-label .role-radio-dot {
   border-color: var(--primary);
 }
 
-.role-card input[type="radio"]:checked + .role-label .role-radio-dot::after {
+.role-card input[type="radio"]:checked+.role-label .role-radio-dot::after {
   opacity: 1;
 }
 
@@ -421,7 +451,10 @@ body {
   font-weight: 700;
   text-decoration: none;
 }
-.terms-link:hover { text-decoration: underline; }
+
+.terms-link:hover {
+  text-decoration: underline;
+}
 
 
 
@@ -432,13 +465,13 @@ body {
 
 /* Dark mode variables override */
 body.dark-mode {
-  --bg-light:   #0f1a17;
-  --white:      #1a2e27;
-  --border:     #2d4a3e;
-  --text-mid:   #9db8ae;
+  --bg-light: #0f1a17;
+  --white: #1a2e27;
+  --border: #2d4a3e;
+  --text-mid: #9db8ae;
   --text-light: #6b8c7d;
-  --text-dark:  #e8f0ec;
-  --shadow:     0 8px 40px rgba(0,0,0,0.4);
+  --text-dark: #e8f0ec;
+  --shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* body bg */
@@ -490,6 +523,7 @@ body.dark-mode .input-wrapper .input-icon {
 body.dark-mode .input-wrapper .toggle-password {
   color: var(--text-light);
 }
+
 body.dark-mode .input-wrapper .toggle-password:hover {
   color: var(--accent);
 }
@@ -507,16 +541,16 @@ body.dark-mode .role-label {
   color: var(--text-mid);
 }
 
-body.dark-mode .role-card input[type="radio"]:checked + .role-label {
+body.dark-mode .role-card input[type="radio"]:checked+.role-label {
   border-color: var(--accent);
   color: var(--accent);
 }
 
-body.dark-mode .role-card input[type="radio"]:checked + .role-label .role-radio-dot {
+body.dark-mode .role-card input[type="radio"]:checked+.role-label .role-radio-dot {
   border-color: var(--accent);
 }
 
-body.dark-mode .role-card input[type="radio"]:checked + .role-label .role-radio-dot::after {
+body.dark-mode .role-card input[type="radio"]:checked+.role-label .role-radio-dot::after {
   background: var(--accent);
 }
 
@@ -557,7 +591,7 @@ body.dark-mode .remember-me {
   align-items: center;
   justify-content: center;
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
 }
 
 .dark-mode-toggle:hover {
@@ -592,7 +626,7 @@ body.dark-mode .dark-mode-toggle {
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
   white-space: nowrap;
 }
 
@@ -613,6 +647,7 @@ body.dark-mode .back-home-btn:hover {
   background: #d6e264;
   color: #244034;
 }
+
 body.dark-mode .btn-primary {
   background: #d6e264;
   color: #1a2e27;
@@ -621,6 +656,7 @@ body.dark-mode .btn-primary {
 body.dark-mode .btn-primary:hover {
   background: #c8d952;
 }
+
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
   body {
@@ -642,7 +678,9 @@ body.dark-mode .btn-primary:hover {
     display: none;
   }
 
-  .auth-left { display: none; }
+  .auth-left {
+    display: none;
+  }
 
   .auth-right {
     padding: 40px 20px 60px;
@@ -686,4 +724,32 @@ body.dark-mode .btn-primary:hover {
     font-size: 0.78rem;
     padding: 0 12px 0 10px;
   }
+}
+
+#toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 280px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#toast.success {
+  background: #22c55e;
+}
+
+#toast.error {
+  background: #ef4444;
 }

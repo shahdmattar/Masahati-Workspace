@@ -551,8 +551,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return html;
   }
 
+  const detailsMain = document.getElementById("detailsMain");
+  function revealDetailsPage() {
+    if (detailsMain) detailsMain.classList.remove("loading");
+  }
+
   const workspaceId = getWorkspaceId();
-  if (!workspaceId) return;
+  if (!workspaceId) {
+    revealDetailsPage();
+    return;
+  }
 
   // -------------------------
   // Fetch Workspace Details
@@ -561,10 +569,12 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(`${BASE_URL}/workspaces/single.php?workspace_id=${workspaceId}`);
       const data = await res.json();
-      if (!data.success) return;
+      if (!data.success) { revealDetailsPage(); return; }
       renderWorkspace(data.data.workspace);
+      revealDetailsPage();
     } catch (err) {
       console.error("Fetch workspace error:", err);
+      revealDetailsPage();
     }
   }
 
@@ -731,6 +741,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------
   // Submit Review
   // -------------------------
+  const reviewFormCard = document.querySelector(".review-form-card");
+  const reviewToken = getToken();
+  const reviewSessionValid = !!reviewToken && !isTokenExpired(reviewToken);
+
+  if (reviewFormCard) {
+    const existingForm = reviewFormCard.querySelector(".review-form");
+    if (existingForm && !reviewSessionValid) {
+      existingForm.outerHTML = `
+        <div class="review-login-prompt">
+          <i class="fa-regular fa-circle-user"></i>
+          <p>Please log in to add a review.</p>
+       <a href="login.html" class="post-btn">
+            Log In &#8594;
+          </a>
+        </div>
+      `;
+    }
+  }
+
   const reviewForm = document.querySelector(".review-form");
   const commentTextarea = document.querySelector("#comment");
   const counterEl = document.querySelector(".post-row span");
@@ -767,7 +796,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const token = getToken();
-      if (!token) {
+      if (!token || isTokenExpired(token)) {
         showDetailsToast("Please log in to leave a review.", "error");
         setTimeout(() => { window.location.href = "login.html"; }, 1500);
         return;

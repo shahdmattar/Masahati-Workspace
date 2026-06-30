@@ -1734,6 +1734,42 @@ body.dark-mode .reset-filters-btn {
   transform: scale(0.96);
 }
 
+.review-login-prompt {
+  text-align: center;
+  padding: 40px 20px;
+  color: #374151;
+  background-color: #ecfbf1;
+  border-radius: 16px;
+  margin-top: 8px;
+}
+
+.review-login-prompt i {
+  font-size: 42px;
+  color: var(--green);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.review-login-prompt p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.review-login-prompt .post-btn {
+  text-decoration: none;
+  padding: 10px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: unset;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1;
+}
+
 /* Reviews */
 
 .reviews-card h2 {
@@ -1794,6 +1830,19 @@ body.dark-mode .reset-filters-btn {
 
 body.dark-mode .details-page {
   background-color: var(--bg);
+}
+
+body.dark-mode .review-login-prompt {
+  background-color: rgba(214, 226, 100, 0.12);
+  border-color: var(--card-border);
+}
+
+body.dark-mode .review-login-prompt i {
+  color: var(--light-green);
+}
+
+body.dark-mode .review-login-prompt p {
+  color: var(--muted);
 }
 
 body.dark-mode .details-hero-card,

@@ -1238,3 +1238,8 @@ body.dark-mode #WapperAdmin .but-colse:hover {
 body.dark-mode .user-dropdown-menu .logout-btn:hover i {
   color: #ff7b7b;
 }
+
+/* Utility: force-hide auth-gated nav links */
+.hidden {
+  display: none !important;
+}

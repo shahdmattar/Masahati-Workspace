@@ -233,6 +233,8 @@ const logoutBtn = document.querySelector("#logoutBtn");
 const navbarUserName = document.querySelector("#navbarUserName");
 const dropdownUserName = document.querySelector("#dropdownUserName");
 const navbarUserImage = document.querySelector("#navbarUserImage");
+const favoritesLink = document.querySelector("#favoritesLink");
+const favoritesLinkMobile = document.querySelector("#favoritesLinkMobile");
 
 function getLoginPath() {
   const isInsidePages = window.location.pathname.includes("/pages/");
@@ -248,6 +250,9 @@ function showGuestNavbar() {
     userDropdown.classList.remove("show");
     userDropdown.classList.remove("active");
   }
+
+  if (favoritesLink) favoritesLink.classList.add("hidden");
+  if (favoritesLinkMobile) favoritesLinkMobile.classList.add("hidden");
 }
 
 function showLoggedInNavbar(user) {
@@ -270,6 +275,9 @@ function showLoggedInNavbar(user) {
   if (navbarUserImage && user.avatar) {
     navbarUserImage.src = user.avatar;
   }
+
+  if (favoritesLink) favoritesLink.classList.remove("hidden");
+  if (favoritesLinkMobile) favoritesLinkMobile.classList.remove("hidden");
 }
 
 function handleSessionExpired() {
@@ -343,14 +351,3 @@ if (logoutBtn) {
     window.location.href = getLoginPath();
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const favoritesLink = document.getElementById("favoritesLink");
-  const token = localStorage.getItem("token");
-
-  if (!favoritesLink) return;
-
-  favoritesLink.classList.toggle("hidden", !token);
-
-});

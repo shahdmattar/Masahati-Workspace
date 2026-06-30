@@ -2007,39 +2007,4 @@ body.dark-mode .back-link:hover i {
   display: none;
 }
 
-@media (max-width: 767px) {
-  .workspace-search-section,
-  .workspace-search-section .container,
-  .workspace-search-row {
-    overflow: visible !important;
-  }
 
-  .search-field {
-    overflow: hidden;
-  }
-
-  .select-field.custom-select {
-    position: relative;
-    overflow: visible !important;
-    z-index: 20;
-  }
-
-  .select-field.custom-select.active {
-    z-index: 9999;
-  }
-
-  .select-field.custom-select::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  .custom-select-menu {
-    z-index: 99999;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .custom-select-menu li {
-    min-height: 42px;
-  }
-}

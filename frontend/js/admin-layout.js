@@ -83,4 +83,56 @@
     updateDescriptionCounter();
     descTextarea.addEventListener("input", updateDescriptionCounter);
   }
+
+  // Profile Dropdown Toggle
+  const profileDropdownContainer = document.querySelector(".profile-dropdown-container");
+  if (profileDropdownContainer) {
+    profileDropdownContainer.addEventListener("click", (e) => {
+      e.stopPropagation();
+      profileDropdownContainer.classList.toggle("active-dropdown");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!profileDropdownContainer.contains(e.target)) {
+        profileDropdownContainer.classList.remove("active-dropdown");
+      }
+    });
+  }
+
+  // Populate User Info dynamically from localStorage
+  try {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const user = JSON.parse(userData);
+      if (user && user.name) {
+        // Update name in top bar trigger
+        const profileNameEl = document.querySelector(".profile-trigger h5");
+        if (profileNameEl) {
+          profileNameEl.textContent = user.name;
+        }
+        // Update name in dropdown header
+        const dropdownHeaderEl = document.querySelector(".dropdown-username-header");
+        if (dropdownHeaderEl) {
+          dropdownHeaderEl.textContent = user.name;
+        }
+      }
+      if (user && user.image) {
+        const profileImgEl = document.querySelector(".profile-trigger img");
+        if (profileImgEl) {
+          profileImgEl.src = user.image;
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Error loading user data:", err);
+  }
+
+  // Handle Logout session clearing
+  const logoutBtn = document.querySelector(".logout-text");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    });
+  }
 })();

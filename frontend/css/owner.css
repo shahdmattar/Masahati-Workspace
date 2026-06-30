@@ -71,7 +71,7 @@ td{padding:16px 24px;vertical-align:middle;}
 .date-val{font-size:13px;color:#6b7b6b;}
 
 .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:6px 13px;border-radius:20px;}
-.badge::before{content:'';width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.badge::before{content:'';width:10px;height:10px;border-radius:50%;flex-shrink:0;display:inline-block;}
 .approved{color:#1f8a4c;background:#e6f5ec;}
 .approved::before{background:#1f8a4c;}
 .pending{
@@ -91,6 +91,15 @@ td{padding:16px 24px;vertical-align:middle;}
 .rejected::before{
     background:#d63031 !important;
 }
+
+/* add subtle border for dot in dark theme to improve contrast */
+body.dark-theme .badge::before,
+body.dark-mode .badge::before {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.04) inset;
+}
+
+/* ensure the dot stays vertically centered */
+.badge { align-items: center; }
 
 .actions{display:flex;align-items:center;gap:8px;}
 .btn-view,.btn-edit{padding:7px 18px;border-radius:8px;font-size:13px;font-weight:500;font-family:'Inter',sans-serif;border:1px solid #e3eae3;background:#fff;color:#1a1a1a;cursor:pointer;transition:all 0.14s;}
@@ -1416,6 +1425,79 @@ body.dark-mode .btn-add{
   background:#003f33 !important;
   color:#ffffff !important;
 }
+
+/* ── Dark mode: Status badges ── */
+body.dark-mode .badge.approved,
+body.dark-theme .badge.approved {
+  background: rgba(31, 138, 76, 0.18) !important;
+  color: #4ade80 !important;
+}
+body.dark-mode .badge.approved::before,
+body.dark-theme .badge.approved::before {
+  background: #4ade80 !important;
+}
+
+body.dark-mode .badge.pending,
+body.dark-theme .badge.pending {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+}
+body.dark-mode .badge.pending::before,
+body.dark-theme .badge.pending::before {
+  background: #fbbf24 !important;
+}
+
+body.dark-mode .badge.rejected,
+body.dark-theme .badge.rejected {
+  background: rgba(214, 48, 49, 0.18) !important;
+  color: #f87171 !important;
+}
+body.dark-mode .badge.rejected::before,
+body.dark-theme .badge.rejected::before {
+  background: #f87171 !important;
+}
+
+/* ── Dark theme alias (applied by admin-layout.js) ── */
+body.dark-theme .table-card {
+  background: #12382f !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme thead tr {
+  background: #0f3028 !important;
+}
+body.dark-theme tbody tr {
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme tbody tr:hover {
+  background: #163d34 !important;
+}
+body.dark-theme .ws-name {
+  color: #f7fbf8 !important;
+}
+body.dark-theme .ws-desc,
+body.dark-theme .loc,
+body.dark-theme .date-val,
+body.dark-theme td,
+body.dark-theme th {
+  color: #c2ccc8 !important;
+}
+body.dark-theme .btn-view,
+body.dark-theme .btn-edit,
+body.dark-theme .btn-action {
+  background: #12382f !important;
+  color: #f7fbf8 !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme .help-card {
+  background: #0f3028 !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+body.dark-theme .page-title {
+  color: #f7fbf8 !important;
+}
+body.dark-theme .page-sub {
+  color: #c2ccc8 !important;
+}
 .mobile-menu-btn{
   display:none;
 }
@@ -2461,3 +2543,502 @@ body.dark-mode select{
   margin-top:0 !important;
 }
 
+/* ===== Pagination styles for workspaces table ===== */
+.ws-pagination{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-end;
+  margin-top:12px;
+}
+.ws-pagination .ws-paging-pages{display:flex;gap:8px;align-items:center;}
+.ws-pagination button{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  background-color: rgba(255,255,255,0.02);
+  transition: background 0.12s, transform 0.12s;
+}
+.ws-pagination button:hover{
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-2px);
+}
+.ws-pagination .ws-page-btn.active{
+  background: var(--green, #1b4332);
+  color: #fff;
+  border-color: var(--green, #1b4332);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* Light-mode fallback: keep original light styling when not in dark theme */
+body:not(.dark-theme):not(.dark-mode) .ws-pagination button{
+  color: #1a1a1a !important;
+  border-color: #e6eef0 !important;
+  background: transparent !important;
+}
+.ws-pagination .ws-paging-prev,.ws-pagination .ws-paging-next{min-width:72px}
+
+@media (max-width:576px){
+  .ws-pagination{justify-content:center;gap:8px;padding:8px 12px}
+  .ws-pagination .ws-paging-pages{gap:6px}
+  .ws-pagination button{padding:6px 8px;font-size:13px}
+}
+
+/* RTL support: reverse order and align to start */
+html[dir="rtl"] .ws-pagination,
+body[dir="rtl"] .ws-pagination {
+  direction: rtl;
+  justify-content: flex-start;
+}
+html[dir="rtl"] .ws-pagination .ws-page-btn.active,
+body[dir="rtl"] .ws-pagination .ws-page-btn.active{
+  order: 0;
+}
+
+/* Responsive: convert table to stacked rows on tablets and small screens (flex layout to avoid overlap) */
+@media (max-width: 1000px) {
+  .table-card table thead { display: none; }
+
+  .table-card table { width: 100%; border-collapse: separate; }
+
+  .table-card tbody tr {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #ecf0ee;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+
+  /* stacked cell layout: give each cell a small, consistent padding */
+  .table-card td {
+    display: block;
+    padding: 6px 12px !important;
+    border: none;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .table-card .ws-thumb { flex: 0 0 56px; width:56px; height:56px; border-radius:10px; background-size:cover; background-position:center; }
+
+  .table-card .ws-cell { display:flex; gap:10px; align-items:flex-start; flex: 1 1 auto; min-width:0 }
+  /* On small screens keep action buttons inline (no overlap) and full-width under the row */
+  .table-card td.actions {
+    transform: none !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    display: flex !important;
+    gap: 8px !important;
+    margin-top: 8px !important;
+    justify-content: flex-start !important;
+  }
+
+  .table-card .ws-cell > div { min-width:0 }
+  .table-card .ws-name{display:block; white-space:normal; word-break:break-word}
+  .table-card .ws-desc{display:block; margin-top:6px; color:#6b7b6b}
+
+  /* meta (location / date / badge) on the right side under small widths */
+  .table-card .loc, .table-card .date-val, .table-card .badge { display:inline-block; margin-top:8px; font-size:13px; color:#6b7b6b }
+
+  .table-card .actions { width:100%; display:flex; gap:8px; margin-top:10px }
+
+  /* place action buttons close to the image/name on small screens */
+  .table-card td.actions {
+    order: 1;
+    flex: 0 0 auto;
+    margin-left: 6px;
+    margin-top: 0;
+    align-self: flex-start;
+    display: flex;
+    gap: 8px;
+    /* pull buttons more up to sit closer to thumbnail */
+    transform: translateY(-36px);
+    z-index: 999;
+  }
+
+  /* make buttons smaller and add hover effect */
+  .table-card .btn-view,
+  .table-card .btn-edit,
+  .table-card .btn-action {
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+    box-shadow: none;
+  }
+
+  .table-card .btn-view:hover {
+    background: rgba(245,245,245,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  }
+
+  .table-card .btn-edit:hover {
+    background: #174b39;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.14);
+  }
+
+  .ws-pagination { margin-top: 8px; margin-bottom: 18px; }
+}
+
+@media (max-width: 420px) {
+  .table-card tbody tr { gap:10px; padding:12px }
+  .table-card .ws-thumb { flex:0 0 48px; width:48px; height:48px }
+  .table-card .ws-name{font-size:15px}
+  .table-card td.actions { transform: none !important; z-index: 1 !important; width:100% !important; display:flex !important; gap:8px !important; margin-top:6px !important; }
+}
+
+/* Tight mobile layout tweaks for better use of horizontal space */
+@media (max-width: 576px) {
+  .content {
+    padding: 18px 12px !important;
+  }
+
+  .page-header { margin-bottom: 14px !important; }
+
+  .table-card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+
+  .table-card tbody tr {
+    padding: 8px 10px !important;
+    gap: 10px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .table-card td { padding: 6px 10px !important; }
+
+  .table-card .ws-cell { display: flex; gap:10px; align-items: center; width: 100%; }
+  .table-card td { width: 100% !important; display: block !important; }
+  .table-card .loc, .table-card .date-val { display: block !important; margin-top: 8px !important; }
+
+  .ws-pagination { justify-content: center !important; padding: 8px 0 !important; }
+
+  /* Slightly reduce thumbnail and spacing to fit tight screens */
+  .table-card .ws-thumb { flex: 0 0 48px !important; width:48px !important; height:48px !important; }
+}
+
+/* Move status badges below the row content on small screens without breaking layout */
+@media (max-width: 576px) {
+  .table-card .badge {
+    order: 2 !important;
+    flex-basis: 100% !important;
+    width: auto !important;
+    margin-top: 8px !important;
+    align-self: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .table-card .date-val {
+    order: 3 !important;
+    align-self: center !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* ===== Accordion Workspace Cards ===== */
+.workspace-accordion-list {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 992px) {
+  .workspace-accordion-list {
+    display: flex;
+  }
+  .desktop-only-table {
+    display: none !important;
+  }
+}
+
+/* Light mode defaults */
+.workspace-card-acc {
+  background: #fff;
+  border: 1px solid #e3eae3;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: #1a1a1a;
+}
+
+.workspace-card-acc.active {
+  border-color: #1b4332;
+}
+
+.ws-acc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ws-acc-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ws-acc-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.ws-acc-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ws-acc-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ws-acc-subtitle {
+  font-size: 13px;
+  color: #6b7b6b;
+  margin-top: 4px;
+  display: none;
+}
+
+.workspace-card-acc.active .ws-acc-subtitle {
+  display: block;
+}
+
+.ws-acc-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.acc-icon {
+  font-size: 24px;
+  color: #6b7b6b;
+  transition: transform 0.3s ease;
+}
+
+.workspace-card-acc.active .acc-icon {
+  transform: rotate(180deg);
+}
+
+.ws-acc-body {
+  display: none;
+  padding: 0 16px 20px 82px; /* Aligned with text */
+}
+
+.workspace-card-acc.active .ws-acc-body {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ws-acc-details {
+  display: flex;
+  gap: 60px;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.ws-detail-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: #6b7b6b;
+}
+
+.detail-value {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ws-acc-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-acc-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid #e3eae3;
+  color: #1a1a1a;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-acc-outline:hover {
+  background: #f0f5f0;
+  border-color: #c0d0c0;
+}
+
+/* Dark Mode Overrides (Matching the image exactly) */
+body.dark-mode .workspace-card-acc,
+body.dark-theme .workspace-card-acc,
+.dark-mode .workspace-card-acc {
+  background: #11241a;
+  border-color: #1f3b2a;
+  color: #fff;
+}
+
+body.dark-mode .workspace-card-acc.active,
+body.dark-theme .workspace-card-acc.active,
+.dark-mode .workspace-card-acc.active {
+  border-color: #2c523b;
+}
+
+body.dark-mode .ws-acc-subtitle,
+body.dark-theme .ws-acc-subtitle,
+.dark-mode .ws-acc-subtitle,
+body.dark-mode .detail-label,
+body.dark-theme .detail-label,
+.dark-mode .detail-label {
+  color: #8b9c91;
+}
+
+body.dark-mode .acc-icon,
+body.dark-theme .acc-icon,
+.dark-mode .acc-icon {
+  color: #fff;
+}
+
+body.dark-mode .btn-acc-outline,
+body.dark-theme .btn-acc-outline,
+.dark-mode .btn-acc-outline {
+  border-color: #2c523b;
+  color: #fff;
+}
+
+body.dark-mode .btn-acc-outline:hover,
+body.dark-theme .btn-acc-outline:hover,
+.dark-mode .btn-acc-outline:hover {
+  background: #1f3b2a;
+}
+
+/* Badges for Dark Mode */
+body.dark-mode .badge.approved,
+.dark-mode .badge.approved,
+body.dark-theme .badge.approved {
+  background: rgba(31, 138, 76, 0.2) !important;
+  color: #a0d8b3 !important;
+}
+body.dark-mode .badge.approved::before,
+.dark-mode .badge.approved::before,
+body.dark-theme .badge.approved::before { background: #34d399 !important; }
+
+body.dark-mode .badge.pending,
+.dark-mode .badge.pending,
+body.dark-theme .badge.pending {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #fcd34d !important;
+}
+body.dark-mode .badge.pending::before,
+.dark-mode .badge.pending::before,
+body.dark-theme .badge.pending::before { background: #fbbf24 !important; }
+
+body.dark-mode .badge.rejected,
+.dark-mode .badge.rejected,
+body.dark-theme .badge.rejected {
+  background: rgba(214, 48, 49, 0.15) !important;
+  color: #fca5a5 !important;
+}
+body.dark-mode .badge.rejected::before,
+.dark-mode .badge.rejected::before,
+body.dark-theme .badge.rejected::before { background: #f87171 !important; }
+
+/* ===== Custom Pagination ===== */
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.page-btn {
+  background: transparent;
+  border: 1px solid #1f3b2a;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.page-btn i {
+  font-size: 18px;
+  margin: 0 4px;
+}
+
+.page-btn.prev-btn i {
+  margin-left: 0;
+}
+
+.page-btn.next-btn i {
+  margin-right: 0;
+}
+
+.page-btn:hover:not(.active) {
+  background: #152C21;
+  border-color: #2c523b;
+}
+
+.page-btn.active {
+  background: #234331;
+  border-color: #2c523b;
+  color: #fff;
+}
+
+/* Light mode support for pagination */
+body:not(.dark-mode):not(.dark-theme) .page-btn {
+  border-color: #e3eae3;
+  color: #1a1a1a;
+}
+
+body:not(.dark-mode):not(.dark-theme) .page-btn:hover:not(.active) {
+  background: #f0f5f0;
+}
+
+body:not(.dark-mode):not(.dark-theme) .page-btn.active {
+  background: #1b4332;
+  border-color: #1b4332;
+  color: #fff;
+}

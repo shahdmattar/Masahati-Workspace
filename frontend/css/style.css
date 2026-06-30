@@ -12,6 +12,7 @@
   --muted: #6b7280;
   --border: #e5e7eb;
   --danger: #d92d20;
+  --red: #d63031;
   --star: #f5c542;
 
   --card-border: #f0f0f0;
@@ -42,10 +43,15 @@ body.dark-mode {
   --input-dark: #0f3028;
   --footer-text: rgba(255, 255, 255, 0.72);
   --footer-muted: rgba(255, 255, 255, 0.5);
+  --red: #d63031;
 }
 
 
 /* Reset & Global */
+
+/* Required marker styling */
+.req, .required, .asterisk, label .req { color: var(--red) !important; }
+
 
 * {
   margin: 0;
@@ -716,10 +722,18 @@ body.dark-mode .nav-links a::after {
   background-color: var(--light-green);
 }
 
-body.dark-mode .signup-btn {
-  background-color: var(--light-green);
-  border-color: var(--light-green);
-  color: var(--dark-green);
+body.dark-mode .signup-btn,
+body.dark-theme .signup-btn {
+  background-color: rgb(216, 224, 100);
+  border-color: rgb(216, 224, 100);
+  color: #0f1a0f;
+}
+
+body.dark-mode .signup-btn:hover,
+body.dark-theme .signup-btn:hover {
+  background-color: rgb(206, 214, 80);
+  border-color: rgb(206, 214, 80);
+  color: #0f1a0f;
 }
 
 /* Dark Mode - Mobile Menu */

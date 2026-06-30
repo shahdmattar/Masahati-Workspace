@@ -98,12 +98,20 @@
           <i class='bx bx-moon'></i>
         </div>
         <span class="info-admin-divider" aria-hidden="true"></span>
-        <div class="flex-info-admin">
-          <article class="info-admin-detalis">
-            <h5>Admin</h5>
-            <p>SuperAdmin</p>
-          </article>
-          <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+        <div class="flex-info-admin profile-dropdown-container">
+          <div class="profile-trigger">
+            <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+            <article class="info-admin-detalis">
+              <h5>Admin</h5>
+            </article>
+            <i class='bx bx-chevron-down profile-arrow'></i>
+          </div>
+          <div class="profile-dropdown-menu">
+            <span class="dropdown-username-header">Admin</span>
+            <a href="../pages/profile.html"><i class="bx bx-user"></i> My Profile</a>
+            <a href="../pages/favorites.html"><i class="bx bx-heart"></i> Favorites</a>
+            <a href="../pages/login.html" class="logout-text"><i class="bx bx-log-out"></i> Log Out</a>
+          </div>
         </div>
       </div>
       <div class="pad-all page-inner">
@@ -220,3 +228,5 @@
 <script src="../js/dashboard.js"></script>
 </body>
 </html>
+
+

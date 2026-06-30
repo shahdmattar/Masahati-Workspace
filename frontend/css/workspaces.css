@@ -1789,7 +1789,7 @@ body.dark-mode .reset-filters-btn {
 ================================= */
 
 body.dark-mode .details-page {
-  background-color: var(--bg);
+  background-color: #0a291d;
 }
 
 body.dark-mode .details-hero-card,
@@ -1797,9 +1797,9 @@ body.dark-mode .details-info-card,
 body.dark-mode .rating-card,
 body.dark-mode .review-form-card,
 body.dark-mode .reviews-card {
-  background-color: var(--surface);
-  border-color: var(--card-border);
-  box-shadow: var(--shadow);
+  background-color: #0f3225;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
 }
 
 body.dark-mode .details-title-row h1,
@@ -1810,7 +1810,7 @@ body.dark-mode .amenity strong,
 body.dark-mode .price-box strong,
 body.dark-mode .big-rating h2,
 body.dark-mode .review-head strong {
-  color: var(--text);
+  color: #f4f7ee;
 }
 
 body.dark-mode .details-description,
@@ -1823,7 +1823,52 @@ body.dark-mode .review-item p,
 body.dark-mode .review-head span,
 body.dark-mode .review-form-header p,
 body.dark-mode .post-row span {
-  color: var(--muted);
+  color: #c5d3c1;
+}
+
+body.dark-mode .details-summary {
+  gap: 18px;
+}
+
+body.dark-mode .details-favorite {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f5c542;
+}
+
+body.dark-mode .approved-box {
+  background-color: rgba(245, 197, 66, 0.12);
+  border: 1px solid rgba(245, 197, 66, 0.16);
+}
+
+body.dark-mode .approved-box strong {
+  color: #f5c542;
+}
+
+body.dark-mode .amenity {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+body.dark-mode .amenity-icon,
+body.dark-mode .price-box i,
+body.dark-mode .details-rating i,
+body.dark-mode .details-location i {
+  background-color: rgba(245, 197, 66, 0.14);
+  color: #f5c542;
+}
+
+body.dark-mode .amenity span {
+  color: #f5c542;
+}
+
+body.dark-mode .details-info-card {
+  padding: 24px;
+}
+
+body.dark-mode .price-row {
+  border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 body.dark-mode .main-photo,
@@ -1866,13 +1911,15 @@ body.dark-mode .quote-box p {
 }
 
 body.dark-mode .amenity-icon,
-body.dark-mode .price-box i {
-  background-color: rgba(214, 226, 100, 0.14);
-  color: var(--light-green);
+body.dark-mode .price-box i,
+body.dark-mode .details-rating i,
+body.dark-mode .details-location i {
+  background-color: rgba(245, 197, 66, 0.14);
+  color: #f5c542;
 }
 
 body.dark-mode .amenity span {
-  color: var(--light-green);
+  color: #f5c542;
 }
 
 body.dark-mode .price-row {
@@ -1913,14 +1960,20 @@ body.dark-mode .review-item:not(:last-child) {
 
 /* Workspace Details Buttons - Dark Mode */
 
+body.dark-mode .details-favorite {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ff6b6b;
+}
+
 body.dark-mode .details-favorite:hover {
   background-color: rgba(214, 226, 100, 0.18);
-  color: var(--light-green);
+  color: #d6e264;
   box-shadow: 0 8px 18px rgba(214, 226, 100, 0.16);
 }
 
-body.dark-mode .thumb:hover {
-  border-color: var(--light-green);
+body.dark-mode .thumb:hover,
+body.dark-mode .thumb.active {
+  border-color: rgba(214, 226, 100, 0.88);
   box-shadow: 0 8px 18px rgba(214, 226, 100, 0.14);
 }
 

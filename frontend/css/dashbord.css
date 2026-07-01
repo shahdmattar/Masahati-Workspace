@@ -1956,6 +1956,13 @@ body.dark-theme .card-uplaod:hover {
   font-weight:700;
   font-size:15px;
   cursor:pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.edit:hover{
+  background:#0d6b52;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 75, 59, 0.25);
 }
 
 .add-btn{
@@ -1968,6 +1975,13 @@ body.dark-theme .card-uplaod:hover {
   font-weight:700;
   box-shadow:0 6px 15px #0002;
   cursor:pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.add-btn:hover{
+  background:#0d6b52;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 75, 59, 0.3);
 }
 
 /* ===== STATS ===== */
@@ -2184,6 +2198,11 @@ body.dark-theme .action p {
 body.dark-theme .add-btn,
 body.dark-theme .edit {
   background: #003f33 !important;
+}
+
+body.dark-theme .add-btn:hover,
+body.dark-theme .edit:hover {
+  background: #0d6b52 !important;
 }
 
 /* ===== MOBILE ===== */

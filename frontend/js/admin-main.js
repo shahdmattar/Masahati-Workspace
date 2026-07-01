@@ -1,3 +1,6 @@
+(function () {
+'use strict';
+
 // Select elements
 const next1 = document.getElementById('next1');
 const next2 = document.getElementById('next2');
@@ -314,3 +317,4 @@ function setupResponsiveSidebar() {
 
 setupResponsiveSidebar();
 
+})();

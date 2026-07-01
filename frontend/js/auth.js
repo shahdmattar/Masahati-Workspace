@@ -137,8 +137,13 @@ if (loginForm) {
 
         showToast("Welcome back 👋", "success");
 
+        const role = data.data.user?.role;
+        let redirectTo = "../index.html";
+        if (role === "admin") redirectTo = "../admin/dashboard.html";
+        else if (role === "owner") redirectTo = "../owner/dashboard.html";
+
         setTimeout(() => {
-          window.location.href = "../index.html";
+          window.location.href = redirectTo;
         }, 1500);
 
       } else {

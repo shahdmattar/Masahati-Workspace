@@ -3,20 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
+  <script src="../js/auth-guard.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <!--  -->
-  
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="../css/admin-dashboard.css">
@@ -41,28 +41,21 @@
           </button>
         </div>
         <div class="sidebar-content">
-          <!-- Search Form -->
-          <!-- <form action="#" class="search-form">
-            <span class="material-symbols-rounded">search</span>
-            <input type="search" placeholder="Search..." required />
-          </form> -->
-          <!-- Sidebar Menu -->
           <ul class="menu-list">
             <li class="menu-item">
-              <a href="dashboard.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+              <a href="dashboard.html" class="menu-link active">
                 <span class="bx bx-grid-alt"></span>
                 <span class="menu-label">Dashboard</span>
               </a>
             </li>
-
             <li class="menu-item">
-              <a href="edit-workspace.html" class="menu-link">
+              <a href="my-workspace.html" class="menu-link">
                 <span class="bx bx-buildings"></span>
                 <span class="menu-label">My workspace</span>
               </a>
             </li>
             <li class="menu-item">
-              <a href="add-workspace.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+              <a href="add-workspace.html" class="menu-link">
                 <span class="bx bx-plus-circle"></span>
                 <span class="menu-label">Add workspace</span>
               </a>
@@ -73,7 +66,12 @@
                 <span class="menu-label">Review</span>
               </a>
             </li>
-
+            <li class="home-page">
+              <a href="../index.html" class=" menu-link">
+                <span class="bx bx-home"></span>
+                <span class="menu-label">Home Page</span>
+              </a>
+            </li>
           </ul>
         </div>
         <!-- Sidebar Footer -->
@@ -207,11 +205,6 @@
                 </div>
                 <div class="dropdown-menu">
                   <div class="active">All Workspaces</div>
-                  <div>5 Stars</div>
-                  <div>4 Stars & Above</div>
-                  <div>3 Stars & Above</div>
-                  <div>Most Recent</div>
-                  <div>Oldest First</div>
                 </div>
               </div>
             </div>
@@ -237,8 +230,8 @@
                     </span>
                   </div>
                   <p>
-                 Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing
-on work.
+                    Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing
+                    on work.
                   </p>
                 </div>
                 <div class="product-review">
@@ -276,7 +269,7 @@ on work.
                     </span>
                   </div>
                   <p>
-                   Great space and good facilities. The environment helps me get a lot done.
+                    Great space and good facilities. The environment helps me get a lot done.
                   </p>
                 </div>
                 <div class="product-review">
@@ -306,7 +299,7 @@ on work.
                       <span class="review-star" aria-hidden="true"></span>
                       <span class="review-star" aria-hidden="true"></span>
                       <span class="review-star" aria-hidden="true"></span>
-                     <span class="review-star star-bg-gray" aria-hidden="true"></span>
+                      <span class="review-star star-bg-gray" aria-hidden="true"></span>
                       <span class="review-star star-bg-gray" aria-hidden="true"></span>
                     </article>
                     <span>
@@ -314,8 +307,8 @@ on work.
                     </span>
                   </div>
                   <p>
-              Very nice coworking space, comfortable and well designed. Would
-recommend!
+                    Very nice coworking space, comfortable and well designed. Would
+                    recommend!
                   </p>
                 </div>
                 <div class="product-review">
@@ -353,7 +346,7 @@ recommend!
                     </span>
                   </div>
                   <p>
-                   One of the best places to work in Gaza. Everything is perfect!
+                    One of the best places to work in Gaza. Everything is perfect!
                   </p>
                 </div>
                 <div class="product-review">
@@ -370,7 +363,7 @@ recommend!
                 </div>
               </div>
               <!-- -------- -->
-                <div class="card-review">
+              <div class="card-review">
                 <div class="info-user-review">
                   <img src="../assets/images/testimonial-2.jpg" />
                   <h6>
@@ -391,7 +384,7 @@ recommend!
                     </span>
                   </div>
                   <p>
-                   One of the best places to work in Gaza. Everything is perfect!
+                    One of the best places to work in Gaza. Everything is perfect!
                   </p>
                 </div>
                 <div class="product-review">
@@ -415,7 +408,9 @@ recommend!
     </div>
   </div>
   <!-- ebd WapperAdmin -->
+  <script src="../js/navbar-user.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/owner-reviews.js"></script>
   <script>
 
     const sidebarToggleBtns = document.querySelectorAll(".sidebar-toggle");

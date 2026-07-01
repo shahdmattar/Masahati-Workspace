@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -10,6 +12,10 @@ require_once "../config/Database.php";
 require_once "../config/cors.php";
 require_once "../config/jwt.php";
 require_once "../helpers/response.php";
+
+set_exception_handler(function ($e) {
+    response(false, "Server error: " . $e->getMessage(), null, "SERVER_ERROR", 500);
+});
 
 $conn = (new Database())->getConnection();
 $jwt = new JwtHandler();
@@ -84,6 +90,25 @@ if (
     !$quietness || !$ladies_area || !$price || !$whatsapp
 ) {
     response(false, "Missing fields", null, "MISSING_FIELDS", 422);
+}
+
+
+// =====================================
+// CITY / AREA VALIDATION
+// =====================================
+
+$areasData = [
+    "North"  => ["Jabalia", "Beit Lahia", "Beit Hanoun", "Tal Al-Hawa", "Sheikh Radwan", "Al-Saftawi", "Al-Rimal"],
+    "Center" => ["Nuseirat", "Deir Al-Balah", "Bureij", "Maghazi", "Zawaida"],
+    "South"  => ["Khan Younis", "Rafah", "Mawasi Khan Younis", "Mawasi Al-Qarara"],
+];
+
+if (!array_key_exists($city, $areasData)) {
+    response(false, "Invalid city", null, "INVALID_CITY", 422);
+}
+
+if (!in_array($area, $areasData[$city])) {
+    response(false, "Invalid area for selected city", null, "INVALID_AREA", 422);
 }
 
 
@@ -165,40 +190,44 @@ if (!$check->fetch()) {
 // UPDATE WORKSPACE
 // =====================================
 
-$update = $conn->prepare("
-UPDATE workspaces SET
-    workspace_name = ?,
-    description = ?,
-    city = ?,
-    area = ?,
-    internet_quality = ?,
-    electricity_status = ?,
-    seating = ?,
-    hours_from = ?,
-    hours_to = ?,
-    quietness_level = ?,
-    ladies_area = ?,
-    price_per_hour = ?,
-    whatsapp = ?
-WHERE id = ?
-");
+try {
+    $update = $conn->prepare("
+    UPDATE workspaces SET
+        workspace_name = ?,
+        description = ?,
+        city = ?,
+        area = ?,
+        internet_quality = ?,
+        electricity_status = ?,
+        seating = ?,
+        hours_from = ?,
+        hours_to = ?,
+        quietness_level = ?,
+        ladies_area = ?,
+        price_per_hour = ?,
+        whatsapp = ?
+    WHERE id = ?
+    ");
 
-$update->execute([
-    $workspace_name,
-    $description,
-    $city,
-    $area,
-    $internet_quality,
-    $electricity_status,
-    $seating,
-    $hours_from,
-    $hours_to,
-    $quietness_level,
-    $ladies_area,
-    $price_per_hour,
-    $whatsapp,
-    $workspace_id
-]);
+    $update->execute([
+        $workspace_name,
+        $description,
+        $city,
+        $area,
+        $internet_quality,
+        $electricity_status,
+        $seating,
+        $hours_from,
+        $hours_to,
+        $quietness_level,
+        $ladies_area,
+        $price_per_hour,
+        $whatsapp,
+        $workspace_id
+    ]);
+} catch (PDOException $e) {
+    response(false, "Database error while updating workspace: " . $e->getMessage(), null, "DB_ERROR", 500);
+}
 
 
 // =====================================
@@ -226,34 +255,54 @@ if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
     $del = $conn->prepare("DELETE FROM workspace_images WHERE workspace_id = ?");
     $del->execute([$workspace_id]);
 
-    for ($i = 0; $i < $fileCount; $i++) {
+    try {
+        for ($i = 0; $i < $fileCount; $i++) {
 
-        $name = is_array($images['name']) ? $images['name'][$i] : $images['name'];
-        $tmp  = is_array($images['tmp_name']) ? $images['tmp_name'][$i] : $images['tmp_name'];
+            $name = is_array($images['name']) ? $images['name'][$i] : $images['name'];
+            $tmp  = is_array($images['tmp_name']) ? $images['tmp_name'][$i] : $images['tmp_name'];
 
-        if (!$tmp) {
-            continue;
+            $errorCode = is_array($images['error']) ? $images['error'][$i] : $images['error'];
+
+            if ($errorCode !== UPLOAD_ERR_OK) {
+                response(false, "Image upload error (PHP code {$errorCode}) for file: {$name}", null, "UPLOAD_ERROR_CODE", 422);
+            }
+
+            if (!$tmp) {
+                continue;
+            }
+
+            $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+
+            if (!in_array($ext, $allowed)) {
+                response(false, "Invalid image type", null, "INVALID_FILE", 422);
+            }
+
+            $fileName = time() . "_" . $i . "." . $ext;
+            $targetPath = $uploadDir . $fileName;
+
+            if (!is_dir($uploadDir)) {
+                response(false, "Upload folder does not exist: {$uploadDir}", null, "UPLOAD_DIR_MISSING", 500);
+            }
+
+            if (!is_writable($uploadDir)) {
+                response(false, "Upload folder is not writable: {$uploadDir}", null, "UPLOAD_DIR_NOT_WRITABLE", 500);
+            }
+
+            if (!move_uploaded_file($tmp, $targetPath)) {
+                $lastError = error_get_last();
+                $detail = $lastError ? $lastError['message'] : 'unknown reason';
+                response(false, "Failed to upload image ({$name}): {$detail}", null, "UPLOAD_FAILED", 500);
+            }
+
+            $img = $conn->prepare("
+                INSERT INTO workspace_images (workspace_id, image_path)
+                VALUES (?, ?)
+            ");
+
+            $img->execute([$workspace_id, $fileName]);
         }
-
-        $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-
-        if (!in_array($ext, $allowed)) {
-            response(false, "Invalid image type", null, "INVALID_FILE", 422);
-        }
-
-        $fileName = time() . "_" . $i . "." . $ext;
-        $targetPath = $uploadDir . $fileName;
-
-        if (!move_uploaded_file($tmp, $targetPath)) {
-            response(false, "Failed to upload image", null, "UPLOAD_FAILED", 500);
-        }
-
-        $img = $conn->prepare("
-            INSERT INTO workspace_images (workspace_id, image_path)
-            VALUES (?, ?)
-        ");
-
-        $img->execute([$workspace_id, $fileName]);
+    } catch (PDOException $e) {
+        response(false, "Database error while saving images: " . $e->getMessage(), null, "DB_ERROR", 500);
     }
 }
 

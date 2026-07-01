@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

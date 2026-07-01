@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 29, 2026 at 12:00 PM
+-- Generation Time: Jul 01, 2026 at 02:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -76,7 +76,8 @@ INSERT INTO `reviews` (`id`, `user_id`, `workspace_id`, `rating`, `comment`, `cr
 (9, 18, 2, 4, 'good', '2026-06-14 02:40:04'),
 (10, 18, 1, 5, 'Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing on work.', '2026-06-14 02:40:19'),
 (11, 20, 2, 4, 'WOW', '2026-06-28 08:06:16'),
-(13, 21, 3, 4, 'Perfect for focusing on work.', '2026-06-29 08:43:05');
+(13, 21, 3, 4, 'Perfect for focusing on work.', '2026-06-29 08:43:05'),
+(18, 25, 6, 5, 'Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing on work.', '2026-07-01 00:30:34');
 
 -- --------------------------------------------------------
 
@@ -117,10 +118,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `avatar`, `creat
 (17, 'Waed Alsoufi', 'waed.alsoufi@gmail.com', '$2y$10$LM9VR/x/x7vUncTm1cXaJOCaat5dfZssEEHXIs8RIxuCoqcoGVPVu', 'user', 'avatar.png', '2026-06-03 14:05:17', '2026-06-03 14:05:17'),
 (18, 'alaa', 'alaa70013@gmail.com', '$2y$10$vb3cKj9yFGwPOGG7Yjsm3.48THvEcjab/Obz9dt.e5ssHng/jAcX6', 'user', 'avatar.png', '2026-06-12 10:18:37', '2026-06-12 10:18:37'),
 (19, 'WAED', 'waed43@gmail.com', '$2y$10$PhrgYUrjCl9MtUdhJIG7EetjMyK9okBarfp4/.5bFTwWvUM94nBEm', 'user', 'avatar.png', '2026-06-14 02:05:07', '2026-06-14 02:05:07'),
-(20, 'Waed :)', 'waed70013@gmail.com', '$2y$10$tlxC5kQO7OMBCpM4Dnr33.tKjnKCIY.oexF0JaDAd79Qm7IshCDW2', 'user', 'user_20_1782719855.jpeg', '2026-06-28 08:03:52', '2026-06-29 08:07:53'),
+(20, 'Waed :)', 'waed70013@gmail.com', '$2y$10$tlxC5kQO7OMBCpM4Dnr33.tKjnKCIY.oexF0JaDAd79Qm7IshCDW2', 'admin', 'user_20_1782719855.jpeg', '2026-06-28 08:03:52', '2026-07-01 10:04:57'),
 (21, 'alaa ahmed', 'alaaahmed@gmail.com', '$2y$10$o8tNXvzWBPcfPwRQyvSMgOiwRAViUcfUey9tD4fcbfNgkns6uG/Me', 'user', 'avatar.png', '2026-06-29 08:41:53', '2026-06-29 08:41:53'),
 (22, 'محمد طارق', 'tarq013@gmail.com', '$2y$10$YqRv1wfYVPeopGi14fqvAO7ficr2BqAtxsy3IC0s/hU6wJElkybKS', 'user', 'avatar.png', '2026-06-29 09:19:32', '2026-06-29 09:19:32'),
-(23, 'محمد طارق', 'ttttttssss3@gmail.com', '$2y$10$g.IAKrehCANUNY8Xq.aWLOPbUQPffsHzFQFag8bA7hVWU4ZuwqcCG', 'user', 'avatar.png', '2026-06-29 09:20:09', '2026-06-29 09:20:09');
+(23, 'محمد طارق', 'ttttttssss3@gmail.com', '$2y$10$g.IAKrehCANUNY8Xq.aWLOPbUQPffsHzFQFag8bA7hVWU4ZuwqcCG', 'user', 'avatar.png', '2026-06-29 09:20:09', '2026-06-29 09:20:09'),
+(24, 'owner', 'owner70013@gmail.com', '$2y$10$1Oz9VhaxqgiPXZ9i5CeVoemgagVryxUWwytOe6XfE6i2uXnRC0LtS', 'owner', 'avatar.png', '2026-06-30 11:20:36', '2026-06-30 11:20:36'),
+(25, 'NOUR', 'nour70013@gmail.com', '$2y$10$3gXKs9OJGVEpt8nfbV9l2esNj5ZhvS4NYRYl4hmU8VbCF2eU6MWbW', 'owner', 'avatar.png', '2026-07-01 00:17:24', '2026-07-01 06:27:33');
 
 -- --------------------------------------------------------
 
@@ -156,13 +159,14 @@ CREATE TABLE `workspaces` (
 
 INSERT INTO `workspaces` (`id`, `owner_id`, `workspace_name`, `description`, `city`, `area`, `internet_quality`, `electricity_status`, `seating`, `hours_from`, `hours_to`, `quietness_level`, `ladies_area`, `price_per_hour`, `whatsapp`, `avg_rating`, `status`, `approved_at`, `created_at`) VALUES
 (1, 16, 'Focus Hub', 'A modern coworking space for productivity', 'North', 'Al-Rimal', 'Fast', '24/7', 30, '08:00:00', '22:00:00', 'quiet', 0, 5.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:23:29'),
-(2, 16, 'Creative Hub', 'A modern coworking space for productivity', 'North', 'Sheikh Radwan', 'Very Fast', 'Available', 30, '08:00:00', '22:00:00', 'normal', 0, 10.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:31:38'),
+(2, 25, 'Creative Hub', 'A modern coworking space for productivity', 'North', 'Sheikh Radwan', 'Very Fast', 'Available', 30, '08:00:00', '22:00:00', 'normal', 0, 10.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:31:38'),
 (3, 16, 'Study Corner', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Fast', 'Available', 30, '08:00:00', '22:00:00', 'very_quiet', 1, 7.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:31:57'),
 (4, 16, 'Tech Spot', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:32:14'),
-(5, 16, 'OpenGrid', 'A modern coworking space for productivity', 'North', 'Al-Rimal', 'Fast', '24/7', 30, '08:00:00', '22:00:00', 'quiet', 0, 5.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
-(6, 16, 'Spark Station', 'A modern coworking space for productivity', 'North', 'Sheikh Radwan', 'Very Fast', 'Available', 30, '08:00:00', '22:00:00', 'normal', 0, 10.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
+(5, 25, 'OpenGrid', 'A modern coworking space for productivity', 'North', 'Al-Rimal', 'Fast', '24/7', 30, '08:00:00', '22:00:00', 'quiet', 0, 5.00, '+972970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
+(6, 25, 'Spark Station', 'A modern coworking space for productivity', 'North', 'Sheikh Radwan', 'Very Fast', 'Available', 30, '08:00:00', '22:00:00', 'normal', 0, 10.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
 (7, 16, 'Grid Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Fast', 'Available', 30, '08:00:00', '22:00:00', 'very_quiet', 1, 7.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
-(8, 16, 'Nexus Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01');
+(8, 16, 'Nexus Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
+(12, 25, 'Hope Hub', 'A modern coworking space for productivity', 'South', 'Mawasi Khan Younis', 'Fast', 'Available', 10, '08:39:00', '14:40:00', 'very_quiet', 1, 5.00, '+97259982398', 0.00, 'pending', NULL, '2026-07-01 11:40:42');
 
 -- --------------------------------------------------------
 
@@ -221,7 +225,12 @@ INSERT INTO `workspace_images` (`id`, `workspace_id`, `image_path`, `created_at`
 (47, 8, '1780468335_1.jpeg', '2026-06-14 15:11:32'),
 (48, 8, '1780468335_2.jpeg', '2026-06-14 15:11:32'),
 (49, 8, '1780468335_3.jpeg', '2026-06-14 15:11:32'),
-(50, 8, '1780468335_4.jpeg', '2026-06-14 15:11:32');
+(50, 8, '1780468335_4.jpeg', '2026-06-14 15:11:32'),
+(61, 12, '1782906042_0.jpeg', '2026-07-01 11:40:42'),
+(62, 12, '1782906043_1.jpeg', '2026-07-01 11:40:43'),
+(63, 12, '1782906043_2.jpeg', '2026-07-01 11:40:43'),
+(64, 12, '1782906043_3.jpeg', '2026-07-01 11:40:43'),
+(65, 12, '1782906043_4.jpeg', '2026-07-01 11:40:43');
 
 --
 -- Indexes for dumped tables
@@ -284,25 +293,25 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `workspaces`
 --
 ALTER TABLE `workspaces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `workspace_images`
 --
 ALTER TABLE `workspace_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables

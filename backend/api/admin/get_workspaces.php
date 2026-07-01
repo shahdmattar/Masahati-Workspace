@@ -1,17 +1,24 @@
 <?php
 
 ob_start(); // buffer output so stray PHP warnings never break the JSON response
+// API Endpoint: Get all workspaces for admin (optionally filtered by status)
+// Steps:
+// - Validate JWT token
+// - Check role = admin
+// - Fetch workspaces (+ owner name + rating + review count + images)
+// - Optional ?status=pending|approved|rejected filter
+// - Return response
 
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 header("Content-Type: application/json");
+
 require_once "../config/Database.php";
 require_once "../config/cors.php";
 require_once "../config/jwt.php";
 require_once "../helpers/response.php";
+
 $conn = (new Database())->getConnection();
-$jwt = new JwtHandler();
+$jwt  = new JwtHandler();
 
 
 // =====================================
@@ -25,7 +32,7 @@ if (!isset($headers['Authorization'])) {
 }
 
 $token = str_replace("Bearer ", "", $headers['Authorization']);
-$user = $jwt->validate($token);
+$user  = $jwt->validate($token);
 
 if (!$user) {
     response(false, "Invalid token", null, "INVALID_TOKEN", 401);
@@ -41,81 +48,58 @@ if (!isset($user->role) || $user->role !== 'admin') {
 }
 
 
-
 // =====================================
-// GET PENDING WORKSPACES
+// STATUS FILTER
 // =====================================
 
-$stmt = $conn->prepare("
-    SELECT 
+$status = $_GET['status'] ?? 'all';
+$allowedStatus = ['all', 'pending', 'approved', 'rejected'];
+
+if (!in_array($status, $allowedStatus)) {
+    response(false, "Invalid status filter", null, "INVALID_STATUS", 422);
+}
+
+$sql = "
+    SELECT
         w.id,
         w.owner_id,
         u.name AS owner_name,
         w.workspace_name,
         w.city,
         w.area,
-        w.internet_quality AS internet,
-        w.electricity_status AS electricity,
+        w.internet_quality,
+        w.electricity_status,
         w.seating,
         w.hours_from,
         w.hours_to,
-        w.quietness_level AS quietness,
+        w.quietness_level,
         w.ladies_area,
-        w.price_per_hour AS price,
+        w.price_per_hour,
         w.whatsapp,
-        w.created_at
+        w.status,
+        w.created_at,
+        ROUND(AVG(r.rating), 1) AS average_rating,
+        COUNT(r.id) AS total_reviews
     FROM workspaces w
     JOIN users u ON u.id = w.owner_id
-    WHERE w.status = 'pending'
-    ORDER BY w.id DESC
-");
+    LEFT JOIN reviews r ON r.workspace_id = w.id
+";
 
-$stmt->execute();
-$workspaces = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$params = [];
 
-
-// =====================================
-// IF EMPTY
-// =====================================
-
-if (empty($workspaces)) {
-    response(true, "No pending workspaces", [], null, 200);
+if ($status !== 'all') {
+    $sql .= " WHERE w.status = ? ";
+    $params[] = $status;
 }
 
+$sql .= " GROUP BY w.id ORDER BY w.id DESC ";
 
-// =====================================
-// GET IMAGES
-// =====================================
+$stmt = $conn->prepare($sql);
+$stmt->execute($params);
+$workspaces = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$ids = array_column($workspaces, 'id');
-
-$in = str_repeat('?,', count($ids) - 1) . '?';
-
-$imgStmt = $conn->prepare("
-    SELECT workspace_id, image_path 
-    FROM workspace_images 
-    WHERE workspace_id IN ($in)
-");
-
-$imgStmt->execute($ids);
-$images = $imgStmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-// =====================================
-// BASE URL
-// =====================================
-
-$baseUrl = "http://localhost/Masahati-Workspace/backend/uploads/";
-
-
-// =====================================
-// GROUP IMAGES
-// =====================================
-
-$imagesMap = [];
-
-foreach ($images as $img) {
-    $imagesMap[$img['workspace_id']][] = $baseUrl . $img['image_path'];
+if (empty($workspaces)) {
+    response(true, "No workspaces found", [], null, 200);
 }
 
 
@@ -123,8 +107,28 @@ foreach ($images as $img) {
 // ATTACH IMAGES
 // =====================================
 
+$ids = array_column($workspaces, 'id');
+$in  = str_repeat('?,', count($ids) - 1) . '?';
+
+$imgStmt = $conn->prepare("
+    SELECT workspace_id, image_path
+    FROM workspace_images
+    WHERE workspace_id IN ($in)
+");
+$imgStmt->execute($ids);
+$images = $imgStmt->fetchAll(PDO::FETCH_ASSOC);
+
+$baseUrl = "http://localhost/Masahati-Workspace/backend/uploads/";
+
+$imagesMap = [];
+foreach ($images as $img) {
+    $imagesMap[$img['workspace_id']][] = $baseUrl . $img['image_path'];
+}
+
 foreach ($workspaces as &$ws) {
-    $ws['images'] = $imagesMap[$ws['id']] ?? [];
+    $ws['images']         = $imagesMap[$ws['id']] ?? [];
+    $ws['average_rating'] = $ws['average_rating'] ? (float)$ws['average_rating'] : 0;
+    $ws['total_reviews']  = (int)$ws['total_reviews'];
 }
 
 
@@ -132,4 +136,4 @@ foreach ($workspaces as &$ws) {
 // RESPONSE
 // =====================================
 
-response(true, "Pending workspaces fetched successfully", $workspaces, null, 200);
+response(true, "Workspaces fetched successfully", $workspaces, null, 200);

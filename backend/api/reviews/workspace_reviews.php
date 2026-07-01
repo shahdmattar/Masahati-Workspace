@@ -1,4 +1,6 @@
 <?php
+
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
 // API Endpoint: Get workspace reviews + average rating
 // Steps:
 // - Validate request method (GET)

@@ -99,33 +99,9 @@
     });
   }
 
-  // Populate User Info dynamically from localStorage
-  try {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      const user = JSON.parse(userData);
-      if (user && user.name) {
-        // Update name in top bar trigger
-        const profileNameEl = document.querySelector(".profile-trigger h5");
-        if (profileNameEl) {
-          profileNameEl.textContent = user.name;
-        }
-        // Update name in dropdown header
-        const dropdownHeaderEl = document.querySelector(".dropdown-username-header");
-        if (dropdownHeaderEl) {
-          dropdownHeaderEl.textContent = user.name;
-        }
-      }
-      if (user && user.image) {
-        const profileImgEl = document.querySelector(".profile-trigger img");
-        if (profileImgEl) {
-          profileImgEl.src = user.image;
-        }
-      }
-    }
-  } catch (err) {
-    console.error("Error loading user data:", err);
-  }
+  // NOTE: name + avatar in the top navbar are handled centrally by
+  // navbar-user.js (loaded on every admin/owner page), so no user-info
+  // population logic lives here anymore.
 
   // Handle Logout session clearing
   const logoutBtn = document.querySelector(".logout-text");

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <script src="../js/auth-guard.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>dashbord</title>
   <!--  -->
@@ -53,20 +54,20 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="pending-workspace.html" class="menu-link menu-link-has-badge" target="_blank" rel="noopener noreferrer">
+              <a href="pending-workspace.html" class="menu-link menu-link-has-badge">
                 <img src="../assets/images/icon-pending-workspaces.svg" alt="" class="menu-icon-img" width="24" height="24" />
                 <span class="menu-label">Pending Workspaces</span>
                 <span class="menu-badge">5</span>
               </a>
             </li>
             <li class="menu-item">
-              <a href="manage-workspaces.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+              <a href="manage-workspaces.html" class="menu-link">
                 <img src="../assets/images/icon-manage-workspaces.svg" alt="" class="menu-icon-img" width="24" height="24" />
                 <span class="menu-label">Manage Workspaces</span>
               </a>
             </li>
             <li class="menu-item">
-              <a href="manage-reviews.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+              <a href="manage-reviews.html" class="menu-link">
                 <span class="bx bx-star"></span>
                 <span class="menu-label">Manage Reviews</span>
               </a>
@@ -230,7 +231,7 @@
               </h3>
               <div class="group-flex ">
                 <div class="colum-status">
-                  <a href="manage-workspaces.html" class="card-status-admin card-action-link" target="_blank" rel="noopener noreferrer">
+                  <a href="manage-workspaces.html" class="card-status-admin card-action-link">
                     <div class="icon-status bg-1">
                       <img src="../assets/images/Vector.png" alt="" />
                     </div>
@@ -246,7 +247,7 @@
                   </a>
                 </div>
                 <div class="colum-status">
-                  <a href="manage-reviews.html" class="card-status-admin card-action-link" target="_blank" rel="noopener noreferrer">
+                  <a href="manage-reviews.html" class="card-status-admin card-action-link">
                     <div class="icon-status bg-3">
                       <img src="../assets/images/SVG (3).png" alt="" />
                     </div>
@@ -263,7 +264,7 @@
                   </a>
                 </div>
                 <div class="colum-status">
-                  <a href="pending-workspace.html" class="card-status-admin card-action-link" target="_blank" rel="noopener noreferrer">
+                  <a href="pending-workspace.html" class="card-status-admin card-action-link">
                     <div class="icon-status bg-4">
                       <img src="../assets/images/SVG (2).png" alt="" />
                     </div>
@@ -293,7 +294,9 @@
     </div>
   </div>
   <!-- ebd WapperAdmin -->
+  <script src="../js/navbar-user.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
   <script>
     const sidebarToggleBtns = document.querySelectorAll(".sidebar-toggle");
     const sidebar = document.querySelector(".sidebar");

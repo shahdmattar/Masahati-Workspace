@@ -3,10 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <script src="../js/auth-guard.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Workspace – Masahati</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -44,7 +45,7 @@
         <div class="sidebar-content">
           <ul class="menu-list">
             <li class="menu-item">
-              <a href="dashboard.html" class="menu-link">
+              <a href="dashboard.html" class="menu-link active">
                 <span class="bx bx-grid-alt"></span>
                 <span class="menu-label">Dashboard</span>
               </a>
@@ -56,7 +57,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="add-workspace.html" class="menu-link active">
+              <a href="add-workspace.html" class="menu-link">
                 <span class="bx bx-plus-circle"></span>
                 <span class="menu-label">Add workspace</span>
               </a>
@@ -65,6 +66,12 @@
               <a href="reviews.html" class="menu-link">
                 <span class="bx bx-star"></span>
                 <span class="menu-label">Review</span>
+              </a>
+            </li>
+            <li class="home-page">
+              <a href="../index.html" class="menu-link">
+                <span class="bx bx-home"></span>
+                <span class="menu-label">Home Page</span>
               </a>
             </li>
           </ul>
@@ -120,15 +127,16 @@
         <div class="pad-all">
           <div class="card-marging-custome">
             <div class="flx-titl">
-     <div class="box-icon">
-<i class="fa-regular fa-building" style="font-size:28px;"></i>
-</div>       <div class="head-all-page">
+              <div class="box-icon">
+                <i class="fa-regular fa-building" style="font-size:28px;"></i>
+              </div>
+              <div class="head-all-page">
                 <h4>Add Workspace</h4>
                 <p>Fill in the details below to list your workspace on Masahati.</p>
               </div>
             </div>
 
-            <form class="form-add">
+            <form class="form-add" id="workspace-form" data-mode="create">
               <div class="flex-title-form">
                 <span class="number-page">1</span>
                 <span class="tst-page">Basic information</span>
@@ -136,7 +144,7 @@
               <div class="row-input">
                 <div class="all-input-faild">
                   <label>WorkSpaces Name <span class="star-color">*</span></label>
-                  <input type="text" placeholder="Enter workspace name" />
+                  <input type="text" id="workspace-name-input" placeholder="Enter workspace name" />
                 </div>
                 <div class="all-input-faild">
                   <div class="label-row">
@@ -191,77 +199,72 @@
                 <div class="all-input-faild">
                   <label><span class="bg-image"><i class="bx bx-wifi"></i></span> Internet Quality <span
                       class="star-color">*</span></label>
-                  <div class="dropdown" data-placeholder="Select quality">
+                  <div class="dropdown" id="internet-quality-dropdown" data-placeholder="Select quality">
                     <div class="dropdown-toggle">
                       <span class="dropdown-label">Select quality</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div>Excellent</div>
+                      <div>Very Fast</div>
+                      <div>Fast</div>
                       <div>Good</div>
-                      <div>Average</div>
-                      <div>Poor</div>
                     </div>
                   </div>
                 </div>
                 <div class="all-input-faild">
                   <label><span class="bg-image"><i class="fa-solid fa-bolt"></i></span> Electricity
                     Availability <span class="star-color">*</span></label>
-                  <div class="dropdown" data-placeholder="Select availability">
+                  <div class="dropdown" id="electricity-dropdown" data-placeholder="Select availability">
                     <div class="dropdown-toggle">
                       <span class="dropdown-label">Select availability</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div>24/7 Available</div>
-                      <div>Daily Scheduled Hours</div>
-                      <div>Limited Hours</div>
-                      <div>Generator Backup</div>
+                      <div>Available</div>
+                      <div>24/7</div>
+                      <div>Backup Available</div>
                     </div>
                   </div>
                 </div>
                 <div class="all-input-faild">
                   <label><span class="bg-image"><i class="fa-solid fa-desktop"></i></span> Seating capactiy
                     <span class="star-color">*</span></label>
-                  <input type="text" placeholder="Enter Number of Seats" />
+                  <input type="text" id="seating-input" placeholder="Enter Number of Seats" />
                 </div>
                 <div class="all-input-faild">
                   <label><span class="bg-image"><i class="fa-regular fa-clock"></i></span> Working Hours <span
                       class="star-color">*</span></label>
                   <div class="box-number-click">
-                    <input type="time" />
-                    <input type="time" />
+                    <input type="time" id="hours-from-input" />
+                    <input type="time" id="hours-to-input" />
                   </div>
                 </div>
                 <div class="all-input-faild">
                   <label><span class="bg-image"><i class="fa-solid fa-volume-xmark"></i></span> Quietness Level <span
                       class="star-color">*</span></label>
-                  <div class="dropdown" data-placeholder="Select level">
+                  <div class="dropdown" id="quietness-dropdown" data-placeholder="Select level">
                     <div class="dropdown-toggle">
                       <span class="dropdown-label">Select level</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div>Very Quiet</div>
-                      <div>Quiet</div>
-                      <div>Moderate</div>
-                      <div>Noisy</div>
+                      <div data-value="very_quiet">Very Quiet</div>
+                      <div data-value="quiet">Quiet</div>
+                      <div data-value="normal">Normal</div>
                     </div>
                   </div>
                 </div>
                 <div class="all-input-faild">
                   <label><span class="bg-image"><i class="fa-regular fa-user"></i></span> Ladies Area <span
                       class="star-color">*</span></label>
-                  <div class="dropdown" data-placeholder="Select status">
+                  <div class="dropdown" id="ladies-area-dropdown" data-placeholder="Select status">
                     <div class="dropdown-toggle">
                       <span class="dropdown-label">Select status</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div>Yes - Dedicated Area</div>
-                      <div>Yes - Shared Section</div>
-                      <div>No</div>
-                      <div>Not Applicable</div>
+                      <div>Available</div>
+                      <div>Not Available</div>
                     </div>
                   </div>
                 </div>
@@ -272,8 +275,8 @@
                     <span class="star-color">*</span></label>
                   <div class="price-input-wrap">
                     <span class="price-currency">$</span>
-                    <input type="text" class="price-value-input" placeholder="Enter price" inputmode="decimal"
-                      aria-label="Price per hour" />
+                    <input type="text" class="price-value-input" id="price-input" placeholder="Enter price"
+                      inputmode="decimal" aria-label="Price per hour" />
                     <!-- <span class="price-suffix">/hour</span> -->
                   </div>
                 </div>
@@ -294,7 +297,8 @@
                           <img src="https://flagcdn.com/w20/ps.png" class="flag-img" alt="Palestine"> Palestine (+972)
                         </li>
                         <li data-code="+966" data-flag-url="https://flagcdn.com/w20/sa.png">
-                          <img src="https://flagcdn.com/w20/sa.png" class="flag-img" alt="Saudi Arabia"> Saudi Arabia (+966)
+                          <img src="https://flagcdn.com/w20/sa.png" class="flag-img" alt="Saudi Arabia"> Saudi Arabia
+                          (+966)
                         </li>
                         <li data-code="+20" data-flag-url="https://flagcdn.com/w20/eg.png">
                           <img src="https://flagcdn.com/w20/eg.png" class="flag-img" alt="Egypt"> Egypt (+20)
@@ -336,7 +340,8 @@
                       <input type="text" name="country_code" value="+972" class="input-small country-code-input"
                         style="display: none;" readonly />
                     </div>
-                    <input class="input-big" type="text" placeholder="Enter WhatsApp number" />
+                    <input class="input-big" type="text" id="whatsapp-number-input"
+                      placeholder="Enter WhatsApp number" />
                   </div>
                 </div>
               </div>
@@ -382,7 +387,8 @@
                 </div>
               </div>
               <div class="but-from-action">
-                <button type="button" class="but-cancle" onclick="window.location.href='my-workspace.html'">Cancel</button>
+                <button type="button" class="but-cancle"
+                  onclick="window.location.href='my-workspace.html'">Cancel</button>
                 <div class="but-submit-wrap">
                   <button type="submit" class="but-send">
                     Submit for Review <span class="bx bx-send"></span>
@@ -399,13 +405,12 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script src="../js/navbar-user.js"></script>
   <script src="../js/admin-main.js"></script>
+  <script src="../js/workspace-location.js"></script>
+  <script src="../js/workspace-form.js"></script>
   <script src="../js/admin-layout.js"></script>
   <script src="../js/owner.js"></script>
 </body>
 
 </html>
-
-
-
-

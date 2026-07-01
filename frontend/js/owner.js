@@ -1,13 +1,6 @@
 /* Add Workspace page actions */
 // Dark mode is handled globally in admin-layout.js
-
-const addWorkspaceForm = document.querySelector('.form-add');
-if (addWorkspaceForm) {
-  addWorkspaceForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    window.open('about:blank', '_blank', 'noopener,noreferrer');
-  });
-}
+// Real submit handling is in workspace-form.js
 
 document.querySelectorAll('.img-upload-box').forEach((box) => {
   const input = box.querySelector('input[type="file"]');

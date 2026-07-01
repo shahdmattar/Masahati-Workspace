@@ -1,4 +1,6 @@
 <?php
+
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
 // Shows all PHP errors  for debugging
 error_reporting(E_ALL);
 // sets response type to JSON

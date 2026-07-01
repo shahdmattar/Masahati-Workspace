@@ -1,4 +1,6 @@
 <?php
+
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
 // API Endpoint: Get logged-in user stats (favorites count + reviews written count)
 
 error_reporting(E_ALL);

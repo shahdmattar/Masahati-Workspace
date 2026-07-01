@@ -1,4 +1,6 @@
 <?php
+
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
 // API Endpoint: Get all reviews for workspaces owned by the logged-in owner
 // Steps:
 // - Validate JWT token
@@ -54,7 +56,11 @@ $stmt = $conn->prepare("
         u.name AS user_name,
         u.avatar,
         w.id   AS workspace_id,
-        w.workspace_name
+        w.workspace_name,
+        w.city,
+        w.area,
+        (SELECT wi.image_path FROM workspace_images wi
+            WHERE wi.workspace_id = w.id ORDER BY wi.id ASC LIMIT 1) AS workspace_image
     FROM reviews r
     JOIN users      u ON r.user_id      = u.id
     JOIN workspaces w ON r.workspace_id = w.id
@@ -64,6 +70,14 @@ $stmt = $conn->prepare("
 
 $stmt->execute([$ownerId]);
 $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$uploadsBaseUrl = "http://localhost/Masahati-Workspace/backend/uploads/";
+foreach ($reviews as &$rev) {
+    $rev['workspace_image'] = $rev['workspace_image']
+        ? $uploadsBaseUrl . $rev['workspace_image']
+        : null;
+}
+unset($rev);
 
 
 // =====================
@@ -87,10 +101,23 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
 
 
 // =====================
+// 3b. ALL OWNER WORKSPACES (for the filter dropdown, even ones with no reviews yet)
+// =====================
+$wsStmt = $conn->prepare("
+    SELECT id AS workspace_id, workspace_name
+    FROM workspaces
+    WHERE owner_id = ? AND status = 'approved'
+    ORDER BY workspace_name ASC
+");
+$wsStmt->execute([$ownerId]);
+$workspaces = $wsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+// =====================
 // 4. RESPONSE
 // =====================
 response(true, "Owner reviews fetched successfully", [
-    "stats"   => [
+    "stats"      => [
         "total_reviews" => (int)$stats['total_reviews'],
         "avg_rating"    => round((float)$stats['avg_rating'], 1),
         "five_star"     => (int)$stats['five_star'],
@@ -99,5 +126,6 @@ response(true, "Owner reviews fetched successfully", [
         "two_star"      => (int)$stats['two_star'],
         "one_star"      => (int)$stats['one_star'],
     ],
-    "reviews" => $reviews,
+    "reviews"    => $reviews,
+    "workspaces" => $workspaces,
 ], null, 200);

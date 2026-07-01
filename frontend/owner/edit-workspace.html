@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <script src="../js/auth-guard.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <!--  -->
@@ -40,28 +41,21 @@
           </button>
         </div>
         <div class="sidebar-content">
-          <!-- Search Form -->
-          <!-- <form action="#" class="search-form">
-            <span class="material-symbols-rounded">search</span>
-            <input type="search" placeholder="Search..." required />
-          </form> -->
-          <!-- Sidebar Menu -->
           <ul class="menu-list">
             <li class="menu-item">
-              <a href="dashboard.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+              <a href="dashboard.html" class="menu-link active">
                 <span class="bx bx-grid-alt"></span>
                 <span class="menu-label">Dashboard</span>
               </a>
             </li>
-
             <li class="menu-item">
-              <a href="edit-workspace.html" class="menu-link">
+              <a href="my-workspace.html" class="menu-link">
                 <span class="bx bx-buildings"></span>
                 <span class="menu-label">My workspace</span>
               </a>
             </li>
             <li class="menu-item">
-              <a href="add-workspace.html" class="menu-link" target="_blank" rel="noopener noreferrer">
+              <a href="add-workspace.html" class="menu-link">
                 <span class="bx bx-plus-circle"></span>
                 <span class="menu-label">Add workspace</span>
               </a>
@@ -72,7 +66,12 @@
                 <span class="menu-label">Review</span>
               </a>
             </li>
-
+            <li class="home-page">
+              <a href="../index.html" class="menu-link">
+                <span class="bx bx-home"></span>
+                <span class="menu-label">Home Page</span>
+              </a>
+            </li>
           </ul>
         </div>
         <!-- Sidebar Footer -->
@@ -163,7 +162,7 @@
               </div>
             </div>
 
-            <form class="form-add">
+            <form class="form-add" id="workspace-form" data-mode="edit">
               <div class="flex-title-form">
                 <span class="number-page">1</span>
                 <span class="tst-page">Basic information</span>
@@ -173,7 +172,8 @@
                   <label for="">
                     WorkSpaces Name <span class="star-color">*</span>
                   </label>
-                  <input type="text" value="Focus Hub" placeholder="Enter workspace name..." />
+                  <input type="text" id="workspace-name-input" value="Focus Hub"
+                    placeholder="Enter workspace name..." />
                 </div>
                 <div class="all-input-faild">
                   <div class="label-row">
@@ -182,12 +182,8 @@
                     </label>
                     <span class="char-counter" id="description-counter">0/500</span>
                   </div>
-                  <textarea
-                    id="workspace-description"
-                    class="description-field"
-                    maxlength="500"
-                    placeholder="Enter workspace description..."
-                  >A modern and quiet coworking space designed for productivity and focus</textarea>
+                  <textarea id="workspace-description" class="description-field" maxlength="500"
+                    placeholder="Enter workspace description...">A modern and quiet coworking space designed for productivity and focus</textarea>
 
                 </div>
                 <div class="all-input-faild">
@@ -240,16 +236,15 @@
                   <label for="">
                     <span class="bx bx-wifi icon-lable"></span> Internt Quality <span class="star-color">*</span>
                   </label>
-                  <div class="dropdown">
+                  <div class="dropdown" id="internet-quality-dropdown">
                     <div class="dropdown-toggle">
-                      <span class="dropdown-label">Excellent</span>
+                      <span class="dropdown-label">Very Fast</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div class="active">Excellent</div>
+                      <div class="active">Very Fast</div>
+                      <div>Fast</div>
                       <div>Good</div>
-                      <div>Average</div>
-                      <div>Poor</div>
                     </div>
                   </div>
                 </div>
@@ -260,16 +255,15 @@
                       <img src="../assets/images/SVG (4).png" />
                     </span> Electricity Availability <span class="star-color">*</span>
                   </label>
-                  <div class="dropdown">
+                  <div class="dropdown" id="electricity-dropdown">
                     <div class="dropdown-toggle">
-                      <span class="dropdown-label">24/7 Available</span>
+                      <span class="dropdown-label">Available</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div class="active">24/7 Available</div>
-                      <div>Daily Scheduled Hours</div>
-                      <div>Limited Hours</div>
-                      <div>Generator Backup</div>
+                      <div class="active">Available</div>
+                      <div>24/7</div>
+                      <div>Backup Available</div>
                     </div>
                   </div>
                 </div>
@@ -280,7 +274,7 @@
                       <img src="../assets/images/SVG (5).png" />
                     </span> Seating capactiy <span class="star-color">*</span>
                   </label>
-                  <input type="text" value="30" placeholder="Enter Number of Stata" />
+                  <input type="text" id="seating-input" value="30" placeholder="Enter Number of Stata" />
                 </div>
                 <div class="all-input-faild">
                   <label for="">
@@ -289,8 +283,8 @@
                     </span> Working Hours <span class="star-color">*</span>
                   </label>
                   <div class="box-number-click">
-                    <input type="time" value="0:8" />
-                    <input type="time" />
+                    <input type="time" id="hours-from-input" value="08:00" />
+                    <input type="time" id="hours-to-input" />
                   </div>
                 </div>
                 <!-- ------- -->
@@ -300,16 +294,15 @@
                       <img src="../assets/images/SVG (7).png" />
                     </span> Quietness Level <span class="star-color">*</span>
                   </label>
-                  <div class="dropdown">
+                  <div class="dropdown" id="quietness-dropdown">
                     <div class="dropdown-toggle">
                       <span class="dropdown-label">Very Quiet</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div class="active">Very Quiet</div>
-                      <div>Quiet</div>
-                      <div>Moderate</div>
-                      <div>Noisy</div>
+                      <div class="active" data-value="very_quiet">Very Quiet</div>
+                      <div data-value="quiet">Quiet</div>
+                      <div data-value="normal">Normal</div>
                     </div>
                   </div>
                 </div>
@@ -320,16 +313,14 @@
                       <img src="../assets/images/SVG (8).png" />
                     </span> Ladies Area <span class="star-color">*</span>
                   </label>
-                  <div class="dropdown">
+                  <div class="dropdown" id="ladies-area-dropdown">
                     <div class="dropdown-toggle">
-                      <span class="dropdown-label">Yes - Dedicated Area</span>
+                      <span class="dropdown-label">Available</span>
                       <span class="bx bx-chevron-down arrow"></span>
                     </div>
                     <div class="dropdown-menu">
-                      <div class="active">Yes - Dedicated Area</div>
-                      <div>Yes - Shared Section</div>
-                      <div>No</div>
-                      <div>Not Applicable</div>
+                      <div class="active">Available</div>
+                      <div>Not Available</div>
                     </div>
                   </div>
                 </div>
@@ -343,7 +334,8 @@
                   </label>
                   <div class="price-input-wrap">
                     <span class="price-currency">$</span>
-                    <input type="text" class="price-value-input" value="5" inputmode="decimal" aria-label="Price per hour" />
+                    <input type="text" class="price-value-input" id="price-input" value="5" inputmode="decimal"
+                      aria-label="Price per hour" />
                     <span class="price-suffix">/hour</span>
                   </div>
                 </div>
@@ -410,7 +402,8 @@
                       <input type="text" name="country_code" value="+972" class="input-small country-code-input"
                         style="display: none;" readonly />
                     </div>
-                    <input class="input-big" type="text" placeholder="Enter WhatsApp number" />
+                    <input class="input-big" type="text" id="whatsapp-number-input"
+                      placeholder="Enter WhatsApp number" />
                   </div>
 
                 </div>
@@ -459,14 +452,15 @@
                 </div>
               </div>
               <div class="but-from-action">
-                <button type="button" class="but-cancle">Cancle</button>
+                <button type="button" class="but-cancle"
+                  onclick="window.location.href='my-workspace.html'">Cancle</button>
                 <div class="but-submit-wrap">
                   <button type="submit" class="but-send">
                     Submit for Review <span class="bx bx-send"></span>
                   </button>
                   <p class="but-from-action-note">
                     Your workspace will be reviewed by our team
-before it goes live.
+                    before it goes live.
                   </p>
                 </div>
               </div>
@@ -481,6 +475,11 @@ before it goes live.
   </div>
   <!-- ebd WapperAdmin -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script src="../js/navbar-user.js"></script>
+  <script src="../js/admin-main.js"></script>
+  <script src="../js/admin-layout.js"></script>
+  <script src="../js/workspace-location.js"></script>
+  <script src="../js/workspace-form.js"></script>
   <script src="../js/main.js"></script>
   <script>
     document.querySelectorAll('.card-uplaod').forEach(card => {

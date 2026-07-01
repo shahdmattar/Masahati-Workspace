@@ -1,4 +1,6 @@
 <?php
+
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
 // API Endpoint: Delete user review
 // Steps:
 // - Validate JWT token

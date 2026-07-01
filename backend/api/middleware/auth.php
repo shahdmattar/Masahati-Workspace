@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
+
 require_once "../config/jwt.php";
 require_once "../helpers/response.php";
 

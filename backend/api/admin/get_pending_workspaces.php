@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // buffer output so stray PHP warnings never break the JSON response
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -46,24 +48,26 @@ if (!isset($user->role) || $user->role !== 'admin') {
 
 $stmt = $conn->prepare("
     SELECT 
-        id,
-        owner_id,
-        workspace_name,
-        city,
-        area,
-        internet,
-        electricity,
-        seating,
-        hours_from,
-        hours_to,
-        quietness,
-        ladies_area,
-        price,
-        whatsapp,
-        created_at
-    FROM workspaces
-    WHERE status = 'pending'
-    ORDER BY id DESC
+        w.id,
+        w.owner_id,
+        u.name AS owner_name,
+        w.workspace_name,
+        w.city,
+        w.area,
+        w.internet_quality AS internet,
+        w.electricity_status AS electricity,
+        w.seating,
+        w.hours_from,
+        w.hours_to,
+        w.quietness_level AS quietness,
+        w.ladies_area,
+        w.price_per_hour AS price,
+        w.whatsapp,
+        w.created_at
+    FROM workspaces w
+    JOIN users u ON u.id = w.owner_id
+    WHERE w.status = 'pending'
+    ORDER BY w.id DESC
 ");
 
 $stmt->execute();

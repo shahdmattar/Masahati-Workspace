@@ -71,7 +71,6 @@ $ladies_area = $_POST['ladies_area'] ?? null;
 $price = $_POST['price'] ?? null;
 $whatsapp = $_POST['whatsapp'] ?? null;
 
-
 // =====================================
 // VALIDATION
 // =====================================
@@ -86,37 +85,60 @@ if (
 }
 
 
-// Internet ENUM
-$internet_quality = match ($internet) {
-    'Very Fast' => 'very_fast',
-    'Fast' => 'fast',
-    'Good' => 'good',
-    default => 'good'
-};
+// =====================================
+// INTERNET QUALITY
+// =====================================
+
+$allowedInternet = ['Very Fast', 'Fast', 'Good'];
+
+if (!in_array($internet, $allowedInternet)) {
+    response(false, "Invalid internet quality", null, "INVALID_INTERNET", 422);
+}
+
+$internet_quality = $internet;
 
 
-//  Electricity 
-$electricity_status = match ($electricity) {
-    'Available' => 'available',
-    '24/7' => '24_7',
-    'Backup Available' => 'backup',
-    default => 'available'
-};
+// =====================================
+// ELECTRICITY STATUS
+// =====================================
+
+$allowedElectricity = ['Available', '24/7', 'Backup Available'];
+
+if (!in_array($electricity, $allowedElectricity)) {
+    response(false, "Invalid electricity status", null, "INVALID_ELECTRICITY", 422);
+}
+
+$electricity_status = $electricity;
 
 
-// Quietness ENUM
-$quietness = match ($quietness) {
-    'Very Quiet' => 'very_quiet',
-    'Quiet' => 'quiet',
-    'Normal' => 'normal',
-    default => 'normal'
-};
+// =====================================
+// QUIETNESS LEVEL
+// =====================================
+
+$allowedQuietness = ['very_quiet', 'quiet', 'normal'];
+
+if (!in_array($quietness, $allowedQuietness)) {
+    response(false, "Invalid quietness level", null, "INVALID_QUIETNESS", 422);
+}
+
+$quietness_level = $quietness;
 
 
-// Ladies area
+// =====================================
+// LADIES AREA
+// =====================================
+
+if ($ladies_area !== 'Available' && $ladies_area !== 'Not Available') {
+    response(false, "Invalid ladies area value", null, "INVALID_LADIES_AREA", 422);
+}
+
 $ladies_area = ($ladies_area === 'Available') ? 1 : 0;
 
-// Price
+
+// =====================================
+// PRICE
+// =====================================
+
 $price_per_hour = $price;
 
 
@@ -155,7 +177,7 @@ $stmt->execute([
     $seating,
     $hours_from,
     $hours_to,
-    $quietness,
+    $quietness_level,
     $ladies_area,
     $price_per_hour,
     $whatsapp

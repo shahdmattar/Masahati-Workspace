@@ -2,6 +2,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 
 header("Content-Type: application/json");
 
@@ -15,7 +16,7 @@ $jwt = new JwtHandler();
 
 
 // =====================================
-// AUTH
+// AUTH (JWT)
 // =====================================
 
 $headers = getallheaders();
@@ -31,8 +32,13 @@ if (!$user) {
     response(false, "Invalid token", null, "INVALID_TOKEN", 401);
 }
 
+
+// =====================================
+// ROLE CHECK
+// =====================================
+
 if (!isset($user->role) || $user->role !== 'owner') {
-    response(false, "Access denied", null, "ACCESS_DENIED", 403);
+    response(false, "Only owners can update workspaces", null, "ACCESS_DENIED", 403);
 }
 
 $owner_id = $user->id;
@@ -48,11 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 
 // =====================================
-// GET DATA
+// GET FORM DATA
 // =====================================
 
 $workspace_id   = $_POST['workspace_id'] ?? null;
 $workspace_name = $_POST['workspace_name'] ?? null;
+$description    = $_POST['description'] ?? null;
 $city           = $_POST['city'] ?? null;
 $area           = $_POST['area'] ?? null;
 $internet       = $_POST['internet'] ?? null;
@@ -71,47 +78,69 @@ $whatsapp       = $_POST['whatsapp'] ?? null;
 // =====================================
 
 if (
-    !$workspace_id || !$workspace_name || !$city || !$area ||
-    !$internet || !$electricity || !$seating ||
-    !$hours_from || !$hours_to || !$quietness ||
-    !$ladies_area || !$price || !$whatsapp
+    !$workspace_id || !$workspace_name || !$description ||
+    !$city || !$area || !$internet || !$electricity ||
+    !$seating || !$hours_from || !$hours_to ||
+    !$quietness || !$ladies_area || !$price || !$whatsapp
 ) {
     response(false, "Missing fields", null, "MISSING_FIELDS", 422);
 }
 
 
 // =====================================
-// NORMALIZATION
+// INTERNET QUALITY
 // =====================================
 
-// Internet
-$internet_quality = match ($internet) {
-    'Very Fast' => 'very_fast',
-    'Fast' => 'fast',
-    'Good' => 'good',
-    default => 'good'
-};
+$allowedInternet = ['Very Fast', 'Fast', 'Good'];
 
-// Electricity
-$electricity_status = match ($electricity) {
-    'Available' => 'available',
-    '24/7' => '24_7',
-    'Backup Available' => 'backup',
-    default => 'available'
-};
+if (!in_array($internet, $allowedInternet)) {
+    response(false, "Invalid internet quality", null, "INVALID_INTERNET", 422);
+}
 
-// Quietness
-$quietness_level = match ($quietness) {
-    'Very Quiet' => 'very_quiet',
-    'Quiet' => 'quiet',
-    'Normal' => 'normal',
-    default => 'normal'
-};
+$internet_quality = $internet;
 
-// Ladies area
+
+// =====================================
+// ELECTRICITY STATUS
+// =====================================
+
+$allowedElectricity = ['Available', '24/7', 'Backup Available'];
+
+if (!in_array($electricity, $allowedElectricity)) {
+    response(false, "Invalid electricity status", null, "INVALID_ELECTRICITY", 422);
+}
+
+$electricity_status = $electricity;
+
+
+// =====================================
+// QUIETNESS LEVEL
+// =====================================
+
+$allowedQuietness = ['very_quiet', 'quiet', 'normal'];
+
+if (!in_array($quietness, $allowedQuietness)) {
+    response(false, "Invalid quietness level", null, "INVALID_QUIETNESS", 422);
+}
+
+$quietness_level = $quietness;
+
+
+// =====================================
+// LADIES AREA
+// =====================================
+
+if ($ladies_area !== 'Available' && $ladies_area !== 'Not Available') {
+    response(false, "Invalid ladies area value", null, "INVALID_LADIES_AREA", 422);
+}
+
 $ladies_area = ($ladies_area === 'Available') ? 1 : 0;
 
-// Price
+
+// =====================================
+// PRICE
+// =====================================
+
 $price_per_hour = $price;
 
 
@@ -120,7 +149,8 @@ $price_per_hour = $price;
 // =====================================
 
 $check = $conn->prepare("
-SELECT id FROM workspaces 
+SELECT id
+FROM workspaces
 WHERE id = ? AND owner_id = ?
 ");
 
@@ -138,6 +168,7 @@ if (!$check->fetch()) {
 $update = $conn->prepare("
 UPDATE workspaces SET
     workspace_name = ?,
+    description = ?,
     city = ?,
     area = ?,
     internet_quality = ?,
@@ -154,6 +185,7 @@ WHERE id = ?
 
 $update->execute([
     $workspace_name,
+    $description,
     $city,
     $area,
     $internet_quality,
@@ -170,7 +202,7 @@ $update->execute([
 
 
 // =====================================
-// IMAGE HANDLING
+// UPLOAD IMAGES
 // =====================================
 
 $uploadDir = __DIR__ . "/../../uploads/";
@@ -179,29 +211,41 @@ if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
-
 if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
+
+    $images = $_FILES['images'];
+
+    $fileCount = is_array($images['name']) ? count($images['name']) : 1;
+
+    if ($fileCount > 5) {
+        response(false, "Maximum 5 images allowed", null, "MAX_IMAGES", 422);
+    }
+
+    $allowed = ['jpg', 'jpeg', 'png', 'webp'];
 
     $del = $conn->prepare("DELETE FROM workspace_images WHERE workspace_id = ?");
     $del->execute([$workspace_id]);
 
-    $images = $_FILES['images'];
-    $count = is_array($images['name']) ? count($images['name']) : 1;
-
-    for ($i = 0; $i < $count; $i++) {
+    for ($i = 0; $i < $fileCount; $i++) {
 
         $name = is_array($images['name']) ? $images['name'][$i] : $images['name'];
         $tmp  = is_array($images['tmp_name']) ? $images['tmp_name'][$i] : $images['tmp_name'];
 
-        if (!$tmp) continue;
+        if (!$tmp) {
+            continue;
+        }
 
-        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+
+        if (!in_array($ext, $allowed)) {
+            response(false, "Invalid image type", null, "INVALID_FILE", 422);
+        }
+
         $fileName = time() . "_" . $i . "." . $ext;
-
         $targetPath = $uploadDir . $fileName;
 
         if (!move_uploaded_file($tmp, $targetPath)) {
-            response(false, "Image upload failed", null, "UPLOAD_FAILED", 500);
+            response(false, "Failed to upload image", null, "UPLOAD_FAILED", 500);
         }
 
         $img = $conn->prepare("
@@ -215,7 +259,7 @@ if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
 
 
 // =====================================
-// RESPONSE
+// SUCCESS
 // =====================================
 
 response(true, "Workspace updated successfully", [

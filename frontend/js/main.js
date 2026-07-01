@@ -235,10 +235,45 @@ const dropdownUserName = document.querySelector("#dropdownUserName");
 const navbarUserImage = document.querySelector("#navbarUserImage");
 const favoritesLink = document.querySelector("#favoritesLink");
 const favoritesLinkMobile = document.querySelector("#favoritesLinkMobile");
+const dashboardLink = document.querySelector("#dashboardLink");
+const dashboardLinkMobile = document.querySelector("#dashboardLinkMobile");
 
 function getLoginPath() {
   const isInsidePages = window.location.pathname.includes("/pages/");
   return isInsidePages ? "login.html" : "pages/login.html";
+}
+
+function getDashboardPath(role) {
+  const isInsidePages = window.location.pathname.includes("/pages/");
+  if (role === "admin") {
+    return isInsidePages ? "../admin/dashboard.html" : "admin/dashboard.html";
+  }
+  if (role === "owner") {
+    return isInsidePages ? "../owner/dashboard.html" : "owner/dashboard.html";
+  }
+  return "#";
+}
+
+function updateDashboardNav(user) {
+  const role = user?.role;
+  const show = role === "admin" || role === "owner";
+  const href = getDashboardPath(role);
+
+  [dashboardLink, dashboardLinkMobile].forEach(link => {
+    if (!link) return;
+    if (show) {
+      link.href = href;
+      link.classList.remove("hidden");
+    } else {
+      link.classList.add("hidden");
+    }
+  });
+}
+
+function hideDashboardNav() {
+  [dashboardLink, dashboardLinkMobile].forEach(link => {
+    if (link) link.classList.add("hidden");
+  });
 }
 
 function showGuestNavbar() {
@@ -253,6 +288,7 @@ function showGuestNavbar() {
 
   if (favoritesLink) favoritesLink.classList.add("hidden");
   if (favoritesLinkMobile) favoritesLinkMobile.classList.add("hidden");
+  hideDashboardNav();
 }
 
 function showLoggedInNavbar(user) {
@@ -278,6 +314,7 @@ function showLoggedInNavbar(user) {
 
   if (favoritesLink) favoritesLink.classList.remove("hidden");
   if (favoritesLinkMobile) favoritesLinkMobile.classList.remove("hidden");
+  updateDashboardNav(user);
 }
 
 function handleSessionExpired() {

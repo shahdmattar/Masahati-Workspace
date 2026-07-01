@@ -621,10 +621,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbarUserName = document.querySelector("#navbarUserName");
   const dropdownUserName = document.querySelector("#dropdownUserName");
   const navbarUserImage = document.querySelector("#navbarUserImage");
+  const dashboardLink = document.querySelector("#dashboardLink");
+  const dashboardLinkMobile = document.querySelector("#dashboardLinkMobile");
 
   function getLoginPath() {
     const isInsidePages = window.location.pathname.includes("/pages/");
     return isInsidePages ? "login.html" : "pages/login.html";
+  }
+
+  function getDashboardPath(role) {
+    if (role === "admin") return "../admin/dashboard.html";
+    if (role === "owner") return "../owner/dashboard.html";
+    return "#";
+  }
+
+  function updateDashboardNav(user) {
+    const role = user?.role;
+    const show = role === "admin" || role === "owner";
+    const href = getDashboardPath(role);
+
+    [dashboardLink, dashboardLinkMobile].forEach(link => {
+      if (!link) return;
+      if (show) {
+        link.href = href;
+        link.classList.remove("hidden");
+      } else {
+        link.classList.add("hidden");
+      }
+    });
+  }
+
+  function hideDashboardNav() {
+    [dashboardLink, dashboardLinkMobile].forEach(link => {
+      if (link) link.classList.add("hidden");
+    });
   }
 
   function showGuestNavbar() {
@@ -636,6 +666,8 @@ document.addEventListener('DOMContentLoaded', () => {
       userDropdown.classList.remove("show");
       userDropdown.classList.remove("active");
     }
+
+    hideDashboardNav();
   }
 
   function showLoggedInNavbar(user) {
@@ -658,6 +690,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navbarUserImage && user.avatar) {
       navbarUserImage.src = user.avatar;
     }
+
+    updateDashboardNav(user);
   }
 
   function checkAuthState() {

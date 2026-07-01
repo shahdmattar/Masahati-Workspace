@@ -686,10 +686,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const reviewsCard = document.querySelector(".reviews-card");
     if (!reviewsCard) return;
 
-    reviewsCard.querySelectorAll(".review-item").forEach(el => el.remove());
+    Array.from(reviewsCard.children).forEach(child => {
+      if (child.tagName !== "H2") child.remove();
+    });
 
     if (reviews.length === 0) {
       const empty = document.createElement("p");
+      empty.className = "reviews-empty";
       empty.style.cssText = "color:var(--text-light);text-align:center;padding:20px 0;";
       empty.textContent = "No reviews yet. Be the first to review!";
       reviewsCard.appendChild(empty);

@@ -50,7 +50,12 @@ body.dark-mode {
 /* Reset & Global */
 
 /* Required marker styling */
-.req, .required, .asterisk, label .req { color: var(--red) !important; }
+.req,
+.required,
+.asterisk,
+label .req {
+  color: var(--red) !important;
+}
 
 
 * {
@@ -690,6 +695,7 @@ body.dark-mode .copyright {
 }
 
 @media (min-width: 993px) {
+
   .mobile-menu,
   .mobile-overlay {
     display: none;
@@ -777,10 +783,10 @@ body.dark-mode .mobile-login {
   color: var(--text);
 }
 
- ::selection {
+::selection {
   background-color: var(--light-green);
   color: var(--green);
- }
+}
 
 
 /* ===============================
@@ -1247,7 +1253,12 @@ body.dark-mode #WapperAdmin .but-colse:hover {
   background: #1f2937;
   border: none;
 }
- 
+
 body.dark-mode .user-dropdown-menu .logout-btn:hover i {
   color: #ff7b7b;
+}
+
+/* Utility: force-hide auth-gated nav links */
+.hidden {
+  display: none !important;
 }

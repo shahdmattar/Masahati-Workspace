@@ -9,8 +9,8 @@
 document.querySelectorAll('.toggle-password').forEach(btn => {
   btn.addEventListener('click', () => {
     const targetId = btn.dataset.target;
-    const input    = document.getElementById(targetId);
-    const icon     = btn.querySelector('i');
+    const input = document.getElementById(targetId);
+    const icon = btn.querySelector('i');
 
     if (!input) return;
 
@@ -48,26 +48,37 @@ document.querySelectorAll('input, select').forEach(el => {
   el.addEventListener('input', () => {
     el.classList.remove('invalid');
     const sibling = el.closest('.form-group, .input-wrapper')
-                      ?.parentElement
-                      ?.querySelector('.input-error');
+      ?.parentElement
+      ?.querySelector('.input-error');
     if (sibling) sibling.classList.remove('show');
   });
 });
 
+
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.className = `${type} show`;
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
 /* ==========================
    LOGIN FORM
    ========================== */
 const loginForm = document.getElementById('loginForm');
 
 if (loginForm) {
-  loginForm.addEventListener('submit', e => {
+  loginForm.addEventListener('submit', async e => {
     e.preventDefault();
     let valid = true;
 
-    const email    = document.getElementById('email');
+    const email = document.getElementById('email');
     const password = document.getElementById('password');
 
-    clearError('email',    'emailError');
+    clearError('email', 'emailError');
     clearError('password', 'passwordError');
 
     if (!email.value.trim() || !isValidEmail(email.value)) {
@@ -85,14 +96,68 @@ if (loginForm) {
     const submitBtn = loginForm.querySelector('.btn-primary');
     submitBtn.textContent = 'Logging in…';
     submitBtn.disabled = true;
+    try {
 
-    setTimeout(() => {
-      sessionStorage.setItem('masahati_user', JSON.stringify({
-        name:  'Ahmad User',
-        email: email.value.trim(),
-      }));
-      window.location.href = '../index.html';
-    }, 1000);
+      const response = await fetch(
+        'http://localhost/Masahati-Workspace/backend/api/auth/login.php',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email.value.trim(),
+            password: password.value
+          })
+        }
+      );
+
+
+      const text = await response.text();
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (err) {
+        console.error("JSON parse error", err);
+        showToast("Invalid server response", "error");
+        submitBtn.textContent = 'Login';
+        submitBtn.disabled = false;
+        return;
+      }
+
+      if (data.success) {
+
+        localStorage.setItem('token', data.data.token);
+
+        localStorage.setItem(
+          'user',
+          JSON.stringify(data.data.user)
+        );
+
+        showToast("Welcome back 👋", "success");
+
+        setTimeout(() => {
+          window.location.href = "../index.html";
+        }, 1500);
+
+      } else {
+
+        showToast(data.message, "error");
+
+        submitBtn.textContent = 'Login';
+        submitBtn.disabled = false;
+      }
+
+    } catch (error) {
+
+      console.error(error);
+
+      showToast("Server connection error", "error");
+
+      submitBtn.textContent = 'Login';
+      submitBtn.disabled = false;
+    }
   });
 }
 
@@ -102,16 +167,16 @@ if (loginForm) {
 const signupForm = document.getElementById('signupForm');
 
 if (signupForm) {
-  signupForm.addEventListener('submit', e => {
+  signupForm.addEventListener('submit', async e => {
     e.preventDefault();
     let valid = true;
 
-    const fullName        = document.getElementById('fullName');
-    const email           = document.getElementById('email');
-    const password        = document.getElementById('password');
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
-    const role            = document.querySelector('input[name="role"]:checked');
-    const terms           = document.getElementById('terms');
+    const role = document.querySelector('input[name="role"]:checked');
+    const terms = document.getElementById('terms');
 
     // Clear all errors
     ['fullName', 'email', 'password', 'confirmPassword', 'role', 'terms'].forEach(id => {
@@ -155,14 +220,50 @@ if (signupForm) {
     const submitBtn = signupForm.querySelector('.btn-primary');
     submitBtn.textContent = 'Creating account…';
     submitBtn.disabled = true;
+    try {
 
-    setTimeout(() => {
-      sessionStorage.setItem('masahati_user', JSON.stringify({
-        name:  fullName.value.trim(),
-        email: email.value.trim(),
-        role:  role.value,
-      }));
-      window.location.href = '../index.html';
-    }, 1000);
+      const response = await fetch(
+        'http://localhost/Masahati-Workspace/backend/api/auth/register.php',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: fullName.value.trim(),
+            email: email.value.trim(),
+            password: password.value,
+            confirm_password: confirmPassword.value,
+            is_owner: role.value === 'owner'
+          })
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+
+
+        showToast(data.message, "success");
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1500);
+
+      } else {
+
+        showToast(data.message, "error");
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign Up';
+      }
+    } catch (error) {
+
+      console.error(error);
+
+      showToast('Server connection error', 'error');
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign Up';
+    }
   });
 }
+
+

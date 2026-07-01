@@ -7,6 +7,15 @@ body {
   background-color: #f6f8f6;
 }
 
+.template-card {
+  display: none;
+}
+
+.details-page.loading {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
 .workspace-search-section,
 .workspaces-page-section {
   background-color: #f6f8f6;
@@ -388,7 +397,7 @@ body {
   border: 0;
   border-radius: 50%;
   background-color: #ffffff;
-  color: #220306;
+  color: var(--danger);
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -396,8 +405,9 @@ body {
 }
 
 .favorite-btn:hover {
-  color:var(--danger);
+  color: var(--danger);
 }
+
 
 .card-body {
   padding: 14px;
@@ -1219,7 +1229,8 @@ body.dark-mode .reset-filters-btn {
   font-weight: 600;
   transition:
     color 0.25s ease,
-    transform 0.25s ease;;
+    transform 0.25s ease;
+  ;
 }
 
 .back-link:hover {
@@ -1238,6 +1249,8 @@ body.dark-mode .reset-filters-btn {
   border: 1px solid #edf0f2;
   border-radius: 18px;
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.035);
+  margin: auto;
+  width: 90%;
 }
 
 /* Hero Details */
@@ -1360,6 +1373,7 @@ body.dark-mode .reset-filters-btn {
 
 .details-favorite:active {
   transform: scale(0.92);
+
 }
 
 .details-rating {
@@ -1530,7 +1544,7 @@ body.dark-mode .reset-filters-btn {
 }
 
 .whatsapp-btn:hover {
-  color:var(--dark-green);
+  color: var(--dark-green);
   background-color: var(--light-green);
   transform: translateY(-2px);
   box-shadow: 0 10px 22px var(--green);
@@ -1609,7 +1623,7 @@ body.dark-mode .reset-filters-btn {
   line-height: 1.7;
 }
 
-.quote-box > i {
+.quote-box>i {
   color: #8bd6a8;
   font-size: 20px;
 }
@@ -1730,6 +1744,42 @@ body.dark-mode .reset-filters-btn {
   transform: scale(0.96);
 }
 
+.review-login-prompt {
+  text-align: center;
+  padding: 40px 20px;
+  color: #374151;
+  background-color: #ecfbf1;
+  border-radius: 16px;
+  margin-top: 8px;
+}
+
+.review-login-prompt i {
+  font-size: 42px;
+  color: var(--green);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.review-login-prompt p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.review-login-prompt .post-btn {
+  text-decoration: none;
+  padding: 10px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: unset;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1;
+}
+
 /* Reviews */
 
 .reviews-card h2 {
@@ -1790,6 +1840,19 @@ body.dark-mode .reset-filters-btn {
 
 body.dark-mode .details-page {
   background-color: #0a291d;
+}
+
+body.dark-mode .review-login-prompt {
+  background-color: rgba(214, 226, 100, 0.12);
+  border-color: var(--card-border);
+}
+
+body.dark-mode .review-login-prompt i {
+  color: var(--light-green);
+}
+
+body.dark-mode .review-login-prompt p {
+  color: var(--muted);
 }
 
 body.dark-mode .details-hero-card,

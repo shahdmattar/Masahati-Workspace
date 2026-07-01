@@ -588,6 +588,72 @@ button {
 }
 
 /* ---------------------------------------------------------
+   Reusable: card header row (title + meta, e.g. "Total: 128")
+   --------------------------------------------------------- */
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 16.5px;
+  font-weight: 700;
+}
+
+.card-header .card-header-meta {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------
+   Reusable: star rating
+   --------------------------------------------------------- */
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.stars svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.star-filled {
+  color: #f5a623;
+  fill: #f5a623;
+}
+
+.star-empty {
+  color: var(--border-subtle);
+  fill: var(--border-subtle);
+}
+
+.rating-value {
+  margin-left: 6px;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.text-truncate {
+  display: block;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+}
+
+/* ---------------------------------------------------------
    Reusable: data table card
    --------------------------------------------------------- */
 
@@ -669,25 +735,4 @@ button {
     display: block;
     overflow-x: auto;
   }
-}
-/* dark-theme tweaks */
-body.dark-theme #WapperAdmin .but-from-action .but-cancle:hover {
-  background: rgba(214,226,100,0.06);
-}
-body.dark-theme #WapperAdmin .but-send:hover,
-body.dark-mode #WapperAdmin .but-send:hover {
-  filter: brightness(1.05);
-}
-
-body.dark-theme #WapperAdmin .but-send,
-body.dark-mode #WapperAdmin .but-send {
-  background: rgb(216, 224, 100) !important;
-  color: #0f1a0f !important;
-  border: none !important;
-}
-
-body.dark-theme #WapperAdmin .but-send:hover,
-body.dark-mode #WapperAdmin .but-send:hover {
-  background: rgb(206, 214, 80) !important;
-  color: #0f1a0f !important;
 }

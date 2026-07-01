@@ -164,6 +164,80 @@ const RowActions = (() => {
         (b) => (b.disabled = true)
       );
     }
+
+    if (action === "delete") {
+      const confirmed = window.confirm(`Delete "${name}"? This cannot be undone.`);
+      if (!confirmed) return;
+      row.classList.add("row-fade-out");
+      Toast.show(`${name} deleted`, "danger");
+      setTimeout(() => row.remove(), 250);
+
+      const totalEl = document.querySelector("[data-total-reviews]");
+      if (totalEl) {
+        const match = totalEl.textContent.match(/\d+/);
+        if (match) {
+          const next = Math.max(0, parseInt(match[0], 10) - 1);
+          totalEl.textContent = totalEl.textContent.replace(/\d+/, next);
+        }
+      }
+    }
+  }
+
+  function init() {
+    document.body.addEventListener("click", handleClick);
+  }
+
+  return { init };
+})();
+
+/* ---------------------------------------------------------
+   Status dropdown pills (Manage Workspaces table)
+   Click a pill to open a small menu of status options.
+   --------------------------------------------------------- */
+
+const StatusDropdown = (() => {
+  const labels = { approved: "Approved", pending: "Pending", rejected: "Rejected" };
+
+  function closeAll(except) {
+    document.querySelectorAll(".status-menu.open").forEach((menu) => {
+      if (menu !== except) {
+        menu.classList.remove("open");
+        menu.previousElementSibling?.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  function applyStatus(pill, status) {
+    pill.className = `status-pill status-${status}`;
+    pill.innerHTML = `${labels[status]}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>`;
+  }
+
+  function handleClick(event) {
+    const toggle = event.target.closest("[data-status-toggle]");
+    const option = event.target.closest("[data-status]");
+
+    if (toggle) {
+      const menu = toggle.nextElementSibling;
+      const isOpen = menu.classList.contains("open");
+      closeAll();
+      menu.classList.toggle("open", !isOpen);
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      return;
+    }
+
+    if (option && option.closest(".status-menu")) {
+      const menu = option.closest(".status-menu");
+      const pill = menu.previousElementSibling;
+      const status = option.getAttribute("data-status");
+      applyStatus(pill, status);
+      pill.setAttribute("aria-expanded", "false");
+      menu.classList.remove("open");
+      Toast.show(`Status updated to ${labels[status]}`, "success");
+      return;
+    }
+
+    closeAll();
   }
 
   function init() {
@@ -176,4 +250,5 @@ const RowActions = (() => {
 document.addEventListener("DOMContentLoaded", () => {
   AdminLayout.init();
   RowActions.init();
+  StatusDropdown.init();
 });

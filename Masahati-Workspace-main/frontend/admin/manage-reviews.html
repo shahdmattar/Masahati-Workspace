@@ -1,74 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Manage Reviews - Masahati</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/admin.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manage Reviews · Masahati Admin</title>
+<link rel="stylesheet" href="../css/admin.css" />
 </head>
 <body>
+<div class="app-shell">
 
-<aside class="sidebar">
-    <div>
-        <div class="logo"><i class="fa-solid fa-building"></i> <span>Masahati</span></div>
-        <div class="menu">
-            <a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-            <a href="pending-workspaces.html"><i class="fa-regular fa-clock"></i> Pending Workspaces <span class="badge">5</span></a>
-            <a href="manage-workspaces.html"><i class="fa-regular fa-building"></i> Manage Workspaces</a>
-            <a href="manage-reviews.html" class="active"><i class="fa-regular fa-star"></i> Manage Reviews</a>
-        </div>
-    </div>
-    <div>
-        <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-        <div class="support-box">
-            <h4><i class="fa-regular fa-life-ring"></i> Need Help?</h4>
-            <p>If you need any assistance, we're here to help.</p>
-            <button class="support-btn">Contact Support <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-    </div>
-</aside>
-
-<main class="main">
-    <div class="topbar">
-        <i class="fa-regular fa-moon theme-toggle"></i>
-        <div class="admin">
-            <div class="admin-info">
-                <h4>Admin</h4>
-                <p>Super Administrator</p>
-            </div>
-            <img src="https://i.pravatar.cc/100?img=12" alt="Admin">
-        </div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M3 9h18"/>
+        </svg>
+      </span>
+      <span>Masahati</span>
     </div>
 
-    <h1 class="page-title">Manage Reviews</h1>
-    <p class="page-subtitle">View, manage, and moderate all reviews across the platform.</p>
+    <ul class="sidebar-nav">
+      <li>
+        <a class="sidebar-link" href="dashboard.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" href="pending-workspace.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span class="nav-label">Pending Workspaces</span>
+          <span class="sidebar-badge" data-pending-count>5</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" href="manage-workspaces.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>
+          <span class="nav-label">Manage Workspaces</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link active" href="manage-reviews.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 17.3 6.2 20l1.1-6.5L2.5 8.9l6.5-.9L12 2l3 6 6.5.9-4.8 4.6L17.8 20Z"/></svg>
+          <span class="nav-label">Manage Reviews</span>
+        </a>
+      </li>
+    </ul>
 
-    <!-- ========== ALL REVIEWS HEADER WITH TOTAL ========== -->
-    <div class="reviews-header">
-        <div class="all-reviews-title">
-            <i class="fa-regular fa-star"></i> All Reviews
+    <div class="sidebar-footer">
+      <a class="sidebar-logout" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+        <span class="nav-label">Logout</span>
+      </a>
+
+      <div class="help-card">
+        <div class="help-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/><circle cx="12" cy="12" r="9"/></svg>
         </div>
-        <div class="total-reviews">
-            <i class="fa-regular fa-message"></i> Total Reviews: 128
-        </div>
+        <h4>Need Help?</h4>
+        <p>If you need any assistance, we're here to help.</p>
+        <button class="btn-support" type="button">
+          Contact Support
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
     </div>
+  </aside>
 
-    <div class="table-card">
-        <table>
-            <thead>
-                <tr>
-                    <th>USER</th>
-                    <th>WORKSPACE</th>
-                    <th>RATING</th>
-                    <th>REVIEW</th>
-                    <th>DATE</th>
-                    <th>ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody id="reviewsTableBody"></tbody>
+  <!-- Main -->
+  <div>
+    <header class="topbar">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode"></button>
+      <div class="topbar-user">
+        <img class="avatar" src="https://i.pravatar.cc/72?img=13" alt="Admin avatar" />
+        <div class="user-meta">
+          <div class="user-name">Admin</div>
+          <div class="user-role">Super Administrator</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h1>Manage Reviews</h1>
+        <p>View, manage, and moderate all reviews across the platform.</p>
+      </div>
+
+      <div class="card" style="margin-top:22px;">
+        <div class="card-header">
+          <h2>All Reviews</h2>
+          <span class="card-header-meta" data-total-reviews>Total Reviews: 128</span>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Workspace</th>
+              <th>Rating</th>
+              <th>Review</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- Omar Al-Masri — Focus Hub — 5.0 -->
+            <tr data-row data-name="Omar Al-Masri's review">
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://i.pravatar.cc/64?img=51" alt="" style="width:34px;height:34px;border-radius:50%;">
+                  <div>
+                    <div style="font-weight:600; font-size:13.5px;">Omar Al-Masri</div>
+                    <div style="color:var(--text-muted); font-size:12px;">omer@gmail.com</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=100&h=100&fit=crop" alt="" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+                  <div>
+                    <div style="font-weight:700; font-size:13.5px;">Focus Hub</div>
+                    <div style="color:var(--text-muted); font-size:12px;">Al-Rimal, Gaza</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="stars">
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <span class="rating-value">5.0</span>
+                </span>
+              </td>
+              <td><span class="text-truncate">Amazing place! ...</span></td>
+              <td style="color:var(--text-secondary);">May 10, 2024<br>10:30 AM</td>
+              <td>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline" data-action="view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </button>
+                  <button class="btn btn-delete" data-action="delete">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7"/></svg>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Sara Abu Salim — The Desk — 4.5 -->
+            <tr data-row data-name="Sara Abu Salim's review">
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://i.pravatar.cc/64?img=47" alt="" style="width:34px;height:34px;border-radius:50%;">
+                  <div>
+                    <div style="font-weight:600; font-size:13.5px;">Sara Abu Salim</div>
+                    <div style="color:var(--text-muted); font-size:12px;">sara@gmail.com</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=100&h=100&fit=crop" alt="" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+                  <div>
+                    <div style="font-weight:700; font-size:13.5px;">The Desk</div>
+                    <div style="color:var(--text-muted); font-size:12px;">Al-Nuseirat, Gaza</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="stars">
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-empty" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <span class="rating-value">4.5</span>
+                </span>
+              </td>
+              <td><span class="text-truncate">Great space and good ...</span></td>
+              <td style="color:var(--text-secondary);">May 9, 2024<br>04:20 PM</td>
+              <td>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline" data-action="view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </button>
+                  <button class="btn btn-delete" data-action="delete">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7"/></svg>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Yousef Baraka — Creative Space — 4.0 -->
+            <tr data-row data-name="Yousef Baraka's review">
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://i.pravatar.cc/64?img=15" alt="" style="width:34px;height:34px;border-radius:50%;">
+                  <div>
+                    <div style="font-weight:600; font-size:13.5px;">Yousef Baraka</div>
+                    <div style="color:var(--text-muted); font-size:12px;">yousef@gmail.com</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=100&h=100&fit=crop" alt="" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+                  <div>
+                    <div style="font-weight:700; font-size:13.5px;">Creative Space</div>
+                    <div style="color:var(--text-muted); font-size:12px;">Gaza City</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="stars">
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-empty" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <span class="rating-value">4.0</span>
+                </span>
+              </td>
+              <td><span class="text-truncate">Very nice coworking ...</span></td>
+              <td style="color:var(--text-secondary);">May 8, 2024<br>09:45 AM</td>
+              <td>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline" data-action="view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </button>
+                  <button class="btn btn-delete" data-action="delete">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7"/></svg>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Omar Al-Masri — Focus Hub — 5.0 (repeat) -->
+            <tr data-row data-name="Omar Al-Masri's review">
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://i.pravatar.cc/64?img=51" alt="" style="width:34px;height:34px;border-radius:50%;">
+                  <div>
+                    <div style="font-weight:600; font-size:13.5px;">Omar Al-Masri</div>
+                    <div style="color:var(--text-muted); font-size:12px;">omer@gmail.com</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=100&h=100&fit=crop" alt="" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+                  <div>
+                    <div style="font-weight:700; font-size:13.5px;">Focus Hub</div>
+                    <div style="color:var(--text-muted); font-size:12px;">Al-Rimal, Gaza</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="stars">
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <span class="rating-value">5.0</span>
+                </span>
+              </td>
+              <td><span class="text-truncate">Amazing place! ...</span></td>
+              <td style="color:var(--text-secondary);">May 10, 2024<br>10:30 AM</td>
+              <td>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline" data-action="view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </button>
+                  <button class="btn btn-delete" data-action="delete">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7"/></svg>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Sara Abu Salim — The Desk — 4.5 (repeat) -->
+            <tr data-row data-name="Sara Abu Salim's review">
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://i.pravatar.cc/64?img=47" alt="" style="width:34px;height:34px;border-radius:50%;">
+                  <div>
+                    <div style="font-weight:600; font-size:13.5px;">Sara Abu Salim</div>
+                    <div style="color:var(--text-muted); font-size:12px;">sara@gmail.com</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=100&h=100&fit=crop" alt="" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+                  <div>
+                    <div style="font-weight:700; font-size:13.5px;">The Desk</div>
+                    <div style="color:var(--text-muted); font-size:12px;">Al-Nuseirat, Gaza</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="stars">
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-empty" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <span class="rating-value">4.5</span>
+                </span>
+              </td>
+              <td><span class="text-truncate">Great space and good ...</span></td>
+              <td style="color:var(--text-secondary);">May 9, 2024<br>04:20 PM</td>
+              <td>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline" data-action="view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </button>
+                  <button class="btn btn-delete" data-action="delete">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7"/></svg>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Yousef Baraka — Creative Space — 4.0 (repeat) -->
+            <tr data-row data-name="Yousef Baraka's review">
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://i.pravatar.cc/64?img=15" alt="" style="width:34px;height:34px;border-radius:50%;">
+                  <div>
+                    <div style="font-weight:600; font-size:13.5px;">Yousef Baraka</div>
+                    <div style="color:var(--text-muted); font-size:12px;">yousef@gmail.com</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=100&h=100&fit=crop" alt="" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+                  <div>
+                    <div style="font-weight:700; font-size:13.5px;">Creative Space</div>
+                    <div style="color:var(--text-muted); font-size:12px;">Gaza City</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="stars">
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <svg class="star-empty" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                  <span class="rating-value">4.0</span>
+                </span>
+              </td>
+              <td><span class="text-truncate">Very nice coworking ...</span></td>
+              <td style="color:var(--text-secondary);">May 8, 2024<br>09:45 AM</td>
+              <td>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline" data-action="view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </button>
+                  <button class="btn btn-delete" data-action="delete">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7"/></svg>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
         </table>
-    </div>
-</main>
+      </div>
+    </main>
+  </div>
+</div>
 
 <script src="../js/admin.js"></script>
 </body>

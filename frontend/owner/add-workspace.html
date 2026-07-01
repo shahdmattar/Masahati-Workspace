@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Workspace – Masahati</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/../css/intlTelInput.css" />
+
+
+  <link rel="stylesheet" href="../css/dashbord.css" />
+  <link rel="stylesheet" href="../css/dashboard-admin-bridge.css" />
+</head>
+
+<body>
+  <div id="WapperAdmin">
+    <nav class="site-nav">
+      <button class="sidebar-toggle" type="button" aria-label="Toggle menu">
+        <span class="material-symbols-rounded">menu</span>
+      </button>
+    </nav>
+    <div class="containers">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <img src="../assets/img/logo.png" alt="Masahati" class="header-logo" />
+            <span class="sidebar-brand-name">Masahati</span>
+          </div>
+          <button class="sidebar-toggle" type="button" aria-label="Collapse sidebar">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+        </div>
+        <div class="sidebar-content">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="dashboard.html" class="menu-link">
+                <span class="bx bx-grid-alt"></span>
+                <span class="menu-label">Dashboard</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="my-workspace.html" class="menu-link">
+                <span class="bx bx-buildings"></span>
+                <span class="menu-label">My workspace</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="add-workspace.html" class="menu-link active">
+                <span class="bx bx-plus-circle"></span>
+                <span class="menu-label">Add workspace</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="reviews.html" class="menu-link">
+                <span class="bx bx-star"></span>
+                <span class="menu-label">Review</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">logout</span>
+                <span class="menu-label">Log Out</span>
+              </a>
+            </li>
+          </ul>
+          <div class="chat-silderbar">
+            <div class="flex-chat-title">
+              <div class="box-icon-chat">
+                <i class='bx bx-support'></i>
+              </div>
+              <h5>Needs Help</h5>
+            </div>
+            <div class="prag-chat">
+              If you need any assistance, <br /> we're <br /> here to help.
+            </div>
+            <button class="but-chat" type="button">
+              <span>contact Support</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </button>
+          </div>
+        </div>
+      </aside>
+      <div class="main-content">
+        <div class="info-admin">
+          <div class="drak-mode">
+            <i class='bx bx-moon'></i>
+          </div>
+          <span class="info-admin-divider" aria-hidden="true"></span>
+          <div class="flex-info-admin profile-dropdown-container">
+            <div class="profile-trigger">
+              <img src="../assets/img/testimonial-4.jpg" alt="Admin" />
+              <article class="info-admin-detalis">
+                <h5>Admin</h5>
+              </article>
+              <i class='bx bx-chevron-down profile-arrow'></i>
+            </div>
+            <div class="profile-dropdown-menu">
+              <span class="dropdown-username-header">Admin</span>
+              <a href="../pages/profile.html"><i class="bx bx-user"></i> My Profile</a>
+              <a href="../pages/favorites.html"><i class="bx bx-heart"></i> Favorites</a>
+              <a href="../pages/login.html" class="logout-text"><i class="bx bx-log-out"></i> Log Out</a>
+            </div>
+          </div>
+        </div>
+        <div class="pad-all">
+          <div class="card-marging-custome">
+            <div class="flx-titl">
+     <div class="box-icon">
+<i class="fa-regular fa-building" style="font-size:28px;"></i>
+</div>       <div class="head-all-page">
+                <h4>Add Workspace</h4>
+                <p>Fill in the details below to list your workspace on Masahati.</p>
+              </div>
+            </div>
+
+            <form class="form-add">
+              <div class="flex-title-form">
+                <span class="number-page">1</span>
+                <span class="tst-page">Basic information</span>
+              </div>
+              <div class="row-input">
+                <div class="all-input-faild">
+                  <label>WorkSpaces Name <span class="star-color">*</span></label>
+                  <input type="text" placeholder="Enter workspace name" />
+                </div>
+                <div class="all-input-faild">
+                  <div class="label-row">
+                    <label for="workspace-description">Description <span class="star-color">*</span></label>
+                    <span class="char-counter" id="description-counter">0/500</span>
+                  </div>
+                  <textarea id="workspace-description" class="description-field" maxlength="500"
+                    placeholder="Describe your workspace..."></textarea>
+                </div>
+                <div class="all-input-faild">
+                  <label>City <span class="star-color">*</span></label>
+                  <div class="dropdown" data-placeholder="Select city">
+                    <div class="dropdown-toggle">
+                      <span class="dropdown-label">Select city</span>
+                      <span class="bx bx-chevron-down arrow"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <div>Ramallah</div>
+                      <div>Nablus</div>
+                      <div>Hebron</div>
+                      <div>Bethlehem</div>
+                      <div>Jenin</div>
+                      <div>Tulkarm</div>
+                      <div>Gaza</div>
+                      <div>Jerusalem</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="all-input-faild">
+                  <label>Area <span class="star-color">*</span></label>
+                  <div class="dropdown" data-placeholder="Select area">
+                    <div class="dropdown-toggle">
+                      <span class="dropdown-label">Select area</span>
+                      <span class="bx bx-chevron-down arrow"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <div>Downtown</div>
+                      <div>Old City</div>
+                      <div>Industrial Zone</div>
+                      <div>Suburbs</div>
+                      <div>Near University</div>
+                      <div>Commercial District</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-title-form">
+                <span class="number-page">2</span>
+                <span class="tst-page">AMENITIES & FACILITIES</span>
+              </div>
+              <div class="row-tow-form">
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="bx bx-wifi"></i></span> Internet Quality <span
+                      class="star-color">*</span></label>
+                  <div class="dropdown" data-placeholder="Select quality">
+                    <div class="dropdown-toggle">
+                      <span class="dropdown-label">Select quality</span>
+                      <span class="bx bx-chevron-down arrow"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <div>Excellent</div>
+                      <div>Good</div>
+                      <div>Average</div>
+                      <div>Poor</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="fa-solid fa-bolt"></i></span> Electricity
+                    Availability <span class="star-color">*</span></label>
+                  <div class="dropdown" data-placeholder="Select availability">
+                    <div class="dropdown-toggle">
+                      <span class="dropdown-label">Select availability</span>
+                      <span class="bx bx-chevron-down arrow"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <div>24/7 Available</div>
+                      <div>Daily Scheduled Hours</div>
+                      <div>Limited Hours</div>
+                      <div>Generator Backup</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="fa-solid fa-desktop"></i></span> Seating capactiy
+                    <span class="star-color">*</span></label>
+                  <input type="text" placeholder="Enter Number of Seats" />
+                </div>
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="fa-regular fa-clock"></i></span> Working Hours <span
+                      class="star-color">*</span></label>
+                  <div class="box-number-click">
+                    <input type="time" />
+                    <input type="time" />
+                  </div>
+                </div>
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="fa-solid fa-volume-xmark"></i></span> Quietness Level <span
+                      class="star-color">*</span></label>
+                  <div class="dropdown" data-placeholder="Select level">
+                    <div class="dropdown-toggle">
+                      <span class="dropdown-label">Select level</span>
+                      <span class="bx bx-chevron-down arrow"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <div>Very Quiet</div>
+                      <div>Quiet</div>
+                      <div>Moderate</div>
+                      <div>Noisy</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="fa-regular fa-user"></i></span> Ladies Area <span
+                      class="star-color">*</span></label>
+                  <div class="dropdown" data-placeholder="Select status">
+                    <div class="dropdown-toggle">
+                      <span class="dropdown-label">Select status</span>
+                      <span class="bx bx-chevron-down arrow"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <div>Yes - Dedicated Area</div>
+                      <div>Yes - Shared Section</div>
+                      <div>No</div>
+                      <div>Not Applicable</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-three-form">
+                <div class="all-input-faild">
+                  <label><span class="bg-image"><i class="fa-solid fa-tag"></i></span>Price (per hour)
+                    <span class="star-color">*</span></label>
+                  <div class="price-input-wrap">
+                    <span class="price-currency">$</span>
+                    <input type="text" class="price-value-input" placeholder="Enter price" inputmode="decimal"
+                      aria-label="Price per hour" />
+                    <!-- <span class="price-suffix">/hour</span> -->
+                  </div>
+                </div>
+                <div class="all-input-faild">
+                  <label><span class="bg-image"> <i class="fa-brands fa-whatsapp"></i></span>WathsApp Number
+                    <span class="star-color">*</span></label>
+                  <div class="whats-input">
+                    <div class="country-dropdown">
+                      <div class="country-dropdown-toggle">
+                        <span class="selected-country-info">
+                          <img src="https://flagcdn.com/w20/ps.png" class="flag-img" alt="Palestine">
+                          <span class="country-code-val">+972</span>
+                        </span>
+                        <span class="bx bx-chevron-down arrow"></span>
+                      </div>
+                      <ul class="country-dropdown-menu">
+                        <li data-code="+972" data-flag-url="https://flagcdn.com/w20/ps.png" class="active">
+                          <img src="https://flagcdn.com/w20/ps.png" class="flag-img" alt="Palestine"> Palestine (+972)
+                        </li>
+                        <li data-code="+966" data-flag-url="https://flagcdn.com/w20/sa.png">
+                          <img src="https://flagcdn.com/w20/sa.png" class="flag-img" alt="Saudi Arabia"> Saudi Arabia (+966)
+                        </li>
+                        <li data-code="+20" data-flag-url="https://flagcdn.com/w20/eg.png">
+                          <img src="https://flagcdn.com/w20/eg.png" class="flag-img" alt="Egypt"> Egypt (+20)
+                        </li>
+                        <li data-code="+962" data-flag-url="https://flagcdn.com/w20/jo.png">
+                          <img src="https://flagcdn.com/w20/jo.png" class="flag-img" alt="Jordan"> Jordan (+962)
+                        </li>
+                        <li data-code="+971" data-flag-url="https://flagcdn.com/w20/ae.png">
+                          <img src="https://flagcdn.com/w20/ae.png" class="flag-img" alt="UAE"> UAE (+971)
+                        </li>
+                        <li data-code="+963" data-flag-url="https://flagcdn.com/w20/sy.png">
+                          <img src="https://flagcdn.com/w20/sy.png" class="flag-img" alt="Syria"> Syria (+963)
+                        </li>
+                        <li data-code="+961" data-flag-url="https://flagcdn.com/w20/lb.png">
+                          <img src="https://flagcdn.com/w20/lb.png" class="flag-img" alt="Lebanon"> Lebanon (+961)
+                        </li>
+                        <li data-code="+964" data-flag-url="https://flagcdn.com/w20/iq.png">
+                          <img src="https://flagcdn.com/w20/iq.png" class="flag-img" alt="Iraq"> Iraq (+964)
+                        </li>
+                        <li data-code="+965" data-flag-url="https://flagcdn.com/w20/kw.png">
+                          <img src="https://flagcdn.com/w20/kw.png" class="flag-img" alt="Kuwait"> Kuwait (+965)
+                        </li>
+                        <li data-code="+974" data-flag-url="https://flagcdn.com/w20/qa.png">
+                          <img src="https://flagcdn.com/w20/qa.png" class="flag-img" alt="Qatar"> Qatar (+974)
+                        </li>
+                        <li data-code="+973" data-flag-url="https://flagcdn.com/w20/bh.png">
+                          <img src="https://flagcdn.com/w20/bh.png" class="flag-img" alt="Bahrain"> Bahrain (+973)
+                        </li>
+                        <li data-code="+968" data-flag-url="https://flagcdn.com/w20/om.png">
+                          <img src="https://flagcdn.com/w20/om.png" class="flag-img" alt="Oman"> Oman (+968)
+                        </li>
+                        <li data-code="+967" data-flag-url="https://flagcdn.com/w20/ye.png">
+                          <img src="https://flagcdn.com/w20/ye.png" class="flag-img" alt="Yemen"> Yemen (+967)
+                        </li>
+                        <li data-code="+90" data-flag-url="https://flagcdn.com/w20/tr.png">
+                          <img src="https://flagcdn.com/w20/tr.png" class="flag-img" alt="Turkey"> Turkey (+90)
+                        </li>
+                      </ul>
+                      <input type="text" name="country_code" value="+972" class="input-small country-code-input"
+                        style="display: none;" readonly />
+                    </div>
+                    <input class="input-big" type="text" placeholder="Enter WhatsApp number" />
+                  </div>
+                </div>
+              </div>
+              <div class="flex-title-form">
+                <span class="number-page">3</span>
+                <span class="tst-page">workspaces Image</span>
+              </div>
+              <div class="all-input-faild">
+                <label>workspaces Image <span class="star-color">*</span>
+                  <span class="color-gray">You can upload up to 5 images</span>
+                </label>
+              </div>
+              <div class="group-upload">
+                <div class="card-uplaod">
+                  <i class='bx bx-image'></i>
+                  <h6>Upload Image</h6>
+                  <span>Max (5MB)</span>
+                  <input type="file" accept="image/*" class="file-input" hidden />
+                </div>
+                <div class="card-uplaod">
+                  <i class='bx bx-image'></i>
+                  <h6>Upload Image</h6>
+                  <span>Max (5MB)</span>
+                  <input type="file" accept="image/*" class="file-input" hidden />
+                </div>
+                <div class="card-uplaod">
+                  <i class='bx bx-image'></i>
+                  <h6>Upload Image</h6>
+                  <span>Max (5MB)</span>
+                  <input type="file" accept="image/*" class="file-input" hidden />
+                </div>
+                <div class="card-uplaod">
+                  <i class='bx bx-image'></i>
+                  <h6>Upload Image</h6>
+                  <span>Max (5MB)</span>
+                  <input type="file" accept="image/*" class="file-input" hidden />
+                </div>
+                <div class="card-uplaod">
+                  <i class='bx bx-image'></i>
+                  <h6>Upload Image</h6>
+                  <span>Max (5MB)</span>
+                  <input type="file" accept="image/*" class="file-input" hidden />
+                </div>
+              </div>
+              <div class="but-from-action">
+                <button type="button" class="but-cancle" onclick="window.location.href='my-workspace.html'">Cancel</button>
+                <div class="but-submit-wrap">
+                  <button type="submit" class="but-send">
+                    Submit for Review <span class="bx bx-send"></span>
+                  </button>
+                  <p class="but-from-action-note">
+                    Your workspace will be reviewed by our team before it goes live.
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script src="../js/admin-main.js"></script>
+  <script src="../js/admin-layout.js"></script>
+  <script src="../js/owner.js"></script>
+</body>
+
+</html>
+
+
+
+

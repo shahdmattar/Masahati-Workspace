@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2026 at 02:47 PM
+-- Generation Time: Jul 02, 2026 at 12:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,11 +41,8 @@ CREATE TABLE `favorites` (
 INSERT INTO `favorites` (`id`, `user_id`, `workspace_id`, `created_at`) VALUES
 (3, 19, 3, '2026-06-14 02:06:35'),
 (4, 19, 4, '2026-06-14 02:11:59'),
-(5, 19, 2, '2026-06-14 02:12:20'),
 (73, 18, 3, '2026-06-14 15:48:36'),
 (75, 20, 3, '2026-06-28 08:04:45'),
-(77, 20, 1, '2026-06-29 08:17:58'),
-(78, 20, 6, '2026-06-29 08:17:59'),
 (79, 21, 7, '2026-06-29 08:43:18');
 
 -- --------------------------------------------------------
@@ -70,14 +67,8 @@ CREATE TABLE `reviews` (
 INSERT INTO `reviews` (`id`, `user_id`, `workspace_id`, `rating`, `comment`, `created_at`) VALUES
 (1, 18, 4, 4, 'best place', '2026-06-14 02:02:43'),
 (3, 19, 4, 5, '100%', '2026-06-14 02:06:00'),
-(5, 19, 2, 5, '100', '2026-06-14 02:13:07'),
-(7, 19, 1, 4, 'good', '2026-06-14 02:34:58'),
 (8, 18, 3, 5, 'Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing on work.', '2026-06-14 02:39:20'),
-(9, 18, 2, 4, 'good', '2026-06-14 02:40:04'),
-(10, 18, 1, 5, 'Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing on work.', '2026-06-14 02:40:19'),
-(11, 20, 2, 4, 'WOW', '2026-06-28 08:06:16'),
-(13, 21, 3, 4, 'Perfect for focusing on work.', '2026-06-29 08:43:05'),
-(18, 25, 6, 5, 'Amazing place! Quiet, clean, and the internet is super fast. Perfect for focusing on work.', '2026-07-01 00:30:34');
+(13, 21, 3, 4, 'Perfect for focusing on work.', '2026-06-29 08:43:05');
 
 -- --------------------------------------------------------
 
@@ -123,7 +114,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `avatar`, `creat
 (22, 'محمد طارق', 'tarq013@gmail.com', '$2y$10$YqRv1wfYVPeopGi14fqvAO7ficr2BqAtxsy3IC0s/hU6wJElkybKS', 'user', 'avatar.png', '2026-06-29 09:19:32', '2026-06-29 09:19:32'),
 (23, 'محمد طارق', 'ttttttssss3@gmail.com', '$2y$10$g.IAKrehCANUNY8Xq.aWLOPbUQPffsHzFQFag8bA7hVWU4ZuwqcCG', 'user', 'avatar.png', '2026-06-29 09:20:09', '2026-06-29 09:20:09'),
 (24, 'owner', 'owner70013@gmail.com', '$2y$10$1Oz9VhaxqgiPXZ9i5CeVoemgagVryxUWwytOe6XfE6i2uXnRC0LtS', 'owner', 'avatar.png', '2026-06-30 11:20:36', '2026-06-30 11:20:36'),
-(25, 'NOUR', 'nour70013@gmail.com', '$2y$10$3gXKs9OJGVEpt8nfbV9l2esNj5ZhvS4NYRYl4hmU8VbCF2eU6MWbW', 'owner', 'avatar.png', '2026-07-01 00:17:24', '2026-07-01 06:27:33');
+(25, 'Owner', 'nour70013@gmail.com', '$2y$10$3gXKs9OJGVEpt8nfbV9l2esNj5ZhvS4NYRYl4hmU8VbCF2eU6MWbW', 'owner', 'avatar.png', '2026-07-01 00:17:24', '2026-07-02 09:22:02');
 
 -- --------------------------------------------------------
 
@@ -158,15 +149,25 @@ CREATE TABLE `workspaces` (
 --
 
 INSERT INTO `workspaces` (`id`, `owner_id`, `workspace_name`, `description`, `city`, `area`, `internet_quality`, `electricity_status`, `seating`, `hours_from`, `hours_to`, `quietness_level`, `ladies_area`, `price_per_hour`, `whatsapp`, `avg_rating`, `status`, `approved_at`, `created_at`) VALUES
-(1, 16, 'Focus Hub', 'A modern coworking space for productivity', 'North', 'Al-Rimal', 'Fast', '24/7', 30, '08:00:00', '22:00:00', 'quiet', 0, 5.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:23:29'),
-(2, 25, 'Creative Hub', 'A modern coworking space for productivity', 'North', 'Sheikh Radwan', 'Very Fast', 'Available', 30, '08:00:00', '22:00:00', 'normal', 0, 10.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:31:38'),
-(3, 16, 'Study Corner', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Fast', 'Available', 30, '08:00:00', '22:00:00', 'very_quiet', 1, 7.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:31:57'),
-(4, 16, 'Tech Spot', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:32:14'),
-(5, 25, 'OpenGrid', 'A modern coworking space for productivity', 'North', 'Al-Rimal', 'Fast', '24/7', 30, '08:00:00', '22:00:00', 'quiet', 0, 5.00, '+972970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
-(6, 25, 'Spark Station', 'A modern coworking space for productivity', 'North', 'Sheikh Radwan', 'Very Fast', 'Available', 30, '08:00:00', '22:00:00', 'normal', 0, 10.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
-(7, 16, 'Grid Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Fast', 'Available', 30, '08:00:00', '22:00:00', 'very_quiet', 1, 7.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
-(8, 16, 'Nexus Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
-(12, 25, 'Hope Hub', 'A modern coworking space for productivity', 'South', 'Mawasi Khan Younis', 'Fast', 'Available', 10, '08:39:00', '14:40:00', 'very_quiet', 1, 5.00, '+97259982398', 0.00, 'pending', NULL, '2026-07-01 11:40:42');
+(3, 25, 'Study Corner', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Fast', 'Available', 30, '08:00:00', '22:00:00', 'very_quiet', 1, 7.00, '970599123456', 0.00, 'pending', '2026-06-03 06:32:29', '2026-06-03 06:31:57'),
+(4, 25, 'Tech Spot', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-03 06:32:14'),
+(7, 25, 'Grid Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Fast', 'Available', 30, '08:00:00', '22:00:00', 'very_quiet', 1, 7.00, '970599123456', 0.00, 'approved', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
+(8, 25, 'Nexus Hub', 'A modern coworking space for productivity', 'North', 'Tal Al-Hawa', 'Good', 'Available', 30, '08:00:00', '22:00:00', 'normal', 1, 8.00, '970599123456', 0.00, 'pending', '2026-06-03 06:32:29', '2026-06-14 15:09:01'),
+(16, 25, 'Sultan Hub', 'The Perfect Workspace for Freelancers & University Students\r\nEnjoy a quiet, comfortable, and fully air-conditioned workspace designed for focus and productivity, with high-speed fiber internet and continuous electricity throughout the day.\r\nLocation: Al-Nas Street, next to Sultan Water Desalination Compan', 'South', 'Mawasi Khan Younis', 'Fast', 'Available', 30, '08:00:00', '23:00:00', 'quiet', 0, 5.00, '+972593303041', 0.00, 'approved', NULL, '2026-07-02 08:58:37'),
+(17, 25, 'Awtar Tech', 'Awtar Hub is a comfortable workspace for freelancers and university students, offering reliable internet, continuous electricity, and comfortable desks and seating in a productive environment.\r\n\r\nLocation: Behind Al-Attar Station, next to the UNRWA Clinic', 'South', 'Mawasi Khan Younis', 'Good', 'Available', 20, '08:00:00', '18:00:00', 'quiet', 0, 5.00, '+972599637448', 0.00, 'approved', NULL, '2026-07-02 09:03:44'),
+(18, 25, 'Al-Jawhara Cafe', '☕ Al-Jawhara Café\r\n💻 Workspaces equipped for study and remote work \r\n📶 High-speed internet and a quiet atmosphere \r\n🍰 Desserts, as well as hot and cold drinks \r\n📍 Middle of Al-Bahr Street – next to Karim Center', 'South', 'Mawasi Khan Younis', 'Very Fast', '24/7', 80, '09:00:00', '23:00:00', 'normal', 1, 5.00, '+972599478579', 0.00, 'approved', NULL, '2026-07-02 09:08:25'),
+(19, 25, 'Rokon Space', 'Rokon Space offers a productive and comfortable workspace for freelancers and students, with reliable electricity, high-speed internet, and a professional working environment.\r\n\r\nLocation: Al-Saraya, next to Jawwal Company, Al-Rahab Mall, First Floor.', 'North', 'Al-Rimal', 'Very Fast', 'Available', 100, '09:00:00', '20:00:00', 'very_quiet', 1, 5.00, '+972595880890', 0.00, 'approved', NULL, '2026-07-02 09:21:28'),
+(20, 25, 'Al-Sahel Cafe', 'A modern workspace offering quiet work areas, high-speed internet, and 24/7 electricity in a comfortable environment for freelancers and students.\r\nLocation: Al-Nas Street, next to Orabi Laptop.', 'South', 'Mawasi Khan Younis', 'Fast', '24/7', 30, '08:00:00', '12:00:00', 'normal', 0, 3.00, '+9725977713203', 0.00, 'approved', NULL, '2026-07-02 09:28:49'),
+(21, 25, 'Madar Tech', 'Your first space for creativity.\r\nVIP fiber internet | hands-on training | fully integrated professional environment.\r\nLocation: Al-Khair Hospital area, near the Sharia Court.', 'South', 'Mawasi Khan Younis', 'Good', 'Available', 25, '09:00:00', '18:00:00', 'normal', 0, 4.00, '+9725977713203', 0.00, 'approved', NULL, '2026-07-02 09:39:50'),
+(22, 25, 'Masar Tech', 'A perfect student space for focus and productivity, combining creativity and efficiency.\r\n\r\nLocation: North of Al-Nas Junction, opposite Al-Qrnawi Supermarket.', 'South', 'Mawasi Khan Younis', 'Good', 'Available', 25, '08:00:00', '22:00:00', 'normal', 1, 4.00, '+972597060870', 0.00, 'approved', NULL, '2026-07-02 09:43:34'),
+(23, 25, 'Meras Space', 'A community and productive environment for students, freelancers, and trainers. A hub for free practical training and hands-on experience.\r\nLocation: Nuseirat', 'Center', 'Nuseirat', 'Fast', 'Available', 20, '09:00:00', '22:00:00', 'normal', 1, 5.00, '+972598700396', 0.00, 'approved', NULL, '2026-07-02 09:50:40'),
+(24, 25, 'Zero to Hero Hub', '📍 Nuseirat – Midway along Saq Allah Street, opposite Hamada Ice Cream, a workspace and study environment offering online and in-person diplomas, university field training, and digital services including design and programming.', 'Center', 'Nuseirat', 'Good', 'Available', 25, '09:00:00', '21:00:00', 'normal', 0, 3.00, '+972597676123', 0.00, 'approved', NULL, '2026-07-02 09:54:05'),
+(25, 25, 'Garden Space', 'A comfortable and professional workspace with continuous electricity and high-speed internet.\r\n\r\nOmar Al-Mukhtar Street – opposite Al-Baladiya Park, Gaza City', 'North', 'Al-Saraya', 'Good', 'Available', 25, '08:30:00', '20:30:00', 'normal', 0, 4.00, '+972598287166', 0.00, 'approved', NULL, '2026-07-02 09:58:24'),
+(26, 25, 'Grow Space', 'A fully integrated space for study, work, and training.\r\n\r\nHigh-speed fiber internet, stable electricity, and a dedicated section for women.\r\n\r\nWest of Ramzon Al-Maghazi Store, Al-Noor Building, 2nd Floor.', 'North', 'Salah Al-Din Street', 'Very Fast', 'Available', 25, '09:00:00', '23:00:00', 'normal', 0, 4.00, '+972592898306', 0.00, 'approved', NULL, '2026-07-02 10:13:46'),
+(27, 25, 'Babel Space', 'Success needs the right place.\r\n\r\n24/7 electricity and internet, with individual seating options and flexible daily/monthly plans.\r\n\r\nAl-Wahda Street, next to Al-Shifa Hospital, Al-Barzono Building, 1st Floor, opposite Gaza Diagnostic Center.', 'North', 'Al-Rimal', 'Fast', 'Available', 25, '08:00:00', '18:30:00', 'normal', 0, 3.00, '+972595255792', 0.00, 'approved', NULL, '2026-07-02 10:16:37'),
+(28, 25, 'GoWork Hub', 'Work, learn, and launch your ideas. 🚀\r\nFrom individual work to team collaboration – fully equipped rooms for every need.', 'North', 'Al-Rimal', 'Very Fast', '24/7', 100, '09:00:00', '19:00:00', 'normal', 1, 5.00, '+972566977777', 0.00, 'approved', NULL, '2026-07-02 10:26:20'),
+(29, 25, 'Elevate Hub', 'Elevate Hub is a shared workspace that provides a comfortable and motivating environment to help you achieve your goals and develop your passion, whether you are a student, freelancer, entrepreneur, or someone working on their ideas.\r\n\r\nLocation: Nuseirat – North of Al-Zohour Junction, 50 meters (1st floor, former Jeva Center site).\r\nPayment: Available via banking app.', 'Center', 'Nuseirat', 'Fast', 'Available', 50, '09:00:00', '21:00:00', 'normal', 1, 5.00, '+972592878290', 0.00, 'approved', NULL, '2026-07-02 10:41:07'),
+(30, 25, 'C2', 'A workspace and cafe offering a comfortable environment for focus and productivity at 5 NIS per hour, with high-speed internet, charging, and drinks. Includes individual desks, meeting rooms, and training rooms in one place.\r\n\r\nLocation: Nuseirat – next to Abu Zaytoun.', 'Center', 'Nuseirat', 'Fast', 'Available', 60, '09:00:00', '21:00:00', 'normal', 1, 5.00, '+972593099240', 0.00, 'approved', NULL, '2026-07-02 10:43:12');
 
 -- --------------------------------------------------------
 
@@ -186,16 +187,6 @@ CREATE TABLE `workspace_images` (
 --
 
 INSERT INTO `workspace_images` (`id`, `workspace_id`, `image_path`, `created_at`) VALUES
-(11, 1, '1780468118_0.jpeg', '2026-06-03 06:28:38'),
-(12, 1, '1780468118_1.jpeg', '2026-06-03 06:28:38'),
-(13, 1, '1780468118_2.jpeg', '2026-06-03 06:28:38'),
-(14, 1, '1780468118_3.jpeg', '2026-06-03 06:28:38'),
-(15, 1, '1780468118_4.jpeg', '2026-06-03 06:28:38'),
-(16, 2, '1780468298_0.jpeg', '2026-06-03 06:31:38'),
-(17, 2, '1780468298_1.jpeg', '2026-06-03 06:31:38'),
-(18, 2, '1780468298_2.jpeg', '2026-06-03 06:31:38'),
-(19, 2, '1780468298_3.jpeg', '2026-06-03 06:31:38'),
-(20, 2, '1780468298_4.jpeg', '2026-06-03 06:31:38'),
 (21, 3, '1780468317_0.jpeg', '2026-06-03 06:31:57'),
 (22, 3, '1780468317_1.jpeg', '2026-06-03 06:31:57'),
 (23, 3, '1780468317_2.jpeg', '2026-06-03 06:31:57'),
@@ -206,16 +197,6 @@ INSERT INTO `workspace_images` (`id`, `workspace_id`, `image_path`, `created_at`
 (28, 4, '1780468335_2.jpeg', '2026-06-03 06:32:15'),
 (29, 4, '1780468335_3.jpeg', '2026-06-03 06:32:15'),
 (30, 4, '1780468335_4.jpeg', '2026-06-03 06:32:15'),
-(31, 5, '1780468118_0.jpeg', '2026-06-14 15:11:32'),
-(32, 5, '1780468118_1.jpeg', '2026-06-14 15:11:32'),
-(33, 5, '1780468118_2.jpeg', '2026-06-14 15:11:32'),
-(34, 5, '1780468118_3.jpeg', '2026-06-14 15:11:32'),
-(35, 5, '1780468118_4.jpeg', '2026-06-14 15:11:32'),
-(36, 6, '1780468298_0.jpeg', '2026-06-14 15:11:32'),
-(37, 6, '1780468298_1.jpeg', '2026-06-14 15:11:32'),
-(38, 6, '1780468298_2.jpeg', '2026-06-14 15:11:32'),
-(39, 6, '1780468298_3.jpeg', '2026-06-14 15:11:32'),
-(40, 6, '1780468298_4.jpeg', '2026-06-14 15:11:32'),
 (41, 7, '1780468317_0.jpeg', '2026-06-14 15:11:32'),
 (42, 7, '1780468317_1.jpeg', '2026-06-14 15:11:32'),
 (43, 7, '1780468317_2.jpeg', '2026-06-14 15:11:32'),
@@ -226,11 +207,73 @@ INSERT INTO `workspace_images` (`id`, `workspace_id`, `image_path`, `created_at`
 (48, 8, '1780468335_2.jpeg', '2026-06-14 15:11:32'),
 (49, 8, '1780468335_3.jpeg', '2026-06-14 15:11:32'),
 (50, 8, '1780468335_4.jpeg', '2026-06-14 15:11:32'),
-(61, 12, '1782906042_0.jpeg', '2026-07-01 11:40:42'),
-(62, 12, '1782906043_1.jpeg', '2026-07-01 11:40:43'),
-(63, 12, '1782906043_2.jpeg', '2026-07-01 11:40:43'),
-(64, 12, '1782906043_3.jpeg', '2026-07-01 11:40:43'),
-(65, 12, '1782906043_4.jpeg', '2026-07-01 11:40:43');
+(71, 16, '1782982717_0.jpeg', '2026-07-02 08:58:37'),
+(72, 16, '1782982721_1.jpeg', '2026-07-02 08:58:41'),
+(73, 16, '1782982722_2.jpeg', '2026-07-02 08:58:42'),
+(74, 16, '1782982723_3.jpeg', '2026-07-02 08:58:43'),
+(75, 16, '1782982723_4.jpeg', '2026-07-02 08:58:43'),
+(76, 17, '1782983025_0.jpeg', '2026-07-02 09:03:45'),
+(77, 17, '1782983025_1.jpeg', '2026-07-02 09:03:45'),
+(78, 17, '1782983025_2.jpeg', '2026-07-02 09:03:45'),
+(79, 17, '1782983025_3.jpeg', '2026-07-02 09:03:45'),
+(80, 18, '1782983305_0.jpeg', '2026-07-02 09:08:25'),
+(81, 18, '1782983305_1.jpeg', '2026-07-02 09:08:25'),
+(82, 18, '1782983305_2.jpeg', '2026-07-02 09:08:25'),
+(83, 18, '1782983305_3.jpeg', '2026-07-02 09:08:25'),
+(84, 18, '1782983305_4.jpeg', '2026-07-02 09:08:25'),
+(85, 19, '1782984090_0.jpeg', '2026-07-02 09:21:30'),
+(86, 19, '1782984090_1.jpeg', '2026-07-02 09:21:30'),
+(87, 19, '1782984090_2.jpeg', '2026-07-02 09:21:30'),
+(88, 19, '1782984090_3.jpeg', '2026-07-02 09:21:30'),
+(89, 19, '1782984090_4.jpeg', '2026-07-02 09:21:30'),
+(90, 20, '1782984529_0.jpeg', '2026-07-02 09:28:49'),
+(91, 20, '1782984529_1.jpeg', '2026-07-02 09:28:49'),
+(92, 20, '1782984530_2.jpeg', '2026-07-02 09:28:50'),
+(93, 20, '1782984530_3.jpeg', '2026-07-02 09:28:50'),
+(94, 20, '1782984532_4.jpeg', '2026-07-02 09:28:52'),
+(95, 21, '1782985190_0.jpeg', '2026-07-02 09:39:50'),
+(96, 21, '1782985191_1.jpeg', '2026-07-02 09:39:51'),
+(97, 21, '1782985191_2.jpeg', '2026-07-02 09:39:51'),
+(98, 21, '1782985191_3.jpeg', '2026-07-02 09:39:51'),
+(99, 21, '1782985191_4.jpeg', '2026-07-02 09:39:51'),
+(100, 22, '1782985414_0.jpg', '2026-07-02 09:43:34'),
+(101, 22, '1782985414_1.jpg', '2026-07-02 09:43:34'),
+(102, 22, '1782985414_2.jpg', '2026-07-02 09:43:34'),
+(103, 22, '1782985414_3.jpg', '2026-07-02 09:43:34'),
+(104, 22, '1782985414_4.jpg', '2026-07-02 09:43:34'),
+(105, 23, '1782985840_0.jpeg', '2026-07-02 09:50:40'),
+(106, 23, '1782985840_1.jpeg', '2026-07-02 09:50:40'),
+(107, 23, '1782985840_2.jpeg', '2026-07-02 09:50:40'),
+(108, 23, '1782985840_3.jpeg', '2026-07-02 09:50:40'),
+(109, 23, '1782985840_4.jpeg', '2026-07-02 09:50:40'),
+(110, 24, '1782986045_0.jpeg', '2026-07-02 09:54:05'),
+(111, 24, '1782986046_1.jpeg', '2026-07-02 09:54:06'),
+(112, 24, '1782986047_2.jpeg', '2026-07-02 09:54:07'),
+(113, 24, '1782986047_3.jpeg', '2026-07-02 09:54:07'),
+(114, 24, '1782986047_4.jpeg', '2026-07-02 09:54:07'),
+(115, 25, '1782986304_0.jpeg', '2026-07-02 09:58:24'),
+(116, 25, '1782986304_1.jpeg', '2026-07-02 09:58:24'),
+(117, 25, '1782986304_2.jpeg', '2026-07-02 09:58:24'),
+(118, 25, '1782986304_3.jpeg', '2026-07-02 09:58:24'),
+(119, 25, '1782986304_4.jpeg', '2026-07-02 09:58:24'),
+(120, 26, '1782987226_0.jpeg', '2026-07-02 10:13:46'),
+(121, 26, '1782987226_1.jpeg', '2026-07-02 10:13:46'),
+(122, 26, '1782987226_2.jpeg', '2026-07-02 10:13:46'),
+(123, 26, '1782987226_3.jpeg', '2026-07-02 10:13:46'),
+(124, 26, '1782987227_4.jpeg', '2026-07-02 10:13:47'),
+(132, 27, '1782987588_0.jpeg', '2026-07-02 10:19:49'),
+(133, 27, '1782987589_1.jpeg', '2026-07-02 10:19:49'),
+(134, 27, '1782987589_2.jpeg', '2026-07-02 10:19:49'),
+(135, 27, '1782987590_3.jpeg', '2026-07-02 10:19:50'),
+(136, 27, '1782987590_4.jpeg', '2026-07-02 10:19:50'),
+(137, 28, '1782987980_0.jpg', '2026-07-02 10:26:20'),
+(138, 28, '1782987980_1.jpg', '2026-07-02 10:26:20'),
+(139, 28, '1782987980_2.jpg', '2026-07-02 10:26:20'),
+(140, 28, '1782987980_3.jpg', '2026-07-02 10:26:20'),
+(141, 29, '1782988867_0.jpeg', '2026-07-02 10:41:07'),
+(142, 29, '1782988867_1.jpeg', '2026-07-02 10:41:07'),
+(143, 30, '1782988993_0.jpeg', '2026-07-02 10:43:13'),
+(144, 30, '1782988993_1.jpeg', '2026-07-02 10:43:13');
 
 --
 -- Indexes for dumped tables
@@ -305,13 +348,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `workspaces`
 --
 ALTER TABLE `workspaces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `workspace_images`
 --
 ALTER TABLE `workspace_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- Constraints for dumped tables

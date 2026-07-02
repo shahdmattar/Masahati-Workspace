@@ -14,7 +14,7 @@
 
   const areasData = {
     All: ["All"],
-    North: ["All", "Jabalia", "Beit Lahia", "Beit Hanoun", "Tal Al-Hawa", "Sheikh Radwan", "Al-Saftawi", "Al-Rimal"],
+    North: ["All", "Jabalia", "Beit Lahia", "Beit Hanoun", "Tal Al-Hawa", "Sheikh Radwan", "Al-Saftawi", "Al-Rimal", "Al-Saraya", "Salah Al-Din Street"],
     Center: ["All", "Nuseirat", "Deir Al-Balah", "Bureij", "Maghazi", "Zawaida"],
     South: ["All", "Khan Younis", "Rafah", "Mawasi Khan Younis", "Mawasi Al-Qarara"],
   };

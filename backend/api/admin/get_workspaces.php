@@ -64,7 +64,10 @@ $sql = "
         w.id,
         w.owner_id,
         u.name AS owner_name,
+        u.email AS owner_email,
+        u.avatar AS owner_avatar,
         w.workspace_name,
+        w.description,
         w.city,
         w.area,
         w.internet_quality,
@@ -129,6 +132,7 @@ foreach ($workspaces as &$ws) {
     $ws['images']         = $imagesMap[$ws['id']] ?? [];
     $ws['average_rating'] = $ws['average_rating'] ? (float)$ws['average_rating'] : 0;
     $ws['total_reviews']  = (int)$ws['total_reviews'];
+    $ws['owner_avatar']   = $ws['owner_avatar'] ? $baseUrl . $ws['owner_avatar'] : null;
 }
 
 

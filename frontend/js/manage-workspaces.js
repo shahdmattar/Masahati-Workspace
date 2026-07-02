@@ -1,7 +1,7 @@
 /* ===========================
    manage-workspaces.js — Masahati Project
    Admin Manage Workspaces page: lists all workspaces (with status
-   tabs) and lets the admin approve/reject pending ones.
+   tabs) and lets the admin approve/reject/delete them.
    =========================== */
 
 (function () {
@@ -21,14 +21,32 @@
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
-  function statusClass(status) {
-    if (status === 'approved') return 'satus bg-apprevod';
-    if (status === 'rejected') return 'satus bg-Rejected';
-    return 'satus bg-pennding';
+  function formatTime(value) {
+    if (!value) return '';
+    const date = new Date(value.replace(' ', 'T'));
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   }
 
-  function statusLabel(status) {
-    return status.charAt(0).toUpperCase() + status.slice(1);
+  function initials(name) {
+    if (!name) return '?';
+    return name.trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  function statusPillMarkup(status) {
+    const map = {
+      approved: { cls: 'approved', icon: 'bx-check-circle', label: 'Approved' },
+      rejected: { cls: 'rejected', icon: 'bx-x-circle', label: 'Rejected' },
+      pending: { cls: 'pending', icon: 'bx-time-five', label: 'Pending' },
+    };
+    const info = map[status] || map.pending;
+    return `<span class="status-pill ${info.cls}"><i class='bx ${info.icon}'></i>${info.label}</span>`;
   }
 
   async function updateBadge() {
@@ -51,56 +69,83 @@
   function buildRow(ws) {
     const tr = document.createElement('tr');
 
+    const wsThumb = ws.images && ws.images.length
+      ? `<img class="ws-thumb" src="${escapeHtml(ws.images[0])}" alt="${escapeHtml(ws.workspace_name)}" />`
+      : `<span class="ws-thumb"></span>`;
+
+    const ownerAvatar = ws.owner_avatar
+      ? `<img src="${escapeHtml(ws.owner_avatar)}" alt="${escapeHtml(ws.owner_name)}" />`
+      : `<span class="cell-avatar-fallback">${initials(ws.owner_name)}</span>`;
+
+    const desc = ws.description ? escapeHtml(ws.description) : '';
+
     tr.innerHTML = `
-      <td class="ws-name-cell"></td>
-      <td class="owner-cell"></td>
-      <td class="loc-cell"></td>
-      <td class="rating-cell"></td>
-      <td><span class="${statusClass(ws.status)}"></span></td>
-      <td class="actions"></td>
+      <td>
+        <div class="cell-workspace">
+          ${wsThumb}
+          <div class="info">
+            <h6>${escapeHtml(ws.workspace_name)}</h6>
+            <p>${desc}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="cell-user">
+          ${ownerAvatar}
+          <div class="info">
+            <h6>${escapeHtml(ws.owner_name)}</h6>
+            <p>${escapeHtml(ws.owner_email || '')}</p>
+          </div>
+        </div>
+      </td>
+      <td><p><i class='bx bx-map'></i> ${escapeHtml(ws.area || '')}${ws.area ? ', ' : ''}${escapeHtml(ws.city || '')}</p></td>
+      <td>${statusPillMarkup(ws.status)}</td>
+      <td class="cell-date">
+        <div class="date-main">${formatDate(ws.created_at)}</div>
+        <div class="date-sub">${formatTime(ws.created_at)}</div>
+      </td>
+      <td><div class="row-actions"></div></td>
     `;
 
-    tr.querySelector('.ws-name-cell').textContent = ws.workspace_name;
-    tr.querySelector('.owner-cell').textContent = ws.owner_name;
-    tr.querySelector('.loc-cell').textContent = `${ws.area}, ${ws.city}`;
-    tr.querySelector('.rating-cell').textContent = ws.average_rating
-      ? `${ws.average_rating} ★ (${ws.total_reviews})`
-      : 'No reviews';
-    tr.querySelector('.satus').textContent = statusLabel(ws.status);
+    const actionsCell = tr.querySelector('.row-actions');
 
-    const actionsCell = tr.querySelector('.actions');
+    const viewBtn = document.createElement('button');
+    viewBtn.type = 'button';
+    viewBtn.className = 'pill-btn pill-view';
+    viewBtn.innerHTML = `<i class='bx bx-show'></i> View`;
+    viewBtn.addEventListener('click', () => {
+      window.open(`../pages/workspace-details.html?workspace_id=${ws.id}`, '_blank');
+    });
+    actionsCell.appendChild(viewBtn);
 
     if (ws.status === 'pending') {
       const approveBtn = document.createElement('button');
       approveBtn.type = 'button';
-      approveBtn.className = 'but-approve';
-      approveBtn.textContent = 'Approve';
-      approveBtn.addEventListener('click', () => changeStatus(ws.id, 'approved', tr));
+      approveBtn.className = 'pill-btn pill-approve';
+      approveBtn.innerHTML = `<i class='bx bx-check'></i> Approve`;
+      approveBtn.addEventListener('click', () => changeStatus(ws.id, 'approved'));
 
       const rejectBtn = document.createElement('button');
       rejectBtn.type = 'button';
-      rejectBtn.className = 'but-reject';
-      rejectBtn.textContent = 'Reject';
-      rejectBtn.style.marginLeft = '8px';
-      rejectBtn.addEventListener('click', () => changeStatus(ws.id, 'rejected', tr));
+      rejectBtn.className = 'pill-btn pill-reject';
+      rejectBtn.innerHTML = `<i class='bx bx-x'></i> Reject`;
+      rejectBtn.addEventListener('click', () => changeStatus(ws.id, 'rejected'));
 
       actionsCell.appendChild(approveBtn);
       actionsCell.appendChild(rejectBtn);
-    } else {
-      const viewBtn = document.createElement('button');
-      viewBtn.type = 'button';
-      viewBtn.className = 'but-view';
-      viewBtn.textContent = 'View';
-      viewBtn.addEventListener('click', () => {
-        window.open(`../pages/workspace-details.html?workspace_id=${ws.id}`, '_blank');
-      });
-      actionsCell.appendChild(viewBtn);
     }
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.className = 'pill-btn pill-delete';
+    deleteBtn.innerHTML = `<i class='bx bx-trash'></i> Delete`;
+    deleteBtn.addEventListener('click', () => deleteWorkspace(ws.id, tr));
+    actionsCell.appendChild(deleteBtn);
 
     return tr;
   }
 
-  async function changeStatus(workspaceId, status, row) {
+  async function changeStatus(workspaceId, status) {
     const token = getToken();
     const formData = new FormData();
     formData.append('workspace_id', workspaceId);
@@ -122,6 +167,33 @@
       }
     } catch (err) {
       console.error('Failed to change workspace status:', err);
+      alert('Server connection error.');
+    }
+  }
+
+  async function deleteWorkspace(workspaceId, row) {
+    if (!window.confirm('Delete this workspace? This cannot be undone.')) return;
+
+    const token = getToken();
+    try {
+      const res = await fetch(`${BASE_URL}/admin/delete_workspace.php`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ workspace_id: workspaceId }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        row.remove();
+        updateBadge();
+      } else {
+        alert(data.message || 'Failed to delete workspace.');
+      }
+    } catch (err) {
+      console.error('Failed to delete workspace:', err);
       alert('Server connection error.');
     }
   }

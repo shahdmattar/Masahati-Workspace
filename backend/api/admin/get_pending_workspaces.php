@@ -51,7 +51,10 @@ $stmt = $conn->prepare("
         w.id,
         w.owner_id,
         u.name AS owner_name,
+        u.email AS owner_email,
+        u.avatar AS owner_avatar,
         w.workspace_name,
+        w.description,
         w.city,
         w.area,
         w.internet_quality AS internet,
@@ -125,6 +128,7 @@ foreach ($images as $img) {
 
 foreach ($workspaces as &$ws) {
     $ws['images'] = $imagesMap[$ws['id']] ?? [];
+    $ws['owner_avatar'] = $ws['owner_avatar'] ? $baseUrl . $ws['owner_avatar'] : null;
 }
 
 

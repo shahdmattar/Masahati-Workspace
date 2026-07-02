@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="../js/auth-guard.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Workspaces – Masahati</title>
+  <!--  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Original+Surfer&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../css/admin-dashboard.css">
+  <link rel="stylesheet" href="../css/dashbord.css" />
+  <link rel="stylesheet" href="../css/dashboard-admin-bridge.css" />
+  <link rel="stylesheet" href="../css/media.css">
+</head>
+
+<body class="admin-dashboard">
+  <div id="WapperAdmin">
+    <div class="containers">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <img src="../assets/logo/logo.png" alt="Masahati" class="header-logo" />
+            <span class="sidebar-brand-name">Masahati</span>
+          </div>
+          <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+        </div>
+        <div class="sidebar-content">
+          <ul class="menu-list menu-list-main">
+            <li class="menu-item">
+              <a href="dashboard.html" class="menu-link">
+                <img src="../assets/images/icon-dashboard.svg" alt="" class="menu-icon-img" width="24" height="24" />
+                <span class="menu-label">Dashboard</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="pending-workspace.html" class="menu-link menu-link-has-badge">
+                <img src="../assets/images/icon-pending-workspaces.svg" alt="" class="menu-icon-img" width="24" height="24" />
+                <span class="menu-label">Pending Workspaces</span>
+                <span class="menu-badge">0</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="manage-workspaces.html" class="menu-link active">
+                <img src="../assets/images/icon-manage-workspaces.svg" alt="" class="menu-icon-img" width="24" height="24" />
+                <span class="menu-label">Manage Workspaces</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="manage-reviews.html" class="menu-link">
+                <span class="bx bx-star"></span>
+                <span class="menu-label">Manage Reviews</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">logout</span>
+                <span class="menu-label">Log Out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <!-- Site main content -->
+      <div class="main-content">
+        <div class="info-admin">
+          <button type="button" class="sidebar-toggle sidebar-toggle-nav" aria-label="Open menu">
+            <span class="material-symbols-rounded">menu</span>
+          </button>
+          <div class="info-admin-end">
+            <div class="drak-mode">
+              <i class='bx bx-moon'></i>
+            </div>
+            <span class="info-admin-divider" aria-hidden="true"></span>
+            <div class="user-dropdown-admin" id="userDropdownAdmin">
+              <button class="user-menu-admin" id="userMenuBtnAdmin" type="button" aria-label="Open admin menu">
+                <div class="flex-info-admin">
+                  <article class="info-admin-detalis">
+                    <h5>Admin</h5>
+                    <p>Super Administrator</p>
+                  </article>
+                  <img src="../assets/images/testimonial-4.jpg" alt="Admin" />
+                </div>
+                <i class='bx bx-chevron-down user-arrow-admin'></i>
+              </button>
+              <div class="user-dropdown-menu-admin">
+                <div class="user-dropdown-name-admin">Admin</div>
+                <a href="../pages/profile.html"><i class="fa-regular fa-user"></i> My Profile</a>
+                <button type="button" class="logout-btn-admin" id="logoutBtnAdmin">
+                  <i class="material-symbols-rounded">logout</i>
+                  Log Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pad-all">
+          <div class="card-marging-custome">
+            <div class="head-all-page">
+              <h4>Manage Workspaces</h4>
+              <p>View, edit, and manage all workspaces across the platform.</p>
+            </div>
+          </div>
+          <div class="all-tables-toolbar">
+            <button type="button" class="tab-btn active" data-status="all">All</button>
+            <button type="button" class="tab-btn" data-status="pending">Pending</button>
+            <button type="button" class="tab-btn" data-status="approved">Approved</button>
+            <button type="button" class="tab-btn" data-status="rejected">Rejected</button>
+          </div>
+          <div class="all-tables">
+            <table>
+              <thead>
+                <tr>
+                  <th>Workspace</th>
+                  <th>Owner</th>
+                  <th>City</th>
+                  <th>Status</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="workspacesTableBody">
+                <tr>
+                  <td colspan="6" style="text-align:center;padding:40px 0;">Loading workspaces…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/navbar-user.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/manage-workspaces.js"></script>
+  <script>
+    const sidebarToggleBtns = document.querySelectorAll(".sidebar-toggle");
+    const sidebar = document.querySelector(".sidebar");
+    const topThemeToggleBtn = document.querySelector(".drak-mode");
+
+    const updateThemeDisplay = () => {
+      const isDark = document.body.classList.contains("dark-theme");
+      if (topThemeToggleBtn) {
+        const topIcon = topThemeToggleBtn.querySelector("i");
+        if (topIcon) topIcon.className = isDark ? "bx bx-sun" : "bx bx-moon";
+      }
+    };
+
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldUseDarkTheme = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+    document.body.classList.toggle("dark-theme", shouldUseDarkTheme);
+    updateThemeDisplay();
+
+    if (topThemeToggleBtn) {
+      topThemeToggleBtn.style.cursor = "pointer";
+      topThemeToggleBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark-theme");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateThemeDisplay();
+      });
+    }
+
+    sidebarToggleBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+      });
+    });
+
+    const adminUserDropdown = document.querySelector(".user-dropdown-admin");
+    const adminUserMenuBtn = document.getElementById("userMenuBtnAdmin");
+    const adminLogoutBtn = document.getElementById("logoutBtnAdmin");
+
+    if (adminUserMenuBtn && adminUserDropdown) {
+      adminUserMenuBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        adminUserDropdown.classList.toggle("active");
+      });
+      document.addEventListener("click", () => {
+        adminUserDropdown.classList.remove("active");
+      });
+      adminUserDropdown.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+    }
+
+    if (adminLogoutBtn) {
+      adminLogoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "../pages/login.html";
+      });
+    }
+  </script>
+</body>
+
+</html>

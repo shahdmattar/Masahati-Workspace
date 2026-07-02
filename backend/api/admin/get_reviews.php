@@ -59,6 +59,7 @@ $stmt = $conn->prepare("
         r.created_at,
         u.id   AS user_id,
         u.name AS user_name,
+        u.email AS user_email,
         u.avatar,
         w.id   AS workspace_id,
         w.workspace_name,
@@ -71,6 +72,33 @@ $stmt = $conn->prepare("
 ");
 $stmt->execute();
 $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$baseUrl = "http://localhost/Masahati-Workspace/backend/uploads/";
+
+if (!empty($reviews)) {
+    $wsIds = array_unique(array_column($reviews, 'workspace_id'));
+    $in = str_repeat('?,', count($wsIds) - 1) . '?';
+
+    $imgStmt = $conn->prepare("
+        SELECT workspace_id, MIN(image_path) AS image_path
+        FROM workspace_images
+        WHERE workspace_id IN ($in)
+        GROUP BY workspace_id
+    ");
+    $imgStmt->execute(array_values($wsIds));
+    $imgRows = $imgStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $imageMap = [];
+    foreach ($imgRows as $row) {
+        $imageMap[$row['workspace_id']] = $baseUrl . $row['image_path'];
+    }
+
+    foreach ($reviews as &$review) {
+        $review['avatar'] = $review['avatar'] ? $baseUrl . $review['avatar'] : null;
+        $review['workspace_image'] = $imageMap[$review['workspace_id']] ?? null;
+    }
+    unset($review);
+}
 
 
 // =====================================

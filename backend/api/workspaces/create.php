@@ -96,7 +96,7 @@ if (
 // =====================================
 
 $areasData = [
-    "North"  => ["Jabalia", "Beit Lahia", "Beit Hanoun", "Tal Al-Hawa", "Sheikh Radwan", "Al-Saftawi", "Al-Rimal"],
+    "North"  =>  ["All", "Jabalia", "Beit Lahia", "Beit Hanoun", "Tal Al-Hawa", "Sheikh Radwan", "Al-Saftawi", "Al-Rimal", "Al-Saraya", "Salah Al-Din Street"],
     "Center" => ["Nuseirat", "Deir Al-Balah", "Bureij", "Maghazi", "Zawaida"],
     "South"  => ["Khan Younis", "Rafah", "Mawasi Khan Younis", "Mawasi Al-Qarara"],
 ];

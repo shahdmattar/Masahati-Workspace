@@ -1,57 +1,11 @@
 /* =========================================================
-   Masahati Admin — shared behavior
-   Theme toggle, sidebar active state, toasts, and generic
-   row actions (view / approve / reject) via delegation.
+   Masahati Admin — table/list page behavior
+   Sidebar collapse, dark-mode toggle, and the user dropdown
+   are handled by the page's own inline script (copied from
+   the real dashboard.html). This file only drives the
+   view / approve / reject / delete / status-dropdown actions
+   inside .admin-panel tables.
    ========================================================= */
-
-const AdminLayout = (() => {
-  const THEME_KEY = "masahati-admin-theme";
-
-  function initTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
-    const preferred = saved || "light";
-    document.documentElement.setAttribute("data-theme", preferred);
-    updateToggleIcon(preferred);
-
-    const toggle = document.querySelector("[data-theme-toggle]");
-    if (!toggle) return;
-
-    toggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      const next = current === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem(THEME_KEY, next);
-      updateToggleIcon(next);
-    });
-  }
-
-  function updateToggleIcon(theme) {
-    const toggle = document.querySelector("[data-theme-toggle]");
-    if (!toggle) return;
-    toggle.innerHTML =
-      theme === "dark"
-        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`
-        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg>`;
-  }
-
-  function markActiveNavLink() {
-    const links = document.querySelectorAll(".sidebar-link[href]");
-    const current = window.location.pathname.split("/").pop();
-    links.forEach((link) => {
-      const href = link.getAttribute("href");
-      if (href === current) {
-        link.classList.add("active");
-      }
-    });
-  }
-
-  function init() {
-    initTheme();
-    markActiveNavLink();
-  }
-
-  return { init };
-})();
 
 /* ---------------------------------------------------------
    Lightweight toast notifications
@@ -63,16 +17,8 @@ const Toast = (() => {
   function ensureContainer() {
     if (container) return container;
     container = document.createElement("div");
+    container.className = "admin-toast-container";
     container.setAttribute("aria-live", "polite");
-    Object.assign(container.style, {
-      position: "fixed",
-      top: "20px",
-      right: "20px",
-      display: "flex",
-      flexDirection: "column",
-      gap: "10px",
-      zIndex: 1000,
-    });
     document.body.appendChild(container);
     return container;
   }
@@ -80,24 +26,7 @@ const Toast = (() => {
   function show(message, type = "success") {
     const el = document.createElement("div");
     el.textContent = message;
-    const palette = {
-      success: { bg: "#e7f5ec", color: "#1f7a4d", border: "#bbe5c8" },
-      danger: { bg: "#fdecec", color: "#b91c1c", border: "#f3c6c6" },
-      info: { bg: "#eef2ff", color: "#3730a3", border: "#c7d2fe" },
-    }[type];
-
-    Object.assign(el.style, {
-      background: palette.bg,
-      color: palette.color,
-      border: `1px solid ${palette.border}`,
-      padding: "12px 16px",
-      borderRadius: "10px",
-      fontSize: "13.5px",
-      fontWeight: "600",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-      minWidth: "220px",
-    });
-
+    el.className = `admin-toast admin-toast-${type}`;
     ensureContainer().appendChild(el);
     setTimeout(() => {
       el.style.transition = "opacity 0.25s ease";
@@ -110,9 +39,9 @@ const Toast = (() => {
 })();
 
 /* ---------------------------------------------------------
-   Generic table row actions (view / approve / reject)
-   Works against any table where rows carry [data-row]
-   and action buttons carry [data-action] + [data-name].
+   Generic table row actions (view / approve / reject / delete)
+   Works against any table where rows carry [data-row] +
+   [data-name], and action buttons carry [data-action].
    --------------------------------------------------------- */
 
 const RowActions = (() => {
@@ -124,10 +53,19 @@ const RowActions = (() => {
     if (next === 0) badge.style.display = "none";
   }
 
+  function updateTotalReviews(delta) {
+    const totalEl = document.querySelector("[data-total-reviews]");
+    if (!totalEl) return;
+    const match = totalEl.textContent.match(/\d+/);
+    if (!match) return;
+    const next = Math.max(0, parseInt(match[0], 10) + delta);
+    totalEl.textContent = totalEl.textContent.replace(/\d+/, next);
+  }
+
   function setRowStatus(row, status) {
     const badge = row.querySelector("[data-status-badge]");
     if (!badge) return;
-    badge.className = `badge badge-${status}`;
+    badge.className = `status-badge status-badge-${status}`;
     badge.textContent = status === "approved" ? "Approved" : "Rejected";
   }
 
@@ -136,7 +74,7 @@ const RowActions = (() => {
     if (!btn) return;
 
     const row = btn.closest("[data-row]");
-    const name = row?.getAttribute("data-name") || "This workspace";
+    const name = row?.getAttribute("data-name") || "This item";
     const action = btn.getAttribute("data-action");
 
     if (action === "view") {
@@ -163,6 +101,7 @@ const RowActions = (() => {
       row.querySelectorAll("[data-action='approve'], [data-action='reject']").forEach(
         (b) => (b.disabled = true)
       );
+      return;
     }
 
     if (action === "delete") {
@@ -170,16 +109,8 @@ const RowActions = (() => {
       if (!confirmed) return;
       row.classList.add("row-fade-out");
       Toast.show(`${name} deleted`, "danger");
+      updateTotalReviews(-1);
       setTimeout(() => row.remove(), 250);
-
-      const totalEl = document.querySelector("[data-total-reviews]");
-      if (totalEl) {
-        const match = totalEl.textContent.match(/\d+/);
-        if (match) {
-          const next = Math.max(0, parseInt(match[0], 10) - 1);
-          totalEl.textContent = totalEl.textContent.replace(/\d+/, next);
-        }
-      }
     }
   }
 
@@ -248,7 +179,6 @@ const StatusDropdown = (() => {
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
-  AdminLayout.init();
   RowActions.init();
   StatusDropdown.init();
 });

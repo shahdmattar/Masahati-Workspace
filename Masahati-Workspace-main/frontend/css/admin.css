@@ -1,14 +1,11 @@
 /* =========================================================
-   Masahati Admin — shared layout styles
-   Sidebar, topbar, buttons, badges, table shell.
-   Page-specific content styling lives in its own stylesheet.
+   Masahati Admin — table/list page styles
+   Scoped under .admin-panel so nothing here collides with
+   admin-dashboard.css / media.css (sidebar, topbar, cards).
+   Dark mode follows the real toggle: body.dark-theme
    ========================================================= */
 
-:root {
-  --brand-green-950: #0b2a20;
-  --brand-green-900: #0f3327;
-  --brand-green-800: #14392c;
-  --brand-green-700: #1a4a38;
+.admin-panel {
   --brand-green-600: #1f7a4d;
   --brand-green-500: #22c55e;
   --brand-green-100: #e7f5ec;
@@ -34,11 +31,9 @@
   --radius-pill: 999px;
 
   --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
-
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-[data-theme="dark"] {
+body.dark-theme .admin-panel {
   --bg-page: #0d1512;
   --bg-card: #12201a;
   --border-subtle: #223229;
@@ -50,310 +45,16 @@
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-sans);
-  background: var(--bg-page);
-  color: var(--text-primary);
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
+.admin-panel button {
   font-family: inherit;
   cursor: pointer;
 }
 
 /* ---------------------------------------------------------
-   App shell
+   Banners
    --------------------------------------------------------- */
 
-.app-shell {
-  display: grid;
-  grid-template-columns: 264px 1fr;
-  min-height: 100vh;
-}
-
-/* ---------------------------------------------------------
-   Sidebar
-   --------------------------------------------------------- */
-
-.sidebar {
-  background: var(--brand-green-950);
-  color: #eef3f0;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 16px;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-}
-
-.sidebar-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 4px 8px 28px;
-}
-
-.sidebar-brand .logo-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--brand-green-500), var(--brand-green-700));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.sidebar-brand .logo-mark svg {
-  width: 18px;
-  height: 18px;
-}
-
-.sidebar-brand span {
-  font-size: 19px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-}
-
-.sidebar-nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 12px;
-  border-radius: var(--radius-sm);
-  color: #b7c3bc;
-  font-size: 14.5px;
-  font-weight: 500;
-  border-left: 3px solid transparent;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.sidebar-link svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.sidebar-link:hover {
-  background: var(--brand-green-900);
-  color: #ffffff;
-}
-
-.sidebar-link.active {
-  background: var(--brand-green-800);
-  color: #ffffff;
-  border-left-color: var(--brand-green-500);
-}
-
-.sidebar-link .nav-label {
-  flex: 1;
-}
-
-.sidebar-badge {
-  background: var(--brand-green-500);
-  color: #06210f;
-  font-size: 11.5px;
-  font-weight: 700;
-  padding: 1px 8px;
-  border-radius: var(--radius-pill);
-}
-
-.sidebar-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.sidebar-logout {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 12px;
-  border-radius: var(--radius-sm);
-  color: #b7c3bc;
-  font-size: 14.5px;
-  font-weight: 500;
-}
-
-.sidebar-logout:hover {
-  background: var(--brand-green-900);
-  color: #ffffff;
-}
-
-.help-card {
-  background: var(--brand-green-900);
-  border-radius: var(--radius-md);
-  padding: 16px;
-}
-
-.help-card .help-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--brand-green-800);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.help-card .help-icon svg {
-  width: 17px;
-  height: 17px;
-  color: #eef3f0;
-}
-
-.help-card h4 {
-  margin: 0 0 4px;
-  font-size: 14px;
-  color: #ffffff;
-}
-
-.help-card p {
-  margin: 0 0 14px;
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: #9fada4;
-}
-
-.btn-support {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-  background: var(--brand-green-600);
-  color: #ffffff;
-  border: none;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 13.5px;
-  font-weight: 600;
-}
-
-.btn-support:hover {
-  background: var(--brand-green-500);
-}
-
-.btn-support svg {
-  width: 14px;
-  height: 14px;
-}
-
-/* ---------------------------------------------------------
-   Topbar
-   --------------------------------------------------------- */
-
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 18px;
-  padding: 18px 32px;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.theme-toggle {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid var(--border-subtle);
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-}
-
-.theme-toggle:hover {
-  background: var(--bg-page);
-}
-
-.theme-toggle svg {
-  width: 18px;
-  height: 18px;
-}
-
-.topbar-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.topbar-user .avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.topbar-user .user-meta {
-  text-align: right;
-  line-height: 1.25;
-}
-
-.topbar-user .user-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.topbar-user .user-role {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* ---------------------------------------------------------
-   Main content
-   --------------------------------------------------------- */
-
-.main-content {
-  padding: 28px 32px 48px;
-}
-
-.page-header h1 {
-  margin: 0 0 6px;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.page-header p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 14.5px;
-}
-
-/* ---------------------------------------------------------
-   Reusable: banners
-   --------------------------------------------------------- */
-
-.info-banner {
+.admin-panel .info-banner {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -366,17 +67,17 @@ button {
   margin: 22px 0;
 }
 
-.info-banner svg {
+.admin-panel .info-banner svg {
   width: 19px;
   height: 19px;
   flex-shrink: 0;
 }
 
 /* ---------------------------------------------------------
-   Reusable: buttons
+   Buttons
    --------------------------------------------------------- */
 
-.btn {
+.admin-panel .btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -388,47 +89,57 @@ button {
   white-space: nowrap;
 }
 
-.btn svg {
+.admin-panel .btn svg {
   width: 14px;
   height: 14px;
 }
 
-.btn-outline {
+.admin-panel .btn-outline {
   background: var(--bg-card);
   border-color: var(--border-subtle);
   color: var(--text-primary);
 }
 
-.btn-outline:hover {
+.admin-panel .btn-outline:hover {
   background: var(--bg-page);
 }
 
-.btn-approve {
+.admin-panel .btn-approve {
   background: var(--brand-green-600);
   color: #ffffff;
 }
 
-.btn-approve:hover {
+.admin-panel .btn-approve:hover {
   background: var(--brand-green-500);
 }
 
-.btn-reject {
+.admin-panel .btn-reject {
   background: var(--bg-card);
   border-color: var(--border-subtle);
   color: var(--text-secondary);
 }
 
-.btn-reject:hover {
+.admin-panel .btn-reject:hover {
   background: #fdf2f2;
   border-color: #f3c6c6;
   color: var(--danger-text);
 }
 
+.admin-panel .btn-delete {
+  background: var(--bg-card);
+  border-color: #f3c6c6;
+  color: var(--danger-text);
+}
+
+.admin-panel .btn-delete:hover {
+  background: #fdecec;
+}
+
 /* ---------------------------------------------------------
-   Reusable: status badges
+   Status badges (Pending Workspaces)
    --------------------------------------------------------- */
 
-.badge {
+.admin-panel .status-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -438,49 +149,49 @@ button {
   font-weight: 600;
 }
 
-.badge::before {
+.admin-panel .status-badge::before {
   content: "";
   width: 6px;
   height: 6px;
   border-radius: 50%;
 }
 
-.badge-pending {
+.admin-panel .status-badge-pending {
   background: var(--warning-bg);
   color: var(--warning-text);
 }
 
-.badge-pending::before {
+.admin-panel .status-badge-pending::before {
   background: var(--warning-dot);
 }
 
-.badge-approved {
+.admin-panel .status-badge-approved {
   background: var(--brand-green-100);
   color: var(--brand-green-600);
 }
 
-.badge-approved::before {
+.admin-panel .status-badge-approved::before {
   background: var(--brand-green-500);
 }
 
-.badge-rejected {
+.admin-panel .status-badge-rejected {
   background: #fdecec;
   color: var(--danger-text);
 }
 
-.badge-rejected::before {
+.admin-panel .status-badge-rejected::before {
   background: #dc2626;
 }
 
 /* ---------------------------------------------------------
-   Reusable: status dropdown pill (Manage Workspaces)
+   Status dropdown pill (Manage Workspaces)
    --------------------------------------------------------- */
 
-.status-cell {
+.admin-panel .status-cell {
   position: relative;
 }
 
-.status-pill {
+.admin-panel .status-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -492,32 +203,32 @@ button {
   background: none;
 }
 
-.status-pill svg {
+.admin-panel .status-pill svg {
   width: 13px;
   height: 13px;
   transition: transform 0.15s ease;
 }
 
-.status-pill[aria-expanded="true"] svg {
+.admin-panel .status-pill[aria-expanded="true"] svg {
   transform: rotate(180deg);
 }
 
-.status-pill.status-approved {
+.admin-panel .status-pill.status-approved {
   background: var(--brand-green-100);
   color: var(--brand-green-600);
 }
 
-.status-pill.status-pending {
+.admin-panel .status-pill.status-pending {
   background: var(--warning-bg);
   color: var(--warning-text);
 }
 
-.status-pill.status-rejected {
+.admin-panel .status-pill.status-rejected {
   background: #fdecec;
   color: var(--danger-text);
 }
 
-.status-menu {
+.admin-panel .status-menu {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
@@ -531,11 +242,11 @@ button {
   display: none;
 }
 
-.status-menu.open {
+.admin-panel .status-menu.open {
   display: block;
 }
 
-.status-menu button {
+.admin-panel .status-menu button {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -550,48 +261,38 @@ button {
   text-align: left;
 }
 
-.status-menu button:hover {
+.admin-panel .status-menu button:hover {
   background: var(--bg-page);
 }
 
-.status-menu button .dot {
+.admin-panel .status-menu button .dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
 }
 
-.status-menu button[data-status="approved"] .dot {
+.admin-panel .status-menu button[data-status="approved"] .dot {
   background: var(--brand-green-500);
 }
 
-.status-menu button[data-status="pending"] .dot {
+.admin-panel .status-menu button[data-status="pending"] .dot {
   background: var(--warning-dot);
 }
 
-.status-menu button[data-status="rejected"] .dot {
+.admin-panel .status-menu button[data-status="rejected"] .dot {
   background: #dc2626;
 }
 
-.btn-delete {
-  background: var(--bg-card);
-  border-color: #f3c6c6;
-  color: var(--danger-text);
-}
-
-.btn-delete:hover {
-  background: #fdecec;
-}
-
-.row-fade-out {
+.admin-panel .row-fade-out {
   transition: opacity 0.25s ease;
   opacity: 0;
 }
 
 /* ---------------------------------------------------------
-   Reusable: card header row (title + meta, e.g. "Total: 128")
+   Card header row (title + meta, e.g. "Total Reviews: 128")
    --------------------------------------------------------- */
 
-.card-header {
+.admin-panel .table-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -599,51 +300,53 @@ button {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.card-header h2 {
+.admin-panel .table-card-header h2 {
   margin: 0;
   font-size: 16.5px;
   font-weight: 700;
+  color: var(--text-primary);
 }
 
-.card-header .card-header-meta {
+.admin-panel .table-card-header .table-card-header-meta {
   font-size: 13.5px;
   color: var(--text-secondary);
 }
 
 /* ---------------------------------------------------------
-   Reusable: star rating
+   Star rating
    --------------------------------------------------------- */
 
-.stars {
+.admin-panel .stars {
   display: inline-flex;
   align-items: center;
   gap: 2px;
 }
 
-.stars svg {
+.admin-panel .stars svg {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
   display: block;
 }
 
-.star-filled {
+.admin-panel .star-filled {
   color: #f5a623;
   fill: #f5a623;
 }
 
-.star-empty {
+.admin-panel .star-empty {
   color: var(--border-subtle);
   fill: var(--border-subtle);
 }
 
-.rating-value {
+.admin-panel .rating-value {
   margin-left: 6px;
   font-weight: 700;
   font-size: 13.5px;
+  color: var(--text-primary);
 }
 
-.text-truncate {
+.admin-panel .text-truncate {
   display: block;
   max-width: 150px;
   white-space: nowrap;
@@ -654,23 +357,24 @@ button {
 }
 
 /* ---------------------------------------------------------
-   Reusable: data table card
+   Data table card
    --------------------------------------------------------- */
 
-.card {
+.admin-panel .table-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   overflow: hidden;
+  margin-top: 22px;
 }
 
-.data-table {
+.admin-panel .data-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.data-table thead th {
+.admin-panel .data-table thead th {
   text-align: left;
   font-size: 11.5px;
   font-weight: 700;
@@ -681,32 +385,33 @@ button {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.data-table tbody tr {
+.admin-panel .data-table tbody tr {
   border-bottom: 1px solid var(--border-subtle);
   transition: background 0.15s ease;
 }
 
-.data-table tbody tr:last-child {
+.admin-panel .data-table tbody tr:last-child {
   border-bottom: none;
 }
 
-.data-table tbody tr:hover {
+.admin-panel .data-table tbody tr:hover {
   background: var(--bg-page);
 }
 
-.data-table td {
+.admin-panel .data-table td {
   padding: 16px 20px;
   vertical-align: middle;
   font-size: 14px;
+  color: var(--text-primary);
 }
 
-.row-empty {
+.admin-panel .row-empty {
   text-align: center;
   padding: 64px 20px;
   color: var(--text-secondary);
 }
 
-.row-empty svg {
+.admin-panel .row-empty svg {
   width: 40px;
   height: 40px;
   color: var(--text-muted);
@@ -714,24 +419,52 @@ button {
 }
 
 /* ---------------------------------------------------------
+   Lightweight toast notifications (not scoped — fixed overlay)
+   --------------------------------------------------------- */
+
+.admin-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.admin-toast {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  min-width: 220px;
+}
+
+.admin-toast-success {
+  background: #e7f5ec;
+  color: #1f7a4d;
+  border: 1px solid #bbe5c8;
+}
+
+.admin-toast-danger {
+  background: #fdecec;
+  color: #b91c1c;
+  border: 1px solid #f3c6c6;
+}
+
+.admin-toast-info {
+  background: #eef2ff;
+  color: #3730a3;
+  border: 1px solid #c7d2fe;
+}
+
+/* ---------------------------------------------------------
    Responsive
    --------------------------------------------------------- */
 
 @media (max-width: 960px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    position: relative;
-    height: auto;
-  }
-
-  .main-content {
-    padding: 20px;
-  }
-
-  .data-table {
+  .admin-panel .data-table {
     display: block;
     overflow-x: auto;
   }
